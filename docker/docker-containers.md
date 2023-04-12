@@ -63,6 +63,7 @@ mv oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm docker-images/OracleDatabase/Sing
 ./docker-images/OracleDatabase/SingleInstance/dockerfiles/buildContainerImage.sh -v 21.3.0 -x
 
 docker images
+
 REPOSITORY        TAG         IMAGE ID       CREATED         SIZE
 oracle/database   21.3.0-xe   1b4e12c74384   2 minutes ago   6.54GB
 ```
@@ -70,7 +71,8 @@ oracle/database   21.3.0-xe   1b4e12c74384   2 minutes ago   6.54GB
 docker run --name oracle -d -p 1521:1521 -e ORACLE_PWD=changeme oracle/database:21.3.0-xe
 
 # 初回起動時は以下のログが表示されるまで30分ほど気長に待つ必要がある。
-docker logs oracle
+docker logs -f oracle
+
 ...(省略)
 #########################
 DATABASE IS READY TO USE!
@@ -96,14 +98,16 @@ colima start --arch x86_64 --memory 4
 使用後は忘れずに普段使用するDockerコンテキストに切り替えておく。
 ```shell
 docker context use desktop-linux
+
 desktop-linux
 Current context is now "desktop-linux"
 
 docker context list
+
 NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT                                       KUBERNETES ENDPOINT   ORCHESTRATOR
 colima              moby                colima                                    unix:///Users/hainet50b/.colima/default/docker.sock                         
 default             moby                Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                                                 swarm
-desktop-linux *     moby                                                          unix:///Users/hainet50b/.docker/run/docker.sock                             
+desktop-linux *     moby                                                          unix:///Users/hainet50b/.docker/run/docker.sock
 ```
 
 ## RabbitMQ
