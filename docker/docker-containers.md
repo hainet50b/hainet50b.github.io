@@ -152,6 +152,10 @@ gvenzl/oracle-xe   21.3.0-slim             cc241037ad71   4 weeks ago    2.08GB
 ```shell
 docker run --name rabbitmq -h my-rabbit -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:3-management
 ```
+RabbitMQ Management Pluginにも問題なくアクセスできる。
+```
+http://localhost:15672
+```
 
 ## Redis
 [redis - Official Image | Docker Hub](https://hub.docker.com/_/redis){:target="_blank"}
