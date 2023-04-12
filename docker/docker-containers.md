@@ -47,6 +47,8 @@ ERROR 2002 (HY000): Can\'t connect to local MySQL server through socket \'/tmp/m
 ```
 
 ## Oracle
+
+### 自分でDockerイメージをビルドする（Oracle公式）
 以下で案内されている手順に従ってOracle Database Express EditionのDockerイメージを作成する。  
 [docker-images/README.md at main · oracle/docker-images](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md){:target="_blank"}
 
@@ -108,6 +110,41 @@ NAME                TYPE                DESCRIPTION                             
 colima              moby                colima                                    unix:///Users/hainet50b/.colima/default/docker.sock                         
 default             moby                Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                                                 swarm
 desktop-linux *     moby                                                          unix:///Users/hainet50b/.docker/run/docker.sock
+```
+
+### 配布されているDockerイメージを利用する（非公式）
+[gvenzl/oracle-xe - Docker Image | Docker Hub](https://hub.docker.com/r/gvenzl/oracle-xe)
+```shell
+docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=changeme gvenzl/oracle-xe:21.3.0-slim
+```
+
+Slimイメージが用意されており、公式イメージよりサイズが遥かに小さい。
+```shell
+docker images
+
+REPOSITORY         TAG           IMAGE ID       CREATED        SIZE
+oracle/database    21.3.0-xe     6fcb90aa8ca8   27 hours ago   6.54GB
+gvenzl/oracle-xe   21.3.0-slim   cc241037ad71   4 weeks ago    2.08GB
+```
+
+公式イメージと異なり`pdbadmin`ユーザーは作成されていない。
+```shell
+sqlplus sys/changeme@//localhost:1521/XE as sysdba
+```
+
+またFaststartイメージも用意されており、起動時間が著しく短い。
+```shell
+docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=changeme gvenzl/oracle-xe:21.3.0-slim-faststart
+```
+
+単なるSlimイメージよりサイズが少しだけ大きいが、プルが完了してしまえば自動テストに活用できる。
+```shell
+docker images
+
+REPOSITORY         TAG                     IMAGE ID       CREATED        SIZE
+oracle/database    21.3.0-xe               6fcb90aa8ca8   27 hours ago   6.54GB
+gvenzl/oracle-xe   21.3.0-slim-faststart   4f976f27e48c   4 weeks ago    4.95GB
+gvenzl/oracle-xe   21.3.0-slim             cc241037ad71   4 weeks ago    2.08GB
 ```
 
 ## RabbitMQ
