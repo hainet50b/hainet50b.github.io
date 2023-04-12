@@ -58,6 +58,7 @@ Dockerfileのベースイメージ（Oracle Linux 7）に合わせたバイナ�
 git clone https://github.com/oracle/docker-images.git
 curl -O https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm -L
 mv oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
+
 ./docker-images/OracleDatabase/SingleInstance/dockerfiles/buildContainerImage.sh -v 21.3.0 -x
 
 docker images
@@ -72,17 +73,19 @@ sqlplus pdbadmin/changeme@//localhost:1521/XEPDB1
 ```
 
 Apple Siliconを搭載したMacではアーキテクチャの問題でDockerイメージを作ることができなかった。  
-以下のIssueを参考に、Colimaでアーキテクチャを指定してDocker Daemonを立てると上手くいった。  
+以下のIssueを参考に、Colimaでアーキテクチャを指定したDockerデーモンを立てると上手くいった。  
 [Oracle Database on Arm, including Ampere A1 on OCI and Apple M1-based Macs · oracle/docker-images · Discussion #1951](https://github.com/oracle/docker-images/discussions/1951){:target="_blank"}
 ```shell
 brew install colima
+
 # メモリを指定しないと2GBでDockerデーモンが立ち上がる。
 # しかしそれではメモリ不足でOracleが立ち上がらなかったためメモリを4GBに指定している。
 colima start --arch x86_64 --memory 4
+
 ./docker-images/OracleDatabase/SingleInstance/dockerfiles/buildContainerImage.sh -v 21.3.0 -x
 ```
 
-使用後は忘れずに通常使用するDockerコンテキストに切り替えておく。
+使用後は忘れずに普段使用するDockerコンテキストに切り替えておく。
 ```shell
 docker context use desktop-linux
 desktop-linux
@@ -92,7 +95,7 @@ docker context list
 NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT                                       KUBERNETES ENDPOINT   ORCHESTRATOR
 colima              moby                colima                                    unix:///Users/hainet50b/.colima/default/docker.sock                         
 default             moby                Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                                                 swarm
-desktop-linux *     moby
+desktop-linux *     moby                                                          unix:///Users/hainet50b/.docker/run/docker.sock                             
 ```
 
 ## RabbitMQ
