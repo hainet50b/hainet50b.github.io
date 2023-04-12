@@ -1,4 +1,4 @@
-# Wi-Fiルーターの設定（Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）
+# Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）
 {:.no_toc}
 
 * toc
