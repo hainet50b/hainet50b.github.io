@@ -61,7 +61,7 @@ git clone https://github.com/oracle/docker-images.git
 curl -O https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm -L
 mv oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
 
-# Dockerイメージのビルドに著者の環境で20分ほどかかった。
+# Dockerイメージのビルドに筆者の環境で20分ほどかかった。
 ./docker-images/OracleDatabase/SingleInstance/dockerfiles/buildContainerImage.sh -v 21.3.0 -x
 
 docker images
