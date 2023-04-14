@@ -112,6 +112,9 @@ default             moby                Current DOCKER_HOST based configuration 
 desktop-linux *     moby                                                          unix:///Users/hainet50b/.docker/run/docker.sock
 ```
 
+Windows環境ではWSL2をベースにしたDockerデーモンを立てていることを前提にWSL環境でビルドする。  
+ビルドが完了したDockerイメージは問題なくWindows環境からアクセスできる。
+
 ### 配布されているDockerイメージを利用する（非公式）
 [gvenzl/oracle-xe - Docker Image | Docker Hub](https://hub.docker.com/r/gvenzl/oracle-xe)
 ```shell
