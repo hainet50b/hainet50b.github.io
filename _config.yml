@@ -1,4 +1,2 @@
 kramdown:
   toc_levels: 1..2
-
-remote_theme: sighingnow/jekyll-gitbook
