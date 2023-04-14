@@ -4,12 +4,16 @@
 * toc
 {:toc}
 
-## Debian - [Docker Hub](https://hub.docker.com/_/debian){:target="_blank"} 🐳
+## Debian
+
+[Docker Hub](https://hub.docker.com/_/debian){:target="_blank"} 🐳
 ```shell
 docker run --name debian -it debian /bin/bash
 ```
 
-## Apache - [Docker Hub](https://hub.docker.com/_/httpd){:target="_blank"} 🐳
+## Apache
+
+[Docker Hub](https://hub.docker.com/_/httpd){:target="_blank"} 🐳
 ```shell
 docker run --name apache -d -p 80:80 httpd
 ```
@@ -17,7 +21,9 @@ docker run --name apache -d -p 80:80 httpd
 curl localhost:80
 ```
 
-## Nginx - [Docker Hub](https://hub.docker.com/_/nginx){:target="_blank"} 🐳
+## Nginx
+
+[Docker Hub](https://hub.docker.com/_/nginx){:target="_blank"} 🐳
 ```shell
 docker run --name nginx -d -p 80:80 nginx
 ```
@@ -25,7 +31,9 @@ docker run --name nginx -d -p 80:80 nginx
 curl localhost:80
 ```
 
-## MySQL - [Docker Hub](https://hub.docker.com/_/mysql){:target="_blank"} 🐳
+## MySQL
+
+[Docker Hub](https://hub.docker.com/_/mysql){:target="_blank"} 🐳
 ```shell
 docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=changeme -e MYSQL_DATABASE=programacho mysql:8.0.32
 ```
@@ -112,7 +120,7 @@ Windows環境ではWSL2をベースにしたDockerデーモンを立てている
 ビルドが完了したDockerイメージは問題なくWindows環境からアクセスできる。
 
 ### 配布されているDockerイメージを利用する（非公式）
-[gvenzl/oracle-xe - Docker Image | Docker Hub](https://hub.docker.com/r/gvenzl/oracle-xe)
+[Docker Hub](https://hub.docker.com/r/gvenzl/oracle-xe){:target="_blank"} 🐳
 ```shell
 docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=changeme gvenzl/oracle-xe:21.3.0-slim
 ```
@@ -137,7 +145,9 @@ sqlplus sys/changeme@//localhost:1521/XE as sysdba
 docker run --name oracle -d -p 1521:1521 -e ORACLE_PASSWORD=changeme gvenzl/oracle-xe:21.3.0-slim-faststart
 ```
 
-## RabbitMQ - [Docker Hub](https://hub.docker.com/_/rabbitmq){:target="_blank"} 🐳
+## RabbitMQ
+
+[Docker Hub](https://hub.docker.com/_/rabbitmq){:target="_blank"} 🐳
 ```shell
 docker run --name rabbitmq -h my-rabbit -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:3-management
 ```
@@ -146,7 +156,9 @@ RabbitMQ Management Pluginにも問題なくアクセスできる。
 http://localhost:15672
 ```
 
-## Redis - [Docker Hub](https://hub.docker.com/_/redis){:target="_blank"} 🐳
+## Redis
+
+[Docker Hub](https://hub.docker.com/_/redis){:target="_blank"} 🐳
 ```shell
 docker run --name redis -d -p 6379:6379 redis
 ```
