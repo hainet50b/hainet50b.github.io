@@ -1,7 +1,7 @@
 # Home
 
 ## Terminal
-- [よく使うCLIクライアント設定](https://hainet50b.github.io/terminal/cli-clients)
+- [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 
 ## Docker
 - [よく使うDockerコンテナ](https://hainet50b.github.io/docker/docker-containers)
