@@ -16,5 +16,8 @@
 ## GitHub
 - [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
 
+## Windows
+- [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
+
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/wi-fi-router)
