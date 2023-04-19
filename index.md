@@ -19,6 +19,7 @@
 
 ## Windows
 - [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
+- [Windows Bits and Pieces](https://hainet50b.github.io/windows/windows-bits-and-pieces)
 
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/wi-fi-router)
