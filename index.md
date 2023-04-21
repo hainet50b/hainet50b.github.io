@@ -17,6 +17,9 @@
 ## GitHub
 - [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
 
+## Mac
+- [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
+
 ## Windows
 - [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
 - [Windows Bits and Pieces](https://hainet50b.github.io/windows/windows-bits-and-pieces)
