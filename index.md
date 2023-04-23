@@ -7,18 +7,21 @@
 - [Docker環境の構築](https://hainet50b.github.io/docker/setting-up-docker)
 - [よく使うDockerコンテナ](https://hainet50b.github.io/docker/docker-containers)
 
+## Git
+- [よく使うGitコマンド](https://hainet50b.github.io/git/git-commands)
+
+## GitHub
+- [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
+
+## MySQL
+- [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
+
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
 - [Azure Spring Apps](https://hainet50b.github.io/azure/azure-spring-apps)
 - [Azure Log Analytics](https://hainet50b.github.io/azure/azure-log-analytics)
 - [Azure Application Insights](https://hainet50b.github.io/azure/azure-application-insights)
-
-## Git
-- [よく使うGitコマンド](https://hainet50b.github.io/git/git-commands)
-
-## GitHub
-- [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
 
 ## Mac
 - [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
