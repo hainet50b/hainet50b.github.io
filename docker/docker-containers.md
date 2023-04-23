@@ -8,7 +8,7 @@
 
 [Docker Hub](https://hub.docker.com/_/debian){:target="_blank"} 🐳
 ```shell
-docker run --name debian -it debian /bin/bash
+docker run --name debian -it --rm debian /bin/bash
 ```
 
 ## Apache
