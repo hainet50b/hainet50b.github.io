@@ -27,6 +27,7 @@
 - [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
 
 ## Windows
+- [PowerShell and Shell Equivalents](https://hainet50b.github.io/windows/powershell-and-shell-equivalents)
 - [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
 - [Windows Bits and Pieces](https://hainet50b.github.io/windows/windows-bits-and-pieces)
 
