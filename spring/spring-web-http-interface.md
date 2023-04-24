@@ -1,5 +1,5 @@
 # Spring Web HTTP Interface
-サンプルリポジトリ：[spring-web-http-interface | GitHub](https://github.com/hainet50b/spring-web-gym/tree/main/spring-web-http-interface)
+サンプルリポジトリ：[spring-web-http-interface | GitHub](https://github.com/hainet50b/spring-web-gym/tree/main/spring-web-http-interface){:target="_blank"}
 
 ## 依存関係
 ```xml
