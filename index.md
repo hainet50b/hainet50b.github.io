@@ -17,6 +17,7 @@
 - [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
 
 ## MySQL
+- [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
 
 ## Azure
