@@ -32,7 +32,7 @@ TODO
 
 ![wi-fi-router-7714d08326d8.png](https://programacho.blob.core.windows.net/images/wi-fi-router-7714d08326d8.png)
 
-## 送信出力を下げる
+## 送信出力を下げる（オプション）
 一人暮らしの環境では無駄に強い出力となるため送信出力を下げる。
 1. [Wi-Fiルーター設定ページ](http://192.168.11.1/cgi-bin/cgi?req=twz){:target="_blank"}にアクセスする。  
 1. 「詳細設定」 -> 「無線設定」 -> 「5 GHz (11ax/ac/n/a)」 -> 「送信出力」を75%（例）に設定する。
@@ -42,7 +42,7 @@ TODO
 1. [Wi-Fiルーター設定ページ](http://192.168.11.1/cgi-bin/cgi?req=twz){:target="_blank"}にアクセスする。  
 1. 「詳細設定」 -> 「無線設定」 -> 「EasyMesh」 -> 「使用する」のチェックを外す。
 
-## IGNP Snooping機能を無効化する
+## IGNP Snooping機能を無効化する（オプション）
 この機能による接続不安定が多数報告されているため無効化する。状況によっては元に戻す可能性もある。  
 1. [Wi-Fiルーター設定ページ](http://192.168.11.1/cgi-bin/cgi?req=twz){:target="_blank"}にアクセスする。  
 1. 「詳細設定」 -> 「無線設定」 -> 「マルチキャスト制御」 -> 「使用する」のチェックを外す。
