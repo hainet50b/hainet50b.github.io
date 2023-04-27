@@ -19,3 +19,12 @@ lsof -i -n -P | grep 8080
 # PowerShell -a すべてのTCP/UDPポートを表示 -n IPアドレスで表示 -o プロセスIDを表示
 netstat -ano | sls 8080
 ```
+
+## uuidgen / New-Guid
+```
+# Shell
+uuidgen
+
+# PowerShell
+New-Guid
+```
