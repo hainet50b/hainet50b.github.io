@@ -41,6 +41,9 @@ SHOW GRANTS FOR programacho_user;
 -- ユーザーにデータベースへのアクセス権限を与える
 GRANT SELECT, INSERT, UPDATE, DELETE ON programacho_db.* TO programacho_user;
 
+-- FlywayなどでアプリケーションからDDLを発行する場合は追加の権限を与えるか専用ユーザーを発行する
+GRANT CREATE, ALTER, DROP ON programacho_db.* TO programacho_user;
+
 -- 設定を反映させる
 FLUSH PRIVILEGES;
 ```
