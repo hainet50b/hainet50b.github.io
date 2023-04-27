@@ -19,16 +19,16 @@ CREATE DATABASE programacho_db;
 SELECT user, host FROM mysql.user;
 
 -- ユーザーを作成する
-CREATE USER programacho;
+CREATE USER programacho_user;
 
 -- パスワードを指定できる
-CREATE USER programacho IDENTIFIED BY 'changeme';
+CREATE USER programacho_user IDENTIFIED BY 'changeme';
 
 -- アクセス元のホスト名を指定できる
-CREATE USER programacho@localhost;
+CREATE USER programacho_user@localhost;
 
 -- ユーザーを削除する
-DROP USER programacho;
+DROP USER programacho_user;
 ```
 
 ## 権限
@@ -36,10 +36,10 @@ DROP USER programacho;
 
 ```sql
 -- ユーザーの権限を確認する
-SHOW GRANTS FOR programacho;
+SHOW GRANTS FOR programacho_user;
 
 -- ユーザーにデータベースへのアクセス権限を与える
-GRANT SELECT, INSERT, UPDATE, DELETE ON programacho_db.* TO programacho;
+GRANT SELECT, INSERT, UPDATE, DELETE ON programacho_db.* TO programacho_user;
 
 -- 設定を反映させる
 FLUSH PRIVILEGES;
