@@ -21,6 +21,7 @@ netstat -ano | sls 8080
 ```
 
 ## uuidgen / New-Guid - UUIDを生成
+参考：[New-Guid | Microsoft Learn](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7.3)
 ```
 # Shell
 uuidgen
