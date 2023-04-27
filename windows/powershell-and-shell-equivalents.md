@@ -1,7 +1,7 @@
 # PowerShell and Shell Equivalents
 
 ## grep / sls - 正規表現によるテキストの検索
-参考：[Select-String](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.utility/select-string)
+参考：[Select-String](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.utility/select-string){:target="_blank"
 ```
 # Shell
 ls | grep hainet50b
@@ -11,7 +11,7 @@ ls | sls hainet50b
 ```
 
 ## lsof / netstat - ポートの使用状況を確認
-参考：[netstat | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netstat)
+参考：[netstat | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netstat){:target="_blank"
 ```
 # Shell -i ネットワークファイルを表示 -n IPアドレスで表示 -P ポート番号を表示
 lsof -i -n -P | grep 8080
@@ -21,7 +21,7 @@ netstat -ano | sls 8080
 ```
 
 ## uuidgen / New-Guid - UUIDを生成
-参考：[New-Guid | Microsoft Learn](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7.3)
+参考：[New-Guid | Microsoft Learn](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.utility/new-guid?view=powershell-7.3){:target="_blank"
 ```
 # Shell
 uuidgen
