@@ -20,7 +20,7 @@ lsof -i -n -P | grep 8080
 netstat -ano | sls 8080
 ```
 
-## uuidgen / New-Guid
+## uuidgen / New-Guid - UUIDを生成
 ```
 # Shell
 uuidgen
