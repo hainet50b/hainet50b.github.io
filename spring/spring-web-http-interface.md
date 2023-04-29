@@ -54,6 +54,30 @@ public class WebClientConfig {
 }
 ```
 
+## タイムアウト設定
+```java
+@Bean
+public HttpServiceProxyFactory httpServiceProxyFactory(WebClient.Builder builder) {
+    HttpClient httpClient = HttpClient.create()
+            // Connect Timeout
+            .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 2_000)
+            // Read Timeout
+            .doOnConnected(conn -> conn
+                    .addHandlerLast(new ReadTimeoutHandler(3_000, TimeUnit.MILLISECONDS))
+            );
+
+    WebClient webClient = builder
+            .clientConnector(new ReactorClientHttpConnector(httpClient))
+            .build();
+
+    return HttpServiceProxyFactory
+            .builder(WebClientAdapter.forClient(webClient))
+            // Mono/Fluxおけるブロッキング処理のタイムアウト設定
+            .blockTimeout(Duration.ofMillis(5_000))
+            .build();
+}
+```
+
 ## 例外ハンドリング
 ```java
 try {
