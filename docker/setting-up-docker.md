@@ -33,3 +33,9 @@ desktop-linux       moby                                                        
 ## Windows
 Windows環境ではScoopなどのパッケージマネージャーを使用して上手くインストールする手段が見つからなかった。  
 [公式ページ](https://www.docker.com/products/docker-desktop/)からDocker Desktopのインストーラーをダウンロードしてインストールする。
+
+WindowsのWSL環境でDockerデーモンが上手く立ち上がらないことがある。  
+この時は以下のコマンドでWSLを再起動することで解決することが多い。
+```PowerShell
+Restart-Service vmcompute
+```
