@@ -3,6 +3,9 @@
 ## Spring
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 
+## Java
+- [Java Bits and Pieces](https://hainet50b.github.io/java/java-bits-and-pieces)
+
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 
