@@ -1,6 +1,7 @@
 # Home
 
 ## Spring
+- [Spring Resource Interface](https://hainet50b.github.io/spring/spring-resource-interface)
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 
 ## Java
