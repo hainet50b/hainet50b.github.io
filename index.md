@@ -8,6 +8,7 @@
 
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
+- [よく使うLinuxコマンド](https://hainet50b.github.io/terminal/linux-commands)
 
 ## Docker
 - [Docker環境の構築](https://hainet50b.github.io/docker/setting-up-docker)
