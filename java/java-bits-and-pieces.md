@@ -1,4 +1,8 @@
 # Java Bits and Pieces
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## JDKのバージョンをコマンドラインから切り替える（Mac）
 参考：[jEnv](https://www.jenv.be)
