@@ -5,6 +5,7 @@
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 
 ## Java
+- [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
 - [Java Bits and Pieces](https://hainet50b.github.io/java/java-bits-and-pieces)
 
 ## Terminal
