@@ -7,3 +7,8 @@ $HOME/Music/Music/Media.localized/Music
 ```
 
 ![mac-bits-and-pieces-f42838d744a1.png](https://programacho.blob.core.windows.net/images/mac-bits-and-pieces-f42838d744a1.png)
+
+## Steam Streaming Microphone/Speakerの削除
+```shell
+sudo rm /Library/Audio/Plug-Ins/HAL/SteamStreaming*.driver
+```
