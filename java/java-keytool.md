@@ -111,4 +111,6 @@ keytool -importcert \
 ### サーバー証明書を検証する
 ```shell
 openssl verify -CAfile ca.crt server.crt
+
+server.crt: OK
 ```
