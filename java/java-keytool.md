@@ -69,6 +69,7 @@ keytool -certreq \
 ```conf
 [ v3_ca ]
 basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
 ```
 
 ```shell
