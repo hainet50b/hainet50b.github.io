@@ -7,6 +7,7 @@
 
 ## Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
+- [Keytoolによる擬似CA証明書とサーバー署名書の作成](https://hainet50b.github.io/java/java-keytool)
 - [Java Bits and Pieces](https://hainet50b.github.io/java/java-bits-and-pieces)
 
 ## Terminal
