@@ -33,7 +33,7 @@ DXCore バージョン: 10.0.25131.1002-220531-1700.rs-onecore-base2-hyp
 Windows バージョン: 10.0.19045.2846
 ```
 
-「Linux用Windowsサブシステム」を「プログラムと機能」からアンインストールする。
+「Linux用Windowsサブシステム」を「プログラムの追加と削除」からアンインストールする。
 
 ![wsl-027c63fcbc7.png](https://programacho.blob.core.windows.net/images/wsl-027c63fcbc7.png)
 
