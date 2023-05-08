@@ -4,7 +4,17 @@
 * toc
 {:toc}
 
-サンプルリポジトリ：[spring-amqp-intro](https://github.com/hainet50b/spring-gym/tree/main/spring-amqp-gym/spring-amqp-intro){:target="_blank"}
+サンプルリポジトリ：[spring-amqp-intro | GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-amqp-gym/spring-amqp-intro){:target="_blank"}
+
+## RabbitMQの接続情報を定義
+```yaml
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+```
 
 ## 対象となるQueueをBean定義
 ```java
@@ -45,11 +55,9 @@ public void produce(@RequestBody String message) {
 @RabbitListener(queues = QueueConfig.SPRING_AMQP_BASIC)
 public class SpringAmqpBasicConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(SpringAmqpBasicConsumer.class);
-
     @RabbitHandler
     public void consume(String message) {
-        log.info("Received a message: {}", message);
+        // Let's do something!
     }
 }
 ```
