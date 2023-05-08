@@ -18,7 +18,7 @@ Windowsを再起動するとWSLが立ち上がりUbuntu（デフォルト）に�
 Error code: Wsl/Service/0x8007273d
 ```
 
-これはMicrosoft Storeで提供されるWSLをアンインストールすると解決する。  
+これは不具合のようで、Microsoft Storeで提供されるWSLをアンインストールすると解決する。  
 以下のコマンドでバージョンが確認できる場合はMicrosoft Storeで提供されるWSLを使用している。
 
 ```powershell
@@ -35,8 +35,10 @@ Windows バージョン: 10.0.19045.2846
 
 「Linux用Windowsサブシステム」を「プログラムと機能」からアンインストールする。
 
+![wsl-027c63fcbc7.png](https://programacho.blob.core.windows.net/images/wsl-027c63fcbc7.png)
+
 またPowershellを管理者権限で立ち上げて以下のコマンドを発行することでも解消する。  
-しかし環境によってはネットワークに不具合が発生する。
+しかし環境によってはネットワークに不具合が発生するため現在は使用していない。
 
 ```powerhsell
 netsh winsock reset
