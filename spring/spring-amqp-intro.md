@@ -4,7 +4,7 @@
 * toc
 {:toc}
 
-サンプルリポジトリ：[spring-amqp-intro | GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-amqp-gym/spring-amqp-intro){:target="_blank"}
+サンプルリポジトリ：[spring-amqp-intro \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-amqp-gym/spring-amqp-intro){:target="_blank"}
 
 ## RabbitMQの接続情報を定義
 ```yaml
