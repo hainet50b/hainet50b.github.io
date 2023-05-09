@@ -8,7 +8,8 @@
 ## Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
 - [Keytoolによる擬似CA証明書とサーバー署名書の作成](https://hainet50b.github.io/java/java-keytool)
-- [Java Bits and Pieces](https://hainet50b.github.io/java/java-bits-and-pieces)
+- [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)
+- [JDKをコマンドラインから切り替える（JEnv for Windows）](https://hainet50b.github.io/java/java-jenv-for-windows)
 
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
