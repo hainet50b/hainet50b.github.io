@@ -49,15 +49,31 @@ public void produce(@RequestBody String message) {
 }
 ```
 
-## Consumerを実装
+## Consumerを実装してBean定義
+
+Consumerを実装する。
+
 ```java
-@Component
 @RabbitListener(queues = QueueConfig.SPRING_AMQP_BASIC)
 public class SpringAmqpBasicConsumer {
 
     @RabbitHandler
     public void consume(String message) {
         // Let's do something!
+    }
+}
+```
+
+実装したConsumerをBean定義する。  
+割り切ってJava ConfigクラスをListenerと名付けてControllerと同様のパッケージ構成で取り扱ってもよい。
+
+```java
+@Configuration
+public class SpringAmqpIntroListener {
+
+    @Bean
+    public SpringAmqpIntroConsumer consumer() {
+        return new SpringAmqpIntroConsumer();
     }
 }
 ```
