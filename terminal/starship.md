@@ -14,4 +14,12 @@ brew install font-hack-nerd-font
 ```
 
 ### Windows
-TODO
+```powershell
+scoop install starship
+
+echo 'Invoke-Expression (&starship init powershell)' >> $PROFILE
+
+# Nerd Fontをインストールする。ターミナルのフォント設定も変更すること。
+scoop bucket add nerd-fonts
+scoop isntall Hack-NF
+```
