@@ -5,12 +5,15 @@
 {:toc}
 
 ## 直近のコミットのコメントを変更する
+
 ```shell
 git commit --amend
 ```
 
 ## 複数のコミットを一つにまとめる
+
 サンプルとして以下の4つのコミットを作成する。
+
 ```shell
 git init
 touch init.txt; git add -A; git commit -m "Add init"
@@ -27,6 +30,7 @@ git log --oneline
 ```
 
 fooとbarをまとめて第３のコミットとすることを目指す。
+
 ```shell
 git rebase -i HEAD~3
 
@@ -37,6 +41,7 @@ pick 17074f5 Add baz
 ```
 
 コミットメッセージの編集画面に遷移する。任意のメッセージに書き換える。
+
 ```
 # 編集前
 # This is a combination of 2 commits.
@@ -55,6 +60,7 @@ Rebased commit
 ```
 
 まとめたコミット以降のコミットハッシュは一新される。
+
 ```shell
 git log --oneline
 
@@ -63,8 +69,32 @@ e013765 (HEAD -> main) Add baz
 44ce705 Add init
 ```
 
+## 複数のリポジトリを合流させたリポジトリを作成する
+
+以下のディレクトリ構成のときに、fooとbarを合流させたリポジトリを作成する。
+
+```shell
+tree
+.
+├── bar
+│   └── bar
+└── foo
+    └── foo
+```
+
+```shell
+mkdir programacho-repo
+cd programacho-repo
+git init
+
+git subtree add --prefix foo ../foo main
+git subtree add --prefix bar ../bar main
+```
+
 ## 過去のコミットのユーザー名とメールアドレスを変更する
+
 誤って業務環境でDotfilesを更新してしまった時などに使う。
+
 ```shell
 user_name=hainet50b
 user_email=20400616+hainet50b@users.noreply.github.com
