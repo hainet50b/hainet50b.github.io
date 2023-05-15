@@ -1,0 +1,95 @@
+# Spring Cloud Stream Binder Rabbit入門
+{:.no_toc}
+
+* toc
+{:toc}
+
+サンプルリポジトリ：[spring-cloud-stream-binder-rabbit-intro \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-cloud-gym/spring-cloud-stream-gym/spring-cloud-stream-binder-rabbit-intro){:target="_blank"}
+
+## 依存関係の追加
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-stream</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+</dependency>
+```
+
+## RabbitMQの接続情報を定義
+```yaml
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+```
+
+## Bindingの設定
+```yaml
+spring:
+  cloud:
+    stream:
+      bindings:
+        log-in-0:
+          group: log-queue
+```
+
+## ProducerとしてStreamBridgeを使用
+```java
+@Service
+public class SpringCloudStreamIntroProducer {
+
+    private final StreamBridge streamBridge;
+
+    public SpringCloudStreamIntroProducer(StreamBridge streamBridge) {
+        this.streamBridge = streamBridge;
+    }
+
+    public void log(String message) {
+        streamBridge.send("log-in-0", message);
+    }
+}
+```
+
+## Consumerを実装してBean定義
+```java
+@Component
+public class SpringCloudStreamIntroListener {
+
+    @Bean
+    public Consumer<String> log() {
+        return m -> {
+            // Let's make a great code!
+        };
+    }
+}
+```
+
+## RabbitMQのセットアップ（オプション）
+```shell
+docker run --name rabbitmq -h my-rabbit -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest rabbitmq:3-management
+```
