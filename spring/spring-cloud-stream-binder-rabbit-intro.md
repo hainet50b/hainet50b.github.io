@@ -38,16 +38,6 @@
 </dependency>
 ```
 
-## RabbitMQの接続情報を定義
-```yaml
-spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-```
-
 ## Bindingの設定
 ```yaml
 spring:
@@ -55,22 +45,38 @@ spring:
     stream:
       bindings:
         log-in-0:
+          destination: log-exchange
           group: log-queue
+          binder: rabbitmq-dev
+        log-out-0:
+          destination: log-exchange
+          group: log-queue
+          binder: rabbitmq-dev
+      binders:
+        rabbitmq-dev:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
 ```
 
-## ProducerとしてStreamBridgeを使用
+## StreamListerを使用してProducerを実装
 ```java
-@Service
-public class SpringCloudStreamIntroProducer {
+@Component
+public class SpringCloudStreamBinderRabbitIntroProducer {
 
     private final StreamBridge streamBridge;
 
-    public SpringCloudStreamIntroProducer(StreamBridge streamBridge) {
+    public SpringCloudStreamBinderRabbitIntroProducer(StreamBridge streamBridge) {
         this.streamBridge = streamBridge;
     }
 
     public void log(String message) {
-        streamBridge.send("log-in-0", message);
+        streamBridge.send("log-out-0", message);
     }
 }
 ```
@@ -78,7 +84,7 @@ public class SpringCloudStreamIntroProducer {
 ## Consumerを実装してBean定義
 ```java
 @Component
-public class SpringCloudStreamIntroListener {
+public class SpringCloudStreamBinderRabbitIntroListener {
 
     @Bean
     public Consumer<String> log() {
