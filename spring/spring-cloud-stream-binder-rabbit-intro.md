@@ -41,27 +41,20 @@
 ## Bindingの設定
 ```yaml
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     stream:
       bindings:
         log-in-0:
           destination: log-exchange
           group: log-queue
-          binder: rabbitmq-dev
         log-out-0:
           destination: log-exchange
           group: log-queue
-          binder: rabbitmq-dev
-      binders:
-        rabbitmq-dev:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
 ```
 
 ## StreamListerを使用してProducerを実装
