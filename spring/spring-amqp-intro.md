@@ -6,6 +6,14 @@
 
 サンプルリポジトリ：[spring-amqp-intro \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-amqp-gym/spring-amqp-intro){:target="_blank"}
 
+## 依存関係の追加
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+```
+
 ## RabbitMQの接続情報を定義
 ```yaml
 spring:
@@ -50,7 +58,6 @@ public void produce(@RequestBody String message) {
 ```
 
 ## Consumerを実装してBean定義
-
 Consumerを実装する。
 
 ```java
