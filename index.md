@@ -40,6 +40,7 @@
 - [Azure Application Insights](https://hainet50b.github.io/azure/azure-application-insights)
 
 ## Mac
+- [Apple Notes](https://hainet50b.github.io/mac/apple-notes)
 - [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
 
 ## Windows
