@@ -4,6 +4,15 @@
 * toc
 {:toc}
 
+## ログイン
+```shell
+# sysユーザー
+sqlplus sys/changeme@//localhost:1521/XE as sysdba
+
+# 一般ユーザー
+sqlplus programacho/changeme@//localhost:1521/XE
+```
+
 ## ユーザー（スキーマ）
 ```sql
 -- ユーザー一覧を確認する

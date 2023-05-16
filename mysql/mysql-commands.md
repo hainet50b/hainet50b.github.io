@@ -4,6 +4,11 @@
 * toc
 {:toc}
 
+## ログイン
+```shell
+mysql -h localhost -P 3306 -u root -p
+```
+
 ## データベース
 ```sql
 --　データベース一覧を確認する
