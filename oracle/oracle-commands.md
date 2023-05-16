@@ -9,11 +9,11 @@
 -- ユーザー一覧を確認する
 SELECT username FROM all_users;
 
--- ユーザーが所有するテーブル一覧を確認する
-SELECT owner, table_name FROM all_tables WHERE owner = 'PROGRAMACHO';
-
 -- ユーザーを作成する
 CREATE USER programacho IDENTIFIED BY changeme;
+
+-- ユーザーが所有するテーブル一覧を確認する
+SELECT owner, table_name FROM all_tables WHERE owner = 'PROGRAMACHO';
 ```
 
 ## 権限
