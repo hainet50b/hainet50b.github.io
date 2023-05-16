@@ -12,6 +12,9 @@
 - [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)
 - [JDKをコマンドラインから切り替える（JEnv for Windows）](https://hainet50b.github.io/java/java-jenv-for-windows)
 
+## Rust
+- [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
+
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 - [よく使うLinuxコマンド](https://hainet50b.github.io/terminal/linux-commands)
