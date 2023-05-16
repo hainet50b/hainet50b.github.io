@@ -38,12 +38,21 @@ DROP USER programacho_user;
 -- ユーザーの権限を確認する
 SHOW GRANTS FOR programacho_user;
 
--- ユーザーにデータベースへのアクセス権限を与える
+-- ユーザーにデータベースへのアクセス権限を付与する
 GRANT SELECT, INSERT, UPDATE, DELETE ON programacho_db.* TO programacho_user;
 
--- FlywayなどでアプリケーションからDDLを発行する場合は追加の権限を与えるか専用ユーザーを発行する
+-- FlywayなどでアプリケーションからDDLを発行する場合は追加の権限を付与するか専用ユーザーを発行する
 GRANT CREATE, ALTER, DROP ON programacho_db.* TO programacho_user;
 
 -- 設定を反映させる
 FLUSH PRIVILEGES;
+```
+
+## テーブル
+```sql
+-- テーブルを作成する
+CREATE TABLE emp (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
 ```

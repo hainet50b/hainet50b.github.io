@@ -36,6 +36,9 @@
 - [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
 
+## Oracle
+- [よく使うOracleコマンド](https://hainet50b.github.io/oracle/oracle-commands)
+
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
