@@ -38,4 +38,7 @@ CREATE TABLE emp (
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk PRIMARY KEY(id)
 );
+
+-- テーブル定義を確認する
+DESCRIBE emp;
 ```
