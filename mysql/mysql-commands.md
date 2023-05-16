@@ -61,3 +61,9 @@ SHOW COLUMNS FROM emp;
 DESCRIBE emp;
 EXPLAIN emp;
 ```
+
+## Bits and Pieces
+```sql
+-- 一定時間スリープする
+SELECT SLEEP(5);
+```

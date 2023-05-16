@@ -46,3 +46,9 @@ CREATE TABLE emp (
 -- テーブル定義を確認する
 DESCRIBE emp;
 ```
+
+## Bits and Pieces
+```sql
+-- 一定時間スリープする
+EXECUTE DBMS_SESSION.SLEEP(5);
+```
