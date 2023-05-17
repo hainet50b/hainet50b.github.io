@@ -38,6 +38,7 @@
 
 ## Oracle
 - [よく使うOracleコマンド](https://hainet50b.github.io/oracle/oracle-commands)
+- [UCP](https://hainet50b.github.io/oracle/ucp)
 
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
