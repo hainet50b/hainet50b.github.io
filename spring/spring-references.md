@@ -1,4 +1,4 @@
-# Spring参考リンク集
+# Spring 公式ドキュメント集
 
 ## Spring Framework
 

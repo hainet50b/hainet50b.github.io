@@ -5,7 +5,7 @@
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
 - [Spring Cloud Stream Binder Rabbit入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-rabbit-intro)
-- [Spring参考リンク集](https://hainet50b.github.io/spring/spring-references)
+- [Spring 公式ドキュメント集](https://hainet50b.github.io/spring/spring-references)
 
 ## Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
