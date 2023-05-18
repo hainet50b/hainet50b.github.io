@@ -14,6 +14,10 @@ ls | grep hainet50b
 
 # PowerShell
 ls | Out-String -Stream | sls hainet50b
+
+# BusyBoxが導入できる環境ではslsを使う必要はない。
+ls | busybox.exe grep hainet50b
+ls | grep hainet50b
 ```
 
 ## カレントディレクトリ配下をオブジェクトのリストではなく文字列として出力
