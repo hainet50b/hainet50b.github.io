@@ -69,18 +69,22 @@ e013765 (HEAD -> main) Add baz
 
 ## ファイルをGit管理下から取り除く
 取り除くファイルを`.gitignore`に追加する。
-
 ```
 target
 ```
 
 Gitのキャッシュから該当のファイルを削除する。
-
 ```shell
 git rm --cache target
 
 # ディレクトリの場合は-rオプションを付与する。
 git rm --cache -r target
+```
+
+その後、変更をコミットする。
+```shell
+git add -A
+git commit -m "Remove unwanted files."
 ```
 
 ## 複数のリポジトリを合流させたリポジトリを作成する
