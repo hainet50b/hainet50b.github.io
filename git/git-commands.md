@@ -83,7 +83,6 @@ git rm --cache -r target
 
 その後、変更をコミットする。
 ```shell
-git add -A
 git commit -m "Remove unwanted files."
 ```
 
