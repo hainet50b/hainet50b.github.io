@@ -16,6 +16,7 @@
 
 ## Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
+- [Rustのバージョン管理](https://hainet50b.github.io/rust/rust-version)
 
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
