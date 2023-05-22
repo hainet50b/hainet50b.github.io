@@ -7,3 +7,8 @@ PowerShellの`History`コマンドで閲覧できる履歴は現在のセッシ�
 ```powershell
 (Get-PSReadlineOption).HistorySavePath
 ```
+
+## 特定ポートの疎通確認をする
+```powershell
+Test-NetConnection localhost -Port 8080
+```
