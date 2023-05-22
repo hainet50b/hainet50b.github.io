@@ -57,6 +57,8 @@ DESCRIBE emp;
 ```
 
 ## Bits and Pieces
+
+### 一定時間スリープする
 ```sql
 -- 一定時間スリープする
 EXECUTE DBMS_SESSION.SLEEP(5);
@@ -70,4 +72,23 @@ BEGIN
     sum_val := sum_val + i;
   END LOOP;
 END;
+```
+
+### 各種コネクションの接続状況を確認する
+JDBCのレイヤでは抽象化が行われて物理的な接続先が分からない。  
+ロードバランシング状況を見る場合に以下のSQLでセッション情報からインスタンスIDを取得できる。
+
+```sql
+SELECT inst_id      AS 接続先,
+       machine      AS ホスト名,
+       service_name AS サービス名,
+       username     AS スキーマ名,
+       COUNT(*)     AS 接続数
+FROM gv$session
+WHERE username != 'SYS'
+  AND username IS NOT NULL
+GROUP BY inst_id,
+         machine,
+         username,
+         service_name;
 ```
