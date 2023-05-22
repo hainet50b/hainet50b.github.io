@@ -39,8 +39,11 @@ function ll { ls | Out-String -Stream }
 参考：[netstat \| Microsoft Learn](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netstat){:target="_blank"}
 
 ```
-# Shell -i ネットワークファイルを表示 -n IPアドレスで表示 -P ポート番号を表示
+# Shell
+# -i ネットワークファイルを表示 -n IPアドレスで表示 -P ポート番号を表示
 lsof -i -n -P | grep 8080
+# -a すべてのソケットを表示 -n IPアドレスで表示 -p PID/プログラム名を表示
+netstat -anp | grep 8080
 
 # PowerShell -a すべてのTCP/UDPポートを表示 -n IPアドレスで表示 -o プロセスIDを表示
 netstat -ano | sls 8080
