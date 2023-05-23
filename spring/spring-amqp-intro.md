@@ -72,7 +72,7 @@ public class SpringAmqpIntroConsumer {
 ```
 
 実装したConsumerをBean定義する。  
-割り切ってJava ConfigクラスをListenerと名付けてControllerと同様のパッケージ構成で取り扱ってもよい。
+割り切ってJava ConfigクラスをListenerと名付けてControllerと同様に取り扱っても良い。
 
 ```java
 @Configuration
