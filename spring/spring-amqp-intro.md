@@ -30,11 +30,11 @@ spring:
 public class QueueConfig {
 
     // ProducerとConsumerで同様のキュー名を参照できるようにする。
-    public static final String SPRING_AMQP_BASIC = "spring-amqp-basic";
+    public static final String SPRING_AMQP_INTRO = "spring-amqp-intro";
 
     @Bean
-    public Queue springAmqpBasic() {
-        return new Queue(SPRING_AMQP_BASIC);
+    public Queue springAmqpIntro() {
+        return new Queue(SPRING_AMQP_INTRO);
     }
 }
 ```
@@ -45,7 +45,7 @@ private final RabbitTemplate rabbitTemplate;
 
 private final Queue queue;
 
-public SpringAmqpBasicProducer(
+public SpringAmqpIntroProducer(
         RabbitTemplate rabbitTemplate,
         Queue queue) {
     this.rabbitTemplate = rabbitTemplate;
@@ -61,8 +61,8 @@ public void produce(@RequestBody String message) {
 Consumerを実装する。
 
 ```java
-@RabbitListener(queues = QueueConfig.SPRING_AMQP_BASIC)
-public class SpringAmqpBasicConsumer {
+@RabbitListener(queues = QueueConfig.SPRING_AMQP_INTRO)
+public class SpringAmqpIntroConsumer {
 
     @RabbitHandler
     public void consume(String message) {
