@@ -42,6 +42,8 @@ spring:
     username: guest
     password: guest
   cloud:
+    function:
+      definition: log;
     stream:
       bindings:
         log-in-0:
@@ -81,6 +83,24 @@ public class SpringCloudStreamBinderRabbitIntroListener {
         };
     }
 }
+```
+
+## 複数のConsumerをBean定義
+Spring Cloud Streamで取り扱う関数を`spring.cloud.function.definition`項目で明示的に指定する。
+
+```yaml
+spring:
+  cloud:
+    function:
+      definition: foo;bar;
+    stream:
+      bindings:
+        foo-in-0:
+          destination: foo-exchange
+          group: foo-queue
+        bar-in-0:
+          destination: bar-exchange
+          group: bar-queue
 ```
 
 ## RabbitMQのセットアップ（オプション）
