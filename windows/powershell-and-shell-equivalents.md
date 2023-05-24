@@ -65,7 +65,7 @@ uuidgen
 New-Guid
 ```
 
-## プロセスを終了
+## kill / Stop-Process / taskkill - プロセスを終了
 
 ```
 # Shell
