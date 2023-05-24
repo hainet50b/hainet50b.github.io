@@ -38,6 +38,10 @@
 </dependency>
 ```
 
+## 
+
+## ONSサブスクリプション確立の確認
+
 ONSがクラスパスにない場合、アプリケーション起動時に以下のログが出力される。
 
 ```
@@ -50,7 +54,7 @@ ONSがクラスパスにあるがOracleデータベースがシングル構成�
 DEBUG oracle.ucp : :::Single-instance 12.x DB, FAN is heuristically disabled
 ```
 
-ONSがクラスパスにあるがONSのFAN購読ができなかった場合は以下の通り。
+ONSがクラスパスにあるがONSサブスクリプションを確立できなかった場合は以下の通り。
 
 ```
 DEBUG oracle.ucp : :::Heuristically determine whether to enable FAN
@@ -58,8 +62,9 @@ DEBUG oracle.ucp : :::RAC/GDS 12.x, FAN is heuristically enabled
 WARN  oracle.ucp : :::failed to start ONS: Subscription time out
 ```
 
-ONSがクラスパスにありOracleデータベースがRAC構成の場合は以下の通り。
+ONSがクラスパスにありONSサブスクリプションを確立できた場合は以下の通り。
 
 ```
-TODO
+DEBUG oracle.ucp : :::Heuristically determine whether to enable FAN
+DEBUG oracle.ucp : :::RAC/GDS 12.x, FAN is heuristically enabled
 ```
