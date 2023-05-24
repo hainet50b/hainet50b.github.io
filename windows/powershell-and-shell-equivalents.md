@@ -64,3 +64,17 @@ uuidgen
 # PowerShell
 New-Guid
 ```
+
+## プロセスを終了
+
+```
+# Shell
+kill -9 $PID
+
+# Powershell -Force 強制終了
+Stop-Process -Force -Id $PID
+
+
+# Command Prompt /f 強制終了
+taskkill /F /PID %PID%
+```
