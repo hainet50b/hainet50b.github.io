@@ -90,5 +90,6 @@ WHERE username != 'SYS'
 GROUP BY inst_id,
          machine,
          username,
-         service_name;
+         service_name
+ORDER BY inst_id;
 ```
