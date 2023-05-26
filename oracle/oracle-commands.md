@@ -93,3 +93,29 @@ GROUP BY inst_id,
          service_name
 ORDER BY inst_id;
 ```
+
+### 特定のセッションを強制終了させる
+`v$session`からサービスを指定してセッションの情報を取得する。  
+業務ではRAC構成であることが多く、`gv$session`の`inst_id`も考慮する。
+
+```sql
+SELECT DISTINCT sid,
+                serial#,
+                inst_id,
+                service_name,
+                username,
+                machine
+FROM gv$session
+WHERE service_name = 'pmacho'
+ORDER BY inst_id,
+         service_name,
+         username,
+         machine,
+         sid,
+         serial#;
+
+SID,SERIAL#,INST_ID,SERVICE_NAME,USERNAME,MACHINE
+123,12345,1,pmacho,pmacho_user,hainet50b
+
+ALTER SYSTEM KILL SESSION '123,12345';
+```
