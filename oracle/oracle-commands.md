@@ -61,7 +61,7 @@ DESCRIBE emp;
 ### 一定時間スリープする
 ```sql
 -- 一定時間スリープする
-EXECUTE DBMS_SESSION.SLEEP(5);
+CALL DBMS_SESSION.SLEEP(5);
 
 -- 意図的にタイムアウトを引き起こす
 -- CPU性能とタイムアウト時間に合わせて数値を調整する
