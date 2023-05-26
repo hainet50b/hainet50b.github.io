@@ -74,7 +74,7 @@ BEGIN
 END;
 ```
 
-### 各種コネクションの接続状況を確認する
+### サービスごとのセッション状況を確認する
 JDBCのレイヤではTCP接続の抽象化が行われていて物理的な接続先が分からない。  
 ロードバランシング状況を見る場合に以下のSQLでセッション情報からインスタンスIDを取得できる。
 
@@ -94,9 +94,11 @@ GROUP BY inst_id,
 ORDER BY inst_id;
 ```
 
-### 特定のセッションを強制終了させる
+### 特定サービスのすべてセッションを強制終了させる
 `v$session`からサービスを指定してセッションの情報を取得する。  
 業務ではRAC構成であることが多く、`gv$session`の`inst_id`も考慮する。
+
+SELECT句で組み立てたALTER SYSTEM KILL SESSION文でセッションを強制終了する。
 
 ```sql
 SELECT DISTINCT sid,
@@ -104,7 +106,8 @@ SELECT DISTINCT sid,
                 inst_id,
                 service_name,
                 username,
-                machine
+                machine,
+                'ALTER SYSTEM KILL SESSION ''' || sid || ', ' || serial# || ', @' || inst_id || ''';' AS "SESSION KILL SQL"
 FROM gv$session
 WHERE service_name = 'pmacho'
 ORDER BY inst_id,
@@ -114,8 +117,10 @@ ORDER BY inst_id,
          sid,
          serial#;
 
-SID,SERIAL#,INST_ID,SERVICE_NAME,USERNAME,MACHINE
-123,12345,1,pmacho,pmacho_user,hainet50b
+SID,SERIAL#,INST_ID,SERVICE_NAME,USERNAME,MACHINE,SESSION KILL SQL
+123,12345,1,pmacho,pmacho_user,hainet50b,"ALTER SYSTEM KILL SESSION '123, 12345, @1';"
+...
 
-ALTER SYSTEM KILL SESSION '123,12345,@1';
+ALTER SYSTEM KILL SESSION '123, 12345, @1';
+...
 ```
