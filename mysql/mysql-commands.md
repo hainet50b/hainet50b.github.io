@@ -67,6 +67,18 @@ DESCRIBE emp;
 EXPLAIN emp;
 ```
 
+## レコード
+```sql
+-- レコードを挿入する（INSERT）
+INSERT INTO emp (name) VALUES ('hainet50b');
+
+-- レコードを編集する（UPDATE）
+UPDATE emp SET name = 'programacho' WHERE name = 'hainet50b';
+
+-- レコードを削除する（DELETE）
+DELETE FROM emp WHERE name = 'programacho';
+```
+
 ## Bits and Pieces
 ```sql
 -- 一定時間スリープする
