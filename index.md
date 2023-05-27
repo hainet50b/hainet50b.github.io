@@ -45,6 +45,9 @@
 - [よく使うOracleコマンド](https://hainet50b.github.io/oracle/oracle-commands)
 - [UCP](https://hainet50b.github.io/oracle/ucp)
 
+## TiDB
+- [TiDB Playground](https://hainet50b.github.io/tidb/tidb-playground)
+
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
