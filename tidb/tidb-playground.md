@@ -136,3 +136,9 @@ mysql> SELECT SLEEP(5);
 QPSやLatencyを確認できる。
 
 ![tidb-playground-16d41df3d067.png](https://programacho.blob.core.windows.net/images/tidb-playground-16d41df3d067.png)
+
+## TiDB検証環境の削除
+
+```shell
+tiup clean demo
+```
