@@ -54,6 +54,7 @@
 
 ## TiDB
 - [TiDB Playground](https://hainet50b.github.io/tidb/tidb-playground)
+- [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
