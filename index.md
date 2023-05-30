@@ -72,6 +72,7 @@
 - [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
 - [Windows Bits and Pieces](https://hainet50b.github.io/windows/windows-bits-and-pieces)
 - [PowerShell Bits and Pieces](https://hainet50b.github.io/windows/powershell-bits-and-pieces)
+- [wsl2-sep-proxy | GitHub](https://github.com/hainet50b/wsl2-sep-proxy){:target="_blank"}
 
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/wi-fi-router)
