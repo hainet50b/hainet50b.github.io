@@ -13,6 +13,7 @@ cd tidb-course-201-lab/scripts/
 
 # tiupコマンドのインストール
 curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
+source ~/.zshrc
 
 tiup -v
 1.12.1 tiup
