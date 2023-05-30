@@ -4,6 +4,9 @@
 * toc
 {:toc}
 
+## 公式ドキュメント
+- [Universal Connection Pool Developer's Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/jjucp/index.html){:target="_blank"} ([日本語版](https://docs.oracle.com/en/database/oracle/oracle-database/19/jjucp/index.html){:target="_blank"})
+
 ## 依存関係の追加
 ```xml
 <dependency>
