@@ -10,14 +10,14 @@
 wsl --install
 ```
 
-## WSLディストリビューションの追加
+## WSLディストリビューションの追加・削除
 
 ```powershell
 # WSLディストリビューションの検索
 wsl -l -o
 
-# WSLディストリビューションのインストール
-wsl --install Debian
+# WSLディストリビューションの追加
+wsl --install -d Debian
 
 # 既定のWSLディストリビューションの変更
 wsl -l
@@ -31,6 +31,9 @@ wsl -l
 Linux 用 Windows サブシステム ディストリビューション:
 Debian (既定)
 Ubuntu
+
+# WSLディストリビューションの削除
+wsl --unregister Debian
 ```
 
 Windowsを再起動するとWSLが立ち上がりUbuntu（デフォルト）にユーザー作成を促される。
