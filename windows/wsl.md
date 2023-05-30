@@ -10,6 +10,29 @@
 wsl --install
 ```
 
+## WSLディストリビューションの追加
+
+```powershell
+# WSLディストリビューションの検索
+wsl -l -o
+
+# WSLディストリビューションのインストール
+wsl --install Debian
+
+# 既定のWSLディストリビューションの変更
+wsl -l
+Linux 用 Windows サブシステム ディストリビューション:
+Ubuntu (既定)
+Debian
+
+wsl -s Debian
+
+wsl -l
+Linux 用 Windows サブシステム ディストリビューション:
+Debian (既定)
+Ubuntu
+```
+
 Windowsを再起動するとWSLが立ち上がりUbuntu（デフォルト）にユーザー作成を促される。
 
 ## 実行しようとした操作は、参照したオブジェクトの種類ではサポートされていません。
