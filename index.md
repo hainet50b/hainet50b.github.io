@@ -30,8 +30,9 @@
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 - [よく使うLinuxコマンド](https://hainet50b.github.io/terminal/linux-commands)
+- [文字コードの確認・変更（nkf）](https://hainet50b.github.io/terminal/nkf)
 - [Starship](https://hainet50b.github.io/terminal/starship)
-- [hainet50b's dotfiles](https://github.com/hainet50b/Dotfiles){:target="_blank"}
+- [Dotfiles | GitHub](https://github.com/hainet50b/Dotfiles){:target="_blank"}
 
 ## Docker
 - [Docker環境の構築](https://hainet50b.github.io/docker/setting-up-docker)
