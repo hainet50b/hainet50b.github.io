@@ -1,5 +1,5 @@
 # 文字コードの確認・変更（nkf）
-公式ページ：[nkf Network Kanji Filter](https://ja.osdn.net/projects/nkf/)
+公式ページ：[nkf Network Kanji Filter](https://ja.osdn.net/projects/nkf/){:target="_blank"}
 
 ## nkfのインストール
 ```
@@ -28,8 +28,8 @@ nkf -s input.txt > output.txt
 
 ## （オプション）UTF-8 / Shift-JISのファイル作成
 ```
-echo しふとじす | nkf -s > Shift-JIS.txt
+echo あいうえお | nkf -s > output.txt
 
-nkf -g Shift-JIS.txt
+nkf -g output.txt
 Shift-JIS
 ```
