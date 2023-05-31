@@ -33,7 +33,7 @@
 - [文字コードの確認・変更（nkf）](https://hainet50b.github.io/terminal/nkf)
 - [文字コードの確認・変更（file / iconv）](https://hainet50b.github.io/terminal/charset)
 - [Starship](https://hainet50b.github.io/terminal/starship)
-- [Dotfiles | GitHub](https://github.com/hainet50b/Dotfiles){:target="_blank"}
+- [Dotfiles \| GitHub](https://github.com/hainet50b/Dotfiles){:target="_blank"}
 
 ## Docker
 - [Docker環境の構築](https://hainet50b.github.io/docker/setting-up-docker)
