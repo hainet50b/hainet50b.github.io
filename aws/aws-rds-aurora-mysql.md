@@ -59,6 +59,8 @@ aws rds describe-db-clusters \
 
 ## データベースクラスタの削除保護
 ```shell
+# 削除保護設定を確認
+
 # 削除保護を付与
 aws rds modify-db-cluster \
   --db-cluster-identifier pmacho-aurora-mysql \
@@ -74,6 +76,43 @@ aws rds modify-db-cluster \
 ```
 An error occurred (InvalidParameterCombination) when calling the DeleteDBCluster operation:
 Cannot delete protected Cluster, please disable deletion protection and try again.
+```
+
+## Performance Insightsの有効化
+```shell
+# Performance Insights設定を確認
+aws rds describe-db-instances \
+  --query "DBInstances[].[DBInstanceIdentifier,PerformanceInsightsEnabled,PerformanceInsightsRetentionPeriod]" \
+  --output table
+
+# Performance Insightsを有効化
+aws rds modify-db-instance \
+  --db-instance-identifier pmacho-aurora-mysql-instance-1 \
+  --enable-performance-insights \
+  --performance-insights-retention-period 7
+
+# Performance Insightsを無効化
+aws rds modify-db-instance \
+  --db-instance-identifier pmacho-aurora-mysql-instance-1 \
+  --no-enable-performance-insights
+```
+
+## パブリックアクセスの有効化
+```shell
+# パブリックアクセス設定を確認
+aws rds describe-db-instances \
+  --query "DBInstances[].[DBInstanceIdentifier,PubliclyAccessible]" \
+  --output table
+
+# パブリックアクセス設定を有効化
+aws rds modify-db-instance \
+  --db-instance-identifier pmacho-aurora-mysql-instance-1 \
+  --publicly-accessible
+
+# パブリックアクセス設定を無効化
+aws rds modify-db-instance \
+  --db-instance-identifier pmacho-aurora-mysql-instance-1 \
+  --no-publicly-accessible
 ```
 
 ## データベースの削除
