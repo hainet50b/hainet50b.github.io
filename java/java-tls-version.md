@@ -4,8 +4,8 @@
 * toc
 {:toc}
 
-## 接続先サーバーのTLS対応状況の確認
-TLSバージョン単位に確認する。
+## TLS対応状況の確認（接続先サーバー）
+TLSバージョン単位に確認する必要がある。
 
 ```shell
 # TLSv1.3（対応）
@@ -30,7 +30,7 @@ SSL-Session:
     Protocol  : TLSv1.1
 ```
 
-## 接続元クライアント（Javaアプリケーション）のTLS対応状況の確認
+## TLS対応状況の確認（接続元クライアント）
 
 ```java
 try (SSLSocket socket = (SSLSocket) SSLContext
@@ -43,7 +43,7 @@ try (SSLSocket socket = (SSLSocket) SSLContext
 [TLSv1.3, TLSv1.2, TLSv1.1, TLSv1, SSLv3, SSLv2Hello]
 ```
 
-## 実際にTLS接続を確立したセッションで採用されているバージョンの確認
+## 確立したセッションのTLSバージョンの確認
 
 ```java
 try (SSLSocket socket = (SSLSocket) SSLContext
@@ -57,7 +57,7 @@ try (SSLSocket socket = (SSLSocket) SSLContext
 TLSv1.3
 ```
 
-## 接続元クライアント（Javaアプリケーション）のTLSバージョン変更
+## TLSバージョン変更
 JVMオプションに以下を加える。
 
 ```
