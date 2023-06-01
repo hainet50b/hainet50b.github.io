@@ -78,3 +78,4 @@
 
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/wi-fi-router)
+- [テレビ画像設定（ORION SUAD501）](https://hainet50b.github.io/gadget/orion-suad501)
