@@ -190,7 +190,7 @@ diff running-instance.json snapshot-instance.json
 > "PerformanceInsightsEnabled": false,
 ```
 
-## クラスタのアップデート
+## Aurora MySQLのアップデート
 ```shell
 # 2.07.8 -> 2.11.2
 aws rds modify-db-cluster \
