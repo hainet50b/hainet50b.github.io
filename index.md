@@ -58,6 +58,10 @@
 - [TiDB Playground](https://hainet50b.github.io/tidb/tidb-playground)
 - [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
+## AWS
+- [AWS CLIクライアント](https://hainet50b.github.io/aws/aws-cli-client)
+- [AWS RDS Aurora MySQL](https://hainet50b.github.io/aws/aws-rds-aurora-mysql)
+
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
