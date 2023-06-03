@@ -27,7 +27,7 @@ nkf -s input.txt > output.txt
 ```
 
 ## （オプション）UTF-8 / Shift-JISのファイル作成
-```
+```shell
 echo あいうえお | nkf -s > output.txt
 
 nkf -g output.txt
