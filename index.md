@@ -83,6 +83,9 @@
 - [PowerShell Bits and Pieces](https://hainet50b.github.io/windows/powershell-bits-and-pieces)
 - [wsl2-sep-proxy \| GitHub](https://github.com/hainet50b/wsl2-sep-proxy){:target="_blank"}
 
+## Google
+- [Googleスライド Bits and Pieces](https://hainet50b.github.io/google/google-slides-bits-and-pieces){:target="_blank"}
+
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/buffalo-wxr-6000ax12s)
 - [テレビ画像設定（ORION AEUD-50D）](https://hainet50b.github.io/gadget/orion-aeud-50d)
