@@ -35,6 +35,11 @@ public class ProgramachoScheduler {
 }
 ```
 
+スケジュールの設定はプロパティを参照できる。
+```java
+@Scheduled(cron = "${app.scheduling-tasks.cron}")
+```
+
 ## スレッド数の変更
 デフォルトではシングルスレッドで稼働する。
 
