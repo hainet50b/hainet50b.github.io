@@ -16,6 +16,7 @@
 ### docs.spring.io
 - [Spring Bootリファレンスドキュメント](https://docs.spring.io/spring-boot/docs/current/reference/html/){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-boot/docs/current/reference/html/){:target="_blank"} \| [htmlsingle](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/){:target="_blank"})
 - [Spring Bootアプリケーションプロパティ一覧](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-boot/docs/current/reference/html/application-properties.html){:target="_blank"})
+- [Spring Boot Actuatorエンドポイント一覧](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints){:target="_blank"})
 
 ### spring.io
 - [Spring Boot依存バージョン](https://docs.spring.io/spring-boot/docs/current/reference/html/dependency-versions.html){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-boot/docs/current/reference/html/dependency-versions.html){:target="_blank"})
