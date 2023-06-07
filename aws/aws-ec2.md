@@ -62,6 +62,9 @@ aws ec2 stop-instances --instance-ids i-***
 ```
 
 ## インスタンスの削除
+インスタンスを削除しても一定時間は終了状態で一覧に残り続ける。  
+これは削除したインスタンスの情報を確認するための仕様で、一定時間が経過するとAWSによって一覧から取り除かれる。
+
 ```shell
 aws ec2 terminate-instances --instance-ids i-***
 ```
