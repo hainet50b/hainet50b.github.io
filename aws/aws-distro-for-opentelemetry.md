@@ -4,7 +4,9 @@
 * toc
 {:toc}
 
-公式ドキュメント：[Build Collector as RPM](https://aws-otel.github.io/docs/setup/build-collector-as-rpm){:target="_blank"}
+セットアップドキュメント：[Build Collector as RPM](https://aws-otel.github.io/docs/setup/build-collector-as-rpm){:target="_blank"}  
+CloudWatch Metrics設定：[Using CloudWatch Metrics with AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/getting-started/cloudwatch-metrics){:target="_blank"}  
+X-Ray設定：[Getting Started with the AWS X-Ray Exporter in the Collector](https://aws-otel.github.io/docs/getting-started/x-ray){:target="_blank"}
 
 ## OpenTelemetry Collector/Exporterの構築
 以下はEC2上での動作を前提としている。
@@ -26,13 +28,15 @@ sudo /opt/aws/aws-otel-collector/bin/aws-otel-collector-ctl -a status
 
 # 開始
 sudo /opt/aws/aws-otel-collector/bin/aws-otel-collector-ctl -a start
+# 設定ファイルを指定
+sudo /opt/aws/aws-otel-collector/bin/aws-otel-collector-ctl -c /path/to/config.yaml -a start
 
 # 停止
 sudo /opt/aws/aws-otel-collector/bin/aws-otel-collector-ctl -a stop
 ```
 
 # 設定ファイル
-初期設定では`/opt/aws/aws-otel-collector/etc/config.yml`が読み込まれる。  
+初期設定では`/opt/aws/aws-otel-collector/etc/config.yaml`が読み込まれる。  
 初回起動時に以下の内容でファイルが自動生成されている。
 
 ```yaml
@@ -81,4 +85,24 @@ service:
 curl localhost:4318/v1/metrics
 
 405 method not allowed, supported: [POST]
+```
+
+## IAMロールの付与
+EC2インスタンスに対してCloudWatchおよびXRayへのアクセス権限を付与する。
+
+```shell
+aws iam list-attached-role-policies \
+  --role-name pmacho-role \
+  --query "AttachedPolicies[].[PolicyName,PolicyArn]" \
+  --output text
+
+# TODO: 最小限の権限を調査する。
+CloudWatchLogsFullAccess        arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+CloudWatchFullAccess    arn:aws:iam::aws:policy/CloudWatchFullAccess
+AWSXrayFullAccess       arn:aws:iam::aws:policy/AWSXrayFullAccess
+CloudWatchEventsFullAccess      arn:aws:iam::aws:policy/CloudWatchEventsFullAccess
+AmazonCloudWatchRUMFullAccess   arn:aws:iam::aws:policy/AmazonCloudWatchRUMFullAccess
+AmazonCloudWatchEvidentlyFullAccess     arn:aws:iam::aws:policy/AmazonCloudWatchEvidentlyFullAccess
+CloudWatchApplicationInsightsFullAccess arn:aws:iam::aws:policy/CloudWatchApplicationInsightsFullAccess
+CloudWatchSyntheticsFullAccess  arn:aws:iam::aws:policy/CloudWatchSyntheticsFullAccess
 ```
