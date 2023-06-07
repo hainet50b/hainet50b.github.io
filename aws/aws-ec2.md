@@ -1,4 +1,8 @@
 # AWS EC2
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## インスタンスの起動（＝作成）
 ```shell

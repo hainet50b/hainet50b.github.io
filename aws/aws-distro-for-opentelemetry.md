@@ -1,4 +1,10 @@
 # AWS Distro for OpenTelemetry
+{:.no_toc}
+
+* toc
+{:toc}
+
+公式ドキュメント：[Build Collector as RPM](https://aws-otel.github.io/docs/setup/build-collector-as-rpm){:target="_blank"}
 
 ## OpenTelemetry Collector/Exporterの構築
 以下はEC2上での動作を前提としている。
