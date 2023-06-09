@@ -50,6 +50,7 @@
 
 ## MySQL
 - [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
+- [MySQL セッション管理](https://hainet50b.github.io/mysql/mysql-manage-sessions)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
 
 ## Oracle
