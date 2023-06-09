@@ -55,6 +55,7 @@
 
 ## Oracle
 - [よく使うOracleコマンド](https://hainet50b.github.io/oracle/oracle-commands)
+- [Oracle セッション管理](https://hainet50b.github.io/oracle/oracle-manage-sessions)
 - [UCP](https://hainet50b.github.io/oracle/ucp)
 
 ## TiDB
