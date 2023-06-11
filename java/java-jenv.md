@@ -54,4 +54,20 @@ OpenJDK 64-Bit Server VM Homebrew (build 11.0.19+0, mixed mode)
 
 echo $JAVA_HOME
 /Users/hainet50b/.jenv/versions/11.0.19
+
+# （オプション）JDKの切り替え（セッションスコープ）
+jenv shell 11.0.19
+
+jenv shell
+11.0.19
+
+# （オプション）JDKの切り替え（ディレクトリスコープ）
+jenv local 11.0.19
+
+jenv local
+11.0.19
+
+# .java-versionが作成されて永続的にJDKバージョンが切り替わる。
+ls -la
+-rw-r--r--@  1 hainet50b  staff    8 Jun 11 22:27 .java-version
 ```
