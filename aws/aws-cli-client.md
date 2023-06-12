@@ -31,12 +31,15 @@ secret_key     ******************** shared-credentials-file
 ```
 
 ## 出力フォーマットの設定
-AWSは全体的にキーも値も長いためテーブルよりもJSONの方が取り扱いやすい。
+デフォルトフォーマットはJSON、コマンドフォーマットはテキストにすることが多い。
 
 ```shell
-# テーブル形式
-aws configure set default.output table
-
 # JSON形式
 aws configure set default.output json
+
+# テキスト形式
+aws configure set default.output text
+
+# テーブル形式
+aws configure set default.output table
 ```
