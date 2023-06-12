@@ -40,7 +40,7 @@ cache.invalidateAll(List.of("foo", "bar")); // {baz=value}
 cache.invalidateAll(); // []
 ```
 
-getメソッドでヒットしない場合のキャッシュローダーを指定できる。
+getメソッドでヒットしなかった場合のキャッシュローダーを指定できる。
 
 ```java
 Cache<String, String> cache = Caffeine.newBuilder().build();
@@ -48,7 +48,7 @@ cache.get("key", k -> "value"); // value (from Function)
 cache.get("key", k -> "value"); // value (from Cache)
 ```
 
-buildメソッドでキャッシュローダーを指定できる。
+buildメソッドで共通のキャッシュローダーを指定できる。
 
 ```java
 LoadingCache<String, String> cache = Caffeine.newBuilder().build(k -> "value");
