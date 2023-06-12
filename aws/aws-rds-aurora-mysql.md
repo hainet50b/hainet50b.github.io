@@ -200,6 +200,6 @@ aws rds modify-db-cluster \
 
 # クラスタのバージョン確認
 aws rds describe-db-clusters \
-  --query "DBClusters[].[DBClusterIdentifier,EngineVersion]" \
-  --output table
+  --query "DBClusters[].[DBClusterIdentifier,EngineVersion,Status]" \
+  --output text
 ```
