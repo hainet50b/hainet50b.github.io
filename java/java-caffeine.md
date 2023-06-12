@@ -107,6 +107,12 @@ System.out.println(cache.stats().toString());
 CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
 ```
 
+`estimatedSize`メソッドでおおよそのエントリ数を確認できる。
+```java
+Cache<Object, Object> cache = Caffeine.newBuilder().build();
+cache.estimatedSize(); // 0
+```
+
 ## Eviction/Removal Listener設定
 ```java
 LoadingCache<String, String> cache = Caffeine.newBuilder()
