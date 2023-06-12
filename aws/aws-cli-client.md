@@ -6,7 +6,7 @@
 brew install awscli
 
 # Windows
-TODO
+scoop install aws
 ```
 
 ## AWSのログイン設定
