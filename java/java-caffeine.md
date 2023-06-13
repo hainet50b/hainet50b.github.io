@@ -54,13 +54,15 @@ buildメソッドで共通のキャッシュローダーを指定できる。
 LoadingCache<String, String> cache = Caffeine.newBuilder().build(k -> "value");
 ```
 
+キャッシュローダーを指定することで複数回のエントリ検索の見通しが良くなる。
+
 ```java
 public static void main(String[] args) {
     LoadingCache<String, String> cache = Caffeine.newBuilder().build(k -> generateUuid());
 
-    measureTime(() -> cache.get("foo")); // 3000ms
-    measureTime(() -> cache.get("foo")); // 0ms
-    measureTime(() -> cache.get("foo")); // 0ms
+    measureTime(() -> cache.get("foo")); // 3000 ms
+    measureTime(() -> cache.get("foo")); // 0 ms
+    measureTime(() -> cache.get("foo")); // 0 ms
 
     System.out.println(cache.asMap()); // {foo=00b49709-b132-4d6b-a661-f3f2f73eaac7}
 }
@@ -98,7 +100,7 @@ Cache<String, String> cache = Caffeine.newBuilder()
 ```
 
 ## メトリクス確認
-`recordStats`メソッドを指定するとメトリクスが収集される。
+`recordStats`メソッドを指定するとメトリクスの収集が開始される。
 
 ```java
 Cache<Object, Object> cache = Caffeine.newBuilder().recordStats().build();
