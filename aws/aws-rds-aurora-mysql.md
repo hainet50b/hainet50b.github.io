@@ -47,7 +47,7 @@ aws rds describe-orderable-db-instance-options \
 ```shell
 # データベースクラスタ一覧
 aws rds describe-db-clusters \
-  --query "DBClusters[].[DBClusterIdentifier]" \
+  --query "DBClusters[].[DBClusterIdentifier,Status]" \
   --output table
 
 # データベースクラスタ詳細
@@ -56,15 +56,17 @@ aws rds describe-db-clusters \
   --output table
 
 # データベースインスタンス一覧
-aws rds describe-db-clusters \
-  --db-cluster-identifier pmacho-aurora-mysql \
-  --query "DBClusters[].DBClusterMembers[].[DBInstanceIdentifier]" \
+aws rds describe-db-instances \
+  --query "DBInstances[].[DBInstanceIdentifier,DBClusterIdentifier,DBInstanceStatus]" \
   --output table
 ```
 
 ## データベースクラスタの削除保護
 ```shell
 # 削除保護設定を確認
+aws rds describe-db-clusters \
+  --query "DBClusters[].[DBClusterIdentifier,DeletionProtection]" \
+  --output table
 
 # 削除保護を付与
 aws rds modify-db-cluster \
@@ -123,8 +125,7 @@ aws rds modify-db-instance \
 ## データベースの削除
 ```shell
 # クラスタの削除
-# 配下にインスタンス抱えているときはクラスタを削除できない。
-# また、実運用ではスナップショットを取得してから削除することが望ましい。
+# 実運用ではスナップショットを取得してから削除することが望ましい。
 aws rds delete-db-cluster \
   --db-cluster-identifier pmacho-aurora-mysql \
   --skip-final-snapshot
@@ -188,6 +189,18 @@ diff running-instance.json snapshot-instance.json
 < "PerformanceInsightsRetentionPeriod": 7,
 ---
 > "PerformanceInsightsEnabled": false,
+```
+
+## フェイルオーバー
+```shell
+# ライターインスタンスの確認
+aws rds describe-db-clusters \
+  --db-cluster-identifier pmacho-aurora-mysql \
+  --query "DBClusters[].DBClusterMembers[].[DBInstanceIdentifier,IsClusterWriter]" \
+  --output table
+
+# フェイルオーバー
+aws rds failover-db-cluster --db-cluster-identifier pmacho-aurora-mysql
 ```
 
 ## Aurora MySQLのアップデート
