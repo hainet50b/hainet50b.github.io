@@ -31,8 +31,6 @@ secret_key     ******************** shared-credentials-file
 ```
 
 ## 出力フォーマットの設定
-デフォルトフォーマットはJSON、コマンドフォーマットはテキストにすることが多い。
-
 ```shell
 # JSON形式
 aws configure set default.output json
