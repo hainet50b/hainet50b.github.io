@@ -14,7 +14,7 @@
 brew install plantuml
 
 # Windows
-TODO
+scoop install plantuml
 ```
 
 ## 使い方
