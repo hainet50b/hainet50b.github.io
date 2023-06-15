@@ -29,6 +29,9 @@
 - [Rustのバージョン管理](https://hainet50b.github.io/rust/rust-version)
 - [Rust 公式ドキュメント集](https://hainet50b.github.io/rust/rust-references)
 
+## UML
+- [PlantUML](https://hainet50b.github.io/uml/plantuml)
+
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 - [よく使うLinuxコマンド](https://hainet50b.github.io/terminal/linux-commands)
