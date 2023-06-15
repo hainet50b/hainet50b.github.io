@@ -1,4 +1,8 @@
 # PlantUML
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## ドキュメント
 - [PlantUML 概要](https://plantuml.com/en/){:target="_blank"} ([日本語版](https://plantuml.com/ja/){:target="_blank"})
