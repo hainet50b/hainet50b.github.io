@@ -53,4 +53,9 @@ C:\Users\htakano\scoop\apps\openjdk17\current
 # ...再読み込み
 echo $env:JAVA_HOME
 C:\Users\htakano\scoop\apps\openjdk11\current
+
+# （オプション）JDKの切り替え（セッションスコープ）
+jenv use openjdk11
+
+JEnv changed for the current shell session. Careful this overwrites "jenv local"
 ```
