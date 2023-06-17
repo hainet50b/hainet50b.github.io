@@ -97,3 +97,8 @@
 ## ガジェット
 - [Wi-Fiルーターの設定（Buffalo WXR-6000AX12S）](https://hainet50b.github.io/gadget/buffalo-wxr-6000ax12s)
 - [テレビ画像設定（ORION AEUD-50D）](https://hainet50b.github.io/gadget/orion-aeud-50d)
+
+## About @hainet50b
+- [GitHub](https://github.com/hainet50b){:target="_blank"}
+- [Twitter](https://twitter.com/hainet50b){:target="_blank"}
+- [過去の登壇実績](https://hainet50b.github.io/hainet50b/past-talks)
