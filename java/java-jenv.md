@@ -38,6 +38,12 @@ jenv versions
   openjdk64-17.0.7
 ```
 
+## 登録したJavaのパスの確認
+```shell
+jenv which java
+/Users/hainet50b/.jenv/versions/17.0.7/bin/java
+```
+
 ## JDKの切り替え
 
 ```shell
