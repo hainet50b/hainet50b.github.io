@@ -42,6 +42,10 @@ jenv versions
 ```shell
 jenv which java
 /Users/hainet50b/.jenv/versions/17.0.7/bin/java
+
+# jEnvを経由するため直接Javaのパスを参照できない
+which java
+/Users/hainet50b/.jenv/shims/java
 ```
 
 ## JDKの切り替え
