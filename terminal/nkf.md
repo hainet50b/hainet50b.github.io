@@ -7,6 +7,7 @@
 brew install nkf
 
 # Windows
+scoop bucket add jp https://github.com/dooteeen/scoop-for-jp
 scoop install nkf
 ```
 

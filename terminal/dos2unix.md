@@ -3,11 +3,11 @@
 ## dos2unix / unix2dosのインストール
 ```
 # Mac
-# dos2unix / unix2dosの両方ともインストールされる。
 brew install dos2unix
 
 # Windows
-TODO
+scoop install file
+scoop install dos2unix
 ```
 
 ## ファイルの改行コード確認
