@@ -43,3 +43,11 @@ tar -cvf programacho.tar.gz /path/to/programacho
 | -v (--verbose) | 処理するファイルを標準出力に表示する |
 | -f (--file) | 処理するアーカイブを指定する |
 | -c (--create) | アーカイブを作成する |
+
+## シンボリックリンクを作成する
+```shell
+ln -s /path/to/target /path/to/link
+
+ls -la /path/to/link
+lrwxr-xr-x@ 1 hainet50b staff 5 Jun 21 23:16 /path/to/link -> /path/to/target
+```
