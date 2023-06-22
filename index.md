@@ -13,6 +13,7 @@
 - [Spring Scheduling Tasks](https://hainet50b.github.io/spring/spring-scheduling-tasks)
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
 - [Spring Cloud Stream Binder Rabbit入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-rabbit-intro)
+- [Spring Cloud Function](https://hainet50b.github.io/spring/spring-cloud-function)
 - [Spring 公式ドキュメント集](https://hainet50b.github.io/spring/spring-references)
 
 ## Java
