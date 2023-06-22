@@ -78,37 +78,33 @@ Hello hainet50b. Welcome to Spring Cloud Function!
 
 AWS向けのJarファイルをビルドするプラグインを追加する。
 ```xml
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <configuration>
-                <skip>true</skip>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot.experimental</groupId>
-                    <artifactId>spring-boot-thin-layout</artifactId>
-                    <version>1.0.30.RELEASE</version>
-                </dependency>
-            </dependencies>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <configuration>
-                <createDependencyReducedPom>false</createDependencyReducedPom>
-                <shadedArtifactAttached>true</shadedArtifactAttached>
-                <shadedClassifierName>aws</shadedClassifierName>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-deploy-plugin</artifactId>
+    <configuration>
+        <skip>true</skip>
+    </configuration>
+</plugin>
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot.experimental</groupId>
+            <artifactId>spring-boot-thin-layout</artifactId>
+            <version>1.0.30.RELEASE</version>
+        </dependency>
+    </dependencies>
+</plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <configuration>
+        <createDependencyReducedPom>false</createDependencyReducedPom>
+        <shadedArtifactAttached>true</shadedArtifactAttached>
+        <shadedClassifierName>aws</shadedClassifierName>
+    </configuration>
+</plugin>
 ```
 
 ### ビルド
@@ -122,18 +118,67 @@ ls -la target
 
 ### デプロイ
 AWS lambda関数を作成する。
+
 ![spring-cloud-function-a9c7cac9f568.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-a9c7cac9f568.png)
 
 `spring-cloud-function-aws-0.0.1-SNAPSHOT-aws.jar`をアップロードする。
+
 ![spring-cloud-function-b67637012f1b.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-b67637012f1b.png)
 
 ハンドラを`org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest`に設定する。
+
 ![spring-cloud-function-a4894810192f.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-a4894810192f.png)
 
 イベントJSONに`{"name": "hainet50b"}`を設定してテストを実行する。
+
 ![spring-cloud-function-e2532b7dce3f.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-e2532b7dce3f.png)
 
 およそ3000msで完了した。
+
 ![spring-cloud-function-7c18d0b91675.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-7c18d0b91675.png)
 
 ## AWS Lambdaへのデプロイ（Native Image）
+サンプルリポジトリ：[spring-cloud-function-aws-native-image \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-cloud-gym/spring-cloud-function-gym/spring-cloud-function-aws-native-image){:target="_blank"}
+
+### 依存関係
+Native Imageをビルドするプラグインを追加する。
+```xml
+<plugin>
+    <groupId>org.graalvm.buildtools</groupId>
+    <artifactId>native-maven-plugin</artifactId>
+</plugin>
+```
+
+### イメージの作成
+イメージの作成には筆者のM2 Mac環境で17分44秒かかった。
+```shell
+./mvnw -Pnative spring-boot:build-image
+
+docker images
+REPOSITORY                             TAG            IMAGE ID     CREATED      SIZE
+spring-cloud-function-aws-native-image 0.0.1-SNAPSHOT 3efae5c2127a 43 years ago 80.7MB
+```
+
+Macの場合、`/var/run/docker.sock`がないためシンボリックリンクを作成してからビルドする。
+```shell
+sudo ln -s $HOME/.docker/run/docker.sock /var/run/docker.sock
+```
+
+### ECR(Elastic Container Registry)へプッシュ
+ECRの管理画面からリポジトリを作成する。
+![spring-cloud-function-8e98aae07a56.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-8e98aae07a56.png)
+
+ECRに作成したイメージをプッシュする。
+```shell
+# ログイン
+aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin ************.dkr.ecr.ap-northeast-1.amazonaws.com
+
+# タグ付与
+docker tag spring-cloud-function-aws-native-image:0.0.1-SNAPSHOT ************.dkr.ecr.ap-northeast-1.amazonaws.com/spring-cloud-function-aws-native-image:0.0.1-SNAPSHOT
+
+# プッシュ
+docker push ************.dkr.ecr.ap-northeast-1.amazonaws.com/spring-cloud-function-aws-native-image:0.0.1-SNAPSHOT
+```
+
+### AWS Lambda関数を作成する
+TODO
