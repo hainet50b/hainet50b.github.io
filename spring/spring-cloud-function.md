@@ -54,7 +54,86 @@ Hello hainet50b. Welcome to Spring Cloud Function!
 ```
 
 ## AWS Lambdaへのデプロイ（Jar）
-サンプルリポジトリ：[spring-cloud-function-aws \| GitHub](TODO){:target="_blank"}
+公式ドキュメント：[Introduction](https://docs.spring.io/spring-cloud-function/docs/current/reference/html/aws.html){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-cloud-function/docs/current/reference/html/aws.html){:target="_blank"})
+公式サンプル：[function-sample-aws \| GitHub](https://github.com/spring-cloud/spring-cloud-function/tree/main/spring-cloud-function-samples/function-sample-aws){:target="_blank"}
+サンプルリポジトリ：[spring-cloud-function-aws \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-cloud-gym/spring-cloud-function-gym/spring-cloud-function-aws){:target="_blank"}
+
+### 依存関係
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-function-adapter-aws</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-lambda-java-events</artifactId>
+    <version>3.11.2</version>
+</dependency>
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-lambda-java-core</artifactId>
+    <version>1.2.2</version>
+</dependency>
+```
+
+AWS向けのJarファイルをビルドするプラグインを追加する。
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <configuration>
+                <skip>true</skip>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot.experimental</groupId>
+                    <artifactId>spring-boot-thin-layout</artifactId>
+                    <version>1.0.30.RELEASE</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <configuration>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
+                <shadedArtifactAttached>true</shadedArtifactAttached>
+                <shadedClassifierName>aws</shadedClassifierName>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+### ビルド
+```shell
+./mvnw clean package
+
+ls -la target 
+-rw-r--r--@ 1 hainet50b staff 18270083 Jun 22 21:36 spring-cloud-function-aws-0.0.1-SNAPSHOT-aws.jar
+-rw-r--r--@ 1 hainet50b staff    11481 Jun 22 21:36 spring-cloud-function-aws-0.0.1-SNAPSHOT.jar
+```
+
+### デプロイ
+AWS lambda関数を作成する。
+![spring-cloud-function-a9c7cac9f568.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-a9c7cac9f568.png)
+
+`spring-cloud-function-aws-0.0.1-SNAPSHOT-aws.jar`をアップロードする。
+![spring-cloud-function-b67637012f1b.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-b67637012f1b.png)
+
+ハンドラを`org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest`に設定する。
+![spring-cloud-function-a4894810192f.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-a4894810192f.png)
+
+イベントJSONに`{"name": "hainet50b"}`を設定してテストを実行する。
+![spring-cloud-function-e2532b7dce3f.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-e2532b7dce3f.png)
+
+およそ3000msで完了した。
+![spring-cloud-function-7c18d0b91675.png](https://programacho.blob.core.windows.net/images/spring-cloud-function-7c18d0b91675.png)
 
 ## AWS Lambdaへのデプロイ（Native Image）
-サンプルリポジトリ：[spring-cloud-function-aws-native-image \| GitHub](){:target="_blank"}
