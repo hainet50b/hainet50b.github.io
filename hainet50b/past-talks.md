@@ -4,9 +4,9 @@
 * toc
 {:toc}
 
-## 2023年6月23日 AWS Dev Day 2023 Tokyo
+## 2023年6月23日 AWS Dev Day 2023 Tokyo コミュニティLT
 - 開催日：2023年6月23日
-- イベント：AWS Dev Day 2023 Tokyo [公式サイト](https://aws.amazon.com/jp/events/devday/japan/){:target="_blank"}
+- イベント：AWS Dev Day 2023 Tokyo コミュニティLT[公式サイト](https://aws.amazon.com/jp/events/devday/japan/){:target="_blank"}
 - 発表タイトル：Spring Boot 3.0 クラウドネイティブ関連機能 & JSUG（日本Springユーザー会）活動紹介
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ2dlou7O-5A4-Lf9g-cYNX7y8r4y9eaWsxCBtHCNc-yoA2iPLNjrUDEmT2YK1wrN4AIHl4zR7N5hyl/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
