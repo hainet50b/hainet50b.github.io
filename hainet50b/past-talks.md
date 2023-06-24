@@ -15,7 +15,7 @@
 - イベント：[JSUG勉強会 2023年 その1](https://jsug.doorkeeper.jp/events/151317){:target="_blank"}
 - 発表タイトル：Spring Boot 3.0 オブザーバビリティツアーガイド
 
-<script defer class="speakerdeck-embed" data-id="dac683d90bef403b83c8da842f1f7757" data-ratio="1.77725118483412" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRszzoaaCMuHJh7NsI2BzaLMyL3E6qYRKF2jy1gEC1tuPWS7mg_qRW7AVSEj8gG2cvmIG1Blz-N7g5D/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yjJ1jyvEaOI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 2021年12月3日 Spring Fest 2021
