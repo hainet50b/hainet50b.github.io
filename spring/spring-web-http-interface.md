@@ -1,4 +1,9 @@
 # Spring Web HTTP Interface
+{:.no_toc}
+
+* toc
+{:toc}
+
 サンプルリポジトリ：[spring-web-http-interface | GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-web-gym/spring-web-http-interface){:target="_blank"}
 
 ## 依存関係
@@ -103,4 +108,13 @@ try {
 } catch (RuntimeException e) {
     // その他の問題
 }
+```
+
+## HTTP通信の詳細をログに出力
+`reactor.netty.http.client`のDEBUGログにHTTPリクエスト/レスポンス情報が出力される。
+
+```yaml
+logging:
+  level:
+    reactor.netty.http.client: DEBUG
 ```
