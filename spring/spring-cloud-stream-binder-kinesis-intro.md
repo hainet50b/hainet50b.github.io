@@ -36,20 +36,20 @@
 
 ## Amazon Kinesis Data Streamの指定
 ローカル環境にAWS CLIで設定を行っていると自動で設定される。  
-TODO: 仕組みが分かっていないところがあるので調査する。
+TODO: 仕組みが分かっていないので調査する。
 
 ## Bindingの設定
 ```yaml
 spring:
   cloud:
     function:
-      definition: produceLog
+      definition: log
     stream:
       bindings:
         # ProducerのBean名を指定
-        produceLog-out-0:
+        log-out-0:
           # Amazon Kinesis Data Stream名を指定
-          destination: programacho
+          destination: pmacho-stream
           content-type: application/json
           producer:
             header-mode: none
@@ -63,7 +63,7 @@ public class LogSource {
     private final BlockingQueue<Map<String, String>> logEvent = new LinkedBlockingQueue<>();
 
     @Bean
-    public Supplier<Map<String, String>> produceLog() {
+    public Supplier<Map<String, String>> log() {
         return logEvent::poll;
     }
 
