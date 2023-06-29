@@ -16,6 +16,12 @@ SHOW DATABASES;
 
 -- データベースを作成する
 CREATE DATABASE programacho_db;
+
+-- データベースを選択する
+USE programacho_db;
+
+-- 現在選択しているデータベースを表示する
+SELECT database();
 ```
 
 ## ユーザー
@@ -61,10 +67,11 @@ CREATE TABLE emp (
     name VARCHAR(255) NOT NULL
 );
 
--- テーブル定義を確認する（DESCTIBEとEXPLAINはSHOW COLUMNSのエイリアス）
-SHOW COLUMNS FROM emp;
-DESCRIBE emp;
-EXPLAIN emp;
+-- テーブル定義を確認する
+-- カラム一覧を確認する
+SHOW FULL COLUMNS FROM emp;
+-- DDL形式で確認する
+SHOW CREATE TABLE emp;
 ```
 
 ## レコード
@@ -77,6 +84,18 @@ UPDATE emp SET name = 'programacho' WHERE name = 'hainet50b';
 
 -- レコードを削除する（DELETE）
 DELETE FROM emp WHERE name = 'programacho';
+```
+
+## トランザクション
+```sql
+-- トランザクションの開始
+BEGIN;
+
+-- コミット
+COMMIT;
+
+-- ロールバック
+ROLLBACK;
 ```
 
 ## Bits and Pieces
