@@ -32,6 +32,11 @@ remove_bucket: pmacho-bucket
 aws s3 ls s3://pmacho-bucket
 2023-06-29 16:38:43 52 pmacho.json
 
+# ディレクトリやファイルを前方一致で指定できる。
+aws s3 ls s3://pmacho-bucket/b
+2023-06-28 14:57:50 52 bar.json
+2023-06-28 14:57:55 52 baz.json
+
 # ファイルの内容を確認
 aws s3 cp s3://pmacho-bucket/pmacho.json -
 {"foo": "value1", "bar": "value2", "baz": "balue3"}
