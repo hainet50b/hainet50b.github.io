@@ -1,8 +1,8 @@
 # AWS S3
 {:.no_toc}
 
-## Index
-{:.no_toc}
+* toc
+{:toc}
 
 ## バケット
 ```shell
