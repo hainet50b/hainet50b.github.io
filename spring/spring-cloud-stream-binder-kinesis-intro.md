@@ -72,3 +72,15 @@ public class LogSource {
     }
 }
 ```
+
+## アプリケーション起動
+アプリケーションを起動するとデータストリームが自動で生成される。
+
+```shell
+aws kinesis list-streams \
+  --query "StreamSummaries[].[StreamName,StreamStatus,StreamCreationTimestamp]" \
+  --output text
+
+# destination名がデータストリーム名として採用される。
+pmacho-stream   ACTIVE  2023-06-28T14:38:52+09:00
+```
