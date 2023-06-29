@@ -70,6 +70,7 @@
 
 ## AWS
 - [AWS CLIクライアント](https://hainet50b.github.io/aws/aws-cli-client)
+- [AWS S3](https://hainet50b.github.io/aws/aws-s3)
 - [AWS EC2](https://hainet50b.github.io/aws/aws-ec2)
 - [AWS RDS Aurora MySQL](https://hainet50b.github.io/aws/aws-rds-aurora-mysql)
 - [AWS Distro for OpenTelemetry](https://hainet50b.github.io/aws/aws-distro-for-opentelemetry)
