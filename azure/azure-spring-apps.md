@@ -43,9 +43,6 @@ az spring create \
 ```shell
 az spring list -o table
 ```
-```
-TODO
-```
 
 ## Azure Spring Apps アプリケーション空間
 ### アプリケーション空間を作成
