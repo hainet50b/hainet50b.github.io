@@ -51,3 +51,14 @@ ln -s /path/to/target /path/to/link
 ls -la /path/to/link
 lrwxr-xr-x@ 1 hainet50b staff 5 Jun 21 23:16 /path/to/link -> /path/to/target
 ```
+
+## Base64エンコード／デコード
+```shell
+-- エンコード
+echo programacho | base64
+cHJvZ3JhbWFjaG8K
+
+-- デコード
+echo cHJvZ3JhbWFjaG8K | base64 -d
+programacho
+```
