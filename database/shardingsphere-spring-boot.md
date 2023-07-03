@@ -1,4 +1,8 @@
 # ShardingSphere with Spring Boot
+{:.no_toc}
+
+* toc
+{:toc}
 
 公式ドキュメント：[Use Spring Boot Starter :: ShardingSphere](https://shardingsphere.apache.org/document/5.0.0/en/user-manual/shardingsphere-jdbc/usage/sharding/spring-boot-starter/){:target="_blank"}  
 サンプルリポジトリ：[shardingsphere-spring-boot-gym \| GitHub](https://github.com/hainet50b/shardingsphere-spring-boot-gym){:target="_blank"}
