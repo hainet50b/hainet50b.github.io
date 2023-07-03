@@ -4,7 +4,7 @@
 * toc
 {:toc}
 
-Windows：[Node.jsのセットアップ（Windows）](https://hainet50b.github.io/nodejs/nodejs-setup-windows){:target="_blank"}
+Windows：[Node.jsのセットアップ（Windows）](https://hainet50b.github.io/nodejs/nodejs-setup-windows)
 
 ## nvm（Node Version Manager）のインストール
 ```shell

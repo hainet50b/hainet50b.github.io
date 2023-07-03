@@ -4,7 +4,7 @@
 * toc
 {:toc}
 
-Mac：[Node.jsのセットアップ（Mac）](https://hainet50b.github.io/nodejs/nodejs-setup-mac){:target="_blank"}
+Mac：[Node.jsのセットアップ（Mac）](https://hainet50b.github.io/nodejs/nodejs-setup-mac)
 
 ## nvm（Node Version Manager）のインストール
 ```powershell
