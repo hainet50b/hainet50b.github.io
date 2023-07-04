@@ -21,6 +21,9 @@ scoop install plantuml
 ```shell
 plantuml programacho.plantuml
 
+# Windows環境では文字コードを指定しないと文字化けする。
+plantuml programacho.plantuml -charset UTF-8
+
 ls
 programacho.plantuml	programacho.png
 ```
