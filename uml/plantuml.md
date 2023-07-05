@@ -70,6 +70,17 @@ participant First order 10
 @enduml
 ```
 
+### オブジェクトの色
+- [色の選択 \| PlantUML](https://plantuml.com/en/color){:target="_blank"} ([日本語版](https://plantuml.com/ja/color){:target="_blank"})
+
+```plantuml
+@startuml
+participant Foo #APPLICATION
+participant Bar #Orange
+participant Baz #008000
+@enduml
+```
+
 ### 矢印の種類
 ```plantuml
 @startuml
