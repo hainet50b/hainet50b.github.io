@@ -21,11 +21,17 @@
 spring:
   shardingsphere:
     datasource:
-      names: ds0
+      names: ds0,ds1
       ds0:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: org.h2.Driver
-        url: jdbc:h2:mem:pmacho-db;mode=MySQL
+        url: jdbc:h2:mem:pmacho_db;mode=MySQL
+        username: sa
+        password:
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:mem:protein_db;mode=MySQL
         username: sa
         password:
 ```
@@ -38,19 +44,29 @@ spring:
       sharding:
         tables:
           emp:
-            # データノードはds0に、テーブルはemp0,emp1にシャーディング
-            actual-data-nodes: ds0.emp$->{0..1}
+            # データベースはds0,ds1に、テーブルはemp0,emp1,emp2にシャーディング
+            actual-data-nodes: ds$->{0..1}.emp$->{0..2} 
+            database-strategy:
+              standard:
+                # empテーブルのid列でデータベースシャーディングの挙動を決定
+                sharding-column: id
+                sharding-algorithm-name: database-inline
             table-strategy:
               standard:
-                # empテーブルのid列でシャーディングの挙動を決定
+                # empテーブルのid列でテーブルシャーディングの挙動を決定
                 sharding-column: id
-                # spring.shardingsphere.rules.sharding-algorithmsのtable-inlineルールを参照
                 sharding-algorithm-name: table-inline
         sharding-algorithms:
+        database-inline:
+          type: INLINE
+            props:
+              # id列の偶数・奇数でシャーディング。偶数の場合はds0、奇数の場合はds1
+              algorithm-expression: ds${id % 2}
           table-inline:
             type: INLINE
             props:
-              # id列の偶数・奇数でシャーディング。偶数の場合はemp0、奇数の場合はemp1
+              # id列を3で割った余りでシャーディング。
+              # 3の倍数の場合はemp0、余りが1の場合はemp1、余りが2の場合はemp2
               algorithm-expression: emp${id % 2}
 ```
 
@@ -80,30 +96,46 @@ jdbcTemplate.update(
 jdbcTemplate.queryForList("SELECT * FROM emp");
 
 [
-  {"ID":18,"NAME":"a1fba7b4-b517-4d14-8d7f-1622ce62ae90"},
-  {"ID":52,"NAME":"b6fd7f04-5ca7-4cb2-8565-e90fb575ec5a"},
-  {"ID":56,"NAME":"07b028bf-a42a-420d-88ba-df76a21c52f7"},
-  {"ID":64,"NAME":"01123929-efde-4811-9fd2-b416645a0d70"},
-  {"ID":15,"NAME":"327604cd-f1b1-43e4-9d5e-f257a7a92da2"}
+  {"ID":12,"NAME":"9479eff8-ac47-4186-aa8d-32d959e77194"},
+  {"ID":44,"NAME":"39d83dec-7526-4c22-b9a9-1d072377cd3a"},
+  {"ID":62,"NAME":"d57a4e1f-9f71-4547-9dc0-2609ed1e3d2c"},
+  {"ID":87,"NAME":"192fcd41-5ac5-43d5-b143-dfbcdc813317"},
+  {"ID":53,"NAME":"57b98de6-5a56-4e00-b147-b789805d3146"}
 ]
 ```
 
-データベースからテーブルを確認するとemp0とemp1にシャーディングされている。
+データベースからテーブルを確認するとシャーディングされている。
 
 ```sql
+-- pmacho_db / protein_db
 SHOW TABLES;
 TABLE_NAME TABLE_SCHEMA
 EMP0       PUBLIC
 EMP1       PUBLIC
+EMP2       PUBLIC
 
+-- pmacho_db
 SELECT * FROM EMP0;
 ID NAME
-18 a1fba7b4-b517-4d14-8d7f-1622ce62ae90
-52 b6fd7f04-5ca7-4cb2-8565-e90fb575ec5a
-56 07b028bf-a42a-420d-88ba-df76a21c52f7
-64 01123929-efde-4811-9fd2-b416645a0d70
+12 9479eff8-ac47-4186-aa8d-32d959e77194
 
 SELECT * FROM EMP1;
+(no rows, 1 ms)
+
+SELECT * FROM EMP2;
 ID NAME
-15 327604cd-f1b1-43e4-9d5e-f257a7a92da2
+44 39d83dec-7526-4c22-b9a9-1d072377cd3a
+62 d57a4e1f-9f71-4547-9dc0-2609ed1e3d2c
+
+-- protein_db
+SELECT * FROM EMP0;
+ID NAME
+87 192fcd41-5ac5-43d5-b143-dfbcdc813317
+
+SELECT * FROM EMP1;
+(no rows, 1 ms)
+
+SELECT * FROM EMP2;
+ID NAME
+53 57b98de6-5a56-4e00-b147-b789805d3146
 ```
