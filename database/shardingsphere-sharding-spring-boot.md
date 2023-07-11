@@ -1,4 +1,4 @@
-# ShardingSphere with Spring Boot
+# ShardingSphere Sharding with Spring Boot
 {:.no_toc}
 
 * toc

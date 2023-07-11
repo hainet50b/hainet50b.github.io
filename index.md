@@ -60,7 +60,7 @@
 - [GitHub Pagesのカスタムドメイン設定](https://hainet50b.github.io/github/github-pages-custom-domain)
 
 ## データベース
-- [ShardingSphere with Spring Boot](https://hainet50b.github.io/database/shardingsphere-spring-boot)
+- [ShardingSphere with Spring Boot](https://hainet50b.github.io/database/shardingsphere-sharding-spring-boot)
 
 ## MySQL
 - [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
