@@ -36,6 +36,9 @@
 - [Node.jsのセットアップ（Mac）](https://hainet50b.github.io/nodejs/nodejs-setup-mac)
 - [Node.jsのセットアップ（Windows）](https://hainet50b.github.io/nodejs/nodejs-setup-windows)
 
+## Observability
+- [Apache SkyWalkingのセットアップ](https://hainet50b.github.io/observability/apache-skywalking-setup)
+
 ## UML
 - [PlantUML](https://hainet50b.github.io/uml/plantuml)
 
