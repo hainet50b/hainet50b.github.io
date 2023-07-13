@@ -25,6 +25,7 @@
 - [TLSバージョンの確認](https://hainet50b.github.io/java/java-tls-version)
 - [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)
 - [JDKをコマンドラインから切り替える（JEnv for Windows）](https://hainet50b.github.io/java/java-jenv-for-windows)
+- [jarコマンドでJarの中身を差し替える](https://hainet50b.github.io/java/java-jar-command)
 - [JMeter Bits and Pieces](https://hainet50b.github.io/java/jmeter-bits-and-pieces)
 
 ## Rust
