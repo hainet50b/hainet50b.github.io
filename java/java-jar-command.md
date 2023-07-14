@@ -45,4 +45,7 @@ tree .
 ```shell
 # -u (--update) 更新
 jar -uvf programacho.jar BOOT-INF/classes/application.yml
+
+# 無圧縮で梱包のみ行う場合は-0 (--no-compress)オプションを付与する。
+jar -uvf0 programacho.jar BOOT-INF/classes/application.yml
 ```
