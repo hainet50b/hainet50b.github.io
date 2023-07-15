@@ -52,6 +52,17 @@ ls -la /path/to/link
 lrwxr-xr-x@ 1 hainet50b staff 5 Jun 21 23:16 /path/to/link -> /path/to/target
 ```
 
+## エポック秒を取得する
+```shell
+date +%s
+
+# 現地時刻に変換する
+# Linux (GNU版 dateコマンド)
+date -d @1689410115
+# Mac (BSD版 dateコマンド)
+date -r 1689410115
+```
+
 ## Base64エンコード／デコード
 ```shell
 -- エンコード
