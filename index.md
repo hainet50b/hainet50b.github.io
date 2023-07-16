@@ -11,6 +11,7 @@
 - [Spring Resource Interface](https://hainet50b.github.io/spring/spring-resource-interface)
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 - [Spring Scheduling Tasks](https://hainet50b.github.io/spring/spring-scheduling-tasks)
+- [Lobback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
 - [Spring Cloud Stream Binder Rabbit入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-rabbit-intro)
 - [Spring Cloud Stream Binder Kinesis入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-kinesis-intro)
