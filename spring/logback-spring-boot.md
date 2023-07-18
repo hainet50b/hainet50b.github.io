@@ -43,13 +43,13 @@ logback.xmlはsrc/main/resourceに配置することで自動的に読み込ま�
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d [%thread] %-5level %logger{35} - %msg %n</pattern>
+            <pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>./log/programacho.log</file>
         <encoder>
-            <pattern>%d [%thread] %-5level %logger{35} - %msg %n</pattern>
+            <pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
     </appender>
 
