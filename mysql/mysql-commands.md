@@ -98,6 +98,18 @@ COMMIT;
 ROLLBACK;
 ```
 
+## mysqldump
+```shell
+# データベースのダンプを取得
+mysqldump -h localhost -u root -p --databases pmacho_db > pmacho_db.sql
+
+# データベースのダンプをインポート
+mysql -h localhost -u root -p < pmacho_db.sql
+
+# PowerShellの場合はパイプを使用する
+cat pmacho_db.sql | mysql -h localhost -u root -p
+```
+
 ## Bits and Pieces
 ```sql
 -- 一定時間スリープする
