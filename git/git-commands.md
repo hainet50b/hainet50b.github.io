@@ -121,3 +121,26 @@ git filter-branch -f --env-filter " \
   GIT_COMMITTER_EMAIL=$user_email; \
 " HEAD
 ```
+
+## コミット日時を変更する
+```shell
+git log --pretty=fuller
+
+commit 3b4394689cfb0dbb8246f5c37121cfb807b3da51 (HEAD -> main)
+Author:     hainet50b <20400616+hainet50b@users.noreply.github.com>
+AuthorDate: Fri Jul 21 23:24:05 2023 +0900
+Commit:     hainet50b <20400616+hainet50b@users.noreply.github.com>
+CommitDate: Fri Jul 21 23:24:05 2023 +0900
+
+# 23時に修正する場合
+git commit --amend --date="Fri Jul 21 23:00:00 2023 +0900"
+git rebase HEAD~1 --committer-date-is-author-date
+
+git log --pretty=fuller
+
+commit a9889fa37dd61d00051bcb7dee91d87cdbd8f89d (HEAD -> main)
+Author:     hainet50b <20400616+hainet50b@users.noreply.github.com>
+AuthorDate: Fri Jul 21 23:00:00 2023 +0900
+Commit:     hainet50b <20400616+hainet50b@users.noreply.github.com>
+CommitDate: Fri Jul 21 23:00:00 2023 +0900
+```
