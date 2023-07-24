@@ -4,6 +4,11 @@
 * toc
 {:toc}
 
+## 新しいブランチを作ってチェックアウトする
+```shell
+git checkout -b pmacho-branch
+```
+
 ## 直近のコミットのコメントを変更する
 ```shell
 git commit --amend
