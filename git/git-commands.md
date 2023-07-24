@@ -14,6 +14,11 @@ git checkout -b pmacho-branch
 git commit --amend
 ```
 
+## 一つ前のコミットに戻る
+```shell
+git reset --hard HEAD~1
+```
+
 ## 複数のコミットを一つにまとめる
 サンプルとして以下の4つのコミットを作成する。
 
