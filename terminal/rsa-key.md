@@ -13,7 +13,6 @@ ls -la
 openssl rsa -pubout -in pmacho.pem -out pmacho-pub.pem
 
 ls -la
-total 16
 -rw-r--r--@ 1 hainet50b  staff   451 Jul 24 19:01 pmacho-pub.pem
 -rw-r--r--@ 1 hainet50b  staff  1704 Jul 24 18:57 pmacho.pem
 ```
