@@ -38,6 +38,9 @@ CREATE USER programacho_user IDENTIFIED BY 'changeme';
 -- アクセス元のホスト名を指定できる
 CREATE USER programacho_user@localhost;
 
+-- パスワードを変更する
+ALTER USER programacho_user IDENTIFIED BY 'new_password';
+
 -- ユーザーを削除する
 DROP USER programacho_user;
 ```
