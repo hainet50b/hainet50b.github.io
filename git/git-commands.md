@@ -117,6 +117,11 @@ git subtree add --prefix foo ../foo main
 git subtree add --prefix bar ../bar main
 ```
 
+## リモートリポジトリのURLを変更する
+```shell
+git remote set-url origin git@github.com:hainet50b/hainet50b.github.io.git
+```
+
 ## 過去のコミットのユーザー名とメールアドレスを変更する
 誤って業務環境でDotfilesを更新してしまった時などに使う。
 
