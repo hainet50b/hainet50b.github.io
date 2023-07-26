@@ -41,6 +41,9 @@ CREATE USER programacho_user@localhost;
 -- パスワードを変更する
 ALTER USER programacho_user IDENTIFIED BY 'new_password';
 
+-- 認証プラグインを変更する。MariaDB DriverでMySQL 8系に接続するときに必要となる。
+ALTER USER programacho_user IDENTIFIED WITH mysql_native_password BY 'new_password';
+
 -- ユーザーを削除する
 DROP USER programacho_user;
 ```
