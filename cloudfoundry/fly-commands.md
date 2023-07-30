@@ -4,18 +4,25 @@
 ```shell
 fly -t pmacho-dev login -c https://concourse.programacho.com -n pmacho
 
-# 2回目以降はエンドポイントとチームの指定不要
+# 2回目以降はエンドポイントとチームの指定は不要
 fly -t pmacho-dev
 
 # ターゲット一覧の確認
 fly targets
-TODO
+name        url                                team    expiry
+pmacho-stg  https://concourse.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20 UTC
 
 # ターゲット一覧の編集
 # ターゲットの情報は.flyrcファイルに記録される
+# トークンが有効であれば複数のターゲットへのログイン状態を維持できる
 cat ~/.flyrc
-
-# TODO: 複数のチームにログインできるのか？
+targets:
+  gant-stg:
+    api: https://concourse.programacho.com
+    team: pmacho
+    token:
+      type: bearer
+      value: **********/***************************
 ```
 
 ## パイプライン
@@ -34,15 +41,15 @@ fly -t pmacho-dev dp -p pmacho-pipeline
 
 ## ジョブ
 ```shell
-# ジョブを起動する
-fly -t pmacho-dev tj -j pmacho-pipeline/unit-test --watch
+# ジョブを起動する -w (--watch) 標準出力を閲覧する
+fly -t pmacho-dev tj -j pmacho-pipeline/unit-test -w
 
 # TODO: ジョブを停止する
 
 # TODO: ジョブをpause/pause解除する
 ```
 
-## コンテナ
+## TODO: hijack
 ```shell
 TODO: fly -t pmacho-dev hijak -c ...
 ```
