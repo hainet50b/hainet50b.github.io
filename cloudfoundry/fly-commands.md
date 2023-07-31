@@ -10,14 +10,14 @@ fly -t pmacho-dev
 # ターゲット一覧の確認
 fly targets
 name        url                                team    expiry
-pmacho-stg  https://concourse.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20 UTC
+pmacho-dev  https://concourse.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20 UTC
 
 # ターゲット一覧の編集
 # ターゲットの情報は.flyrcファイルに記録される
 # トークンが有効であれば複数のターゲットへのログイン状態を維持できる
 cat ~/.flyrc
 targets:
-  gant-stg:
+  pmacho-dev:
     api: https://concourse.programacho.com
     team: pmacho
     token:
@@ -44,12 +44,10 @@ fly -t pmacho-dev dp -p pmacho-pipeline
 # ジョブを起動する -w (--watch) 標準出力を閲覧する
 fly -t pmacho-dev tj -j pmacho-pipeline/unit-test -w
 
-# TODO: ジョブを停止する
+# ジョブをpause/unpauseする
+# pause
+fly -t pmacho-dev pj -j pmacho-pipeline/unit-test
 
-# TODO: ジョブをpause/pause解除する
-```
-
-## TODO: hijack
-```shell
-TODO: fly -t pmacho-dev hijak -c ...
+# unpause
+fly -t pmacho-dev uj -j pmacho-pipeline/unit-test
 ```
