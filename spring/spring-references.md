@@ -22,3 +22,6 @@
 ### spring.io
 - [Spring Boot依存バージョン](https://docs.spring.io/spring-boot/docs/current/reference/html/dependency-versions.html){:target="_blank"} ([日本語版](https://spring.pleiades.io/spring-boot/docs/current/reference/html/dependency-versions.html){:target="_blank"})
 - [Spring Bootサポート期間](https://spring.io/projects/spring-boot#support){:target="_blank"} ([日本語版](https://spring.pleiades.io/projects/spring-boot#support){:target="_blank"})
+
+### github.com
+- [Relaxed Binding 2.0](https://github.com/spring-projects/spring-boot/wiki/Relaxed-Binding-2.0){:target="_blank"}
