@@ -14,6 +14,9 @@ mysql -h localhost -P 3306 -u root -p
 --　データベース一覧を確認する
 SHOW DATABASES;
 
+-- WHERE句で指定してデータベース一覧を確認する
+SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'pmacho%';
+
 -- データベースを作成する
 CREATE DATABASE programacho_db;
 
