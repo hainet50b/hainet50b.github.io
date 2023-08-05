@@ -22,7 +22,7 @@
 ## CloudFoundry
 - [よく使うCloudFoundry CLIコマンド](https://hainet50b.github.io/cloudfoundry/cf-commands.md)
 - [よく使うConcourse CLIコマンド](https://hainet50b.github.io/cloudfoundry/fly-commands.md)
-- [よく使うCredHubコマンド](https://hainet50b.github.io/cloudfoundry/credhub-commands.md)
+- [よく使うCredHub CLIコマンド](https://hainet50b.github.io/cloudfoundry/credhub-commands.md)
 
 ## Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)

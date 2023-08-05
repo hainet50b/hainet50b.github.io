@@ -1,4 +1,4 @@
-# よく使うCredHubコマンド
+# よく使うCredHub CLIコマンド
 
 ## ログイン
 ```shell
