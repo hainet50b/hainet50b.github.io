@@ -14,6 +14,11 @@ git checkout -b pmacho-branch
 git commit --amend
 ```
 
+## 作業ツリーとインデックスを直近のコミットの状態に戻す
+```shell
+git checkout HEAD .
+```
+
 ## 一つ前のコミットに戻る
 ```shell
 git reset --hard HEAD~1
