@@ -26,20 +26,7 @@ git reset --hard HEAD~1
 
 ## 特定のコミットを取り消すコミットを作成する
 ```shell
-git log
-commit f2520423004db05a08d5e256c1206be27cc86e58 (HEAD -> main)
-Author: hainet50b <20400616+hainet50b@users.noreply.github.com>
-Date:   Wed Aug 9 22:47:01 2023 +0900
-
-Modify foo
-
-commit a7d1c7656f9eb20872342e7f51f54245c488d2eb
-Author: hainet50b <20400616+hainet50b@users.noreply.github.com>
-Date:   Wed Aug 9 22:46:39 2023 +0900
-
-Add foo
-
-# コミットハッシュ全体または
+# コミットハッシュの全体または省略形を指定する。
 git revert f252042
 ```
 
