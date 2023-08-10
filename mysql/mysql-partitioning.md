@@ -44,6 +44,7 @@ ADD PARTITION (
 );
 
 -- キャッチオールパーティションを採用している場合はREORGANIZEで対応する。
+-- REORGANIZEはオンラインで実行できない場合があるのでよく確認すること。
 ALTER TABLE pmacho_table
 REORGANIZE PARTITION p999999 INTO (
   PARTITION p202309 VALUES LESS THAN ('202309'),
