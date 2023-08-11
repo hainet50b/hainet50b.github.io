@@ -35,8 +35,6 @@
 - [jarコマンドでJarの中身を差し替える](https://hainet50b.github.io/java/java-jar-command)
 - [JMeter Bits and Pieces](https://hainet50b.github.io/java/jmeter-bits-and-pieces)
 
-
-
 ## Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
 - [Rustのバージョン管理](https://hainet50b.github.io/rust/rust-version)
@@ -78,6 +76,7 @@
 
 ## MySQL
 - [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
+- [MySQL パーティション管理](https://hainet50b.github.io/mysql/mysql-partitioning)
 - [MySQL セッション管理](https://hainet50b.github.io/mysql/mysql-manage-sessions)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
 
