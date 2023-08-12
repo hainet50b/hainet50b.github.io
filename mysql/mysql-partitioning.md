@@ -91,3 +91,12 @@ at org.springframework.jdbc.core.JdbcTemplate$1ExecuteStatementCallback.doInStat
 at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:383) ~[spring-jdbc-6.0.11.jar:6.0.11]
 ... 8 common frames omitted
 ```
+
+## パーティションの削除
+```sql
+-- パーティションを削除し、パーティション内のレコードもすべて削除する。
+ALTER TABLE emp DROP PARTITION p202308;
+
+-- パーティションを維持し、パーティション内のレコードをすべて削除する。
+ALTER TABLE emp TRUNCATE PARTITION p202308;
+```
