@@ -87,6 +87,7 @@
 
 ## TiDB
 - [TiDB Playground](https://hainet50b.github.io/tidb/tidb-playground)
+- [Dumpling (MySQL/TiDBエクスポートツール)](https://hainet50b.github.io/tidb/dumpling)
 - [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
 ## AWS
