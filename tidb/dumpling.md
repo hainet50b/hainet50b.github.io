@@ -1,4 +1,4 @@
-# Dumpling (MySQL/TiDBエクスポートツール)
+# Dumpling（MySQL/TiDBエクスポートツール）
 
 ## Dumplingのインストール
 ```shell
