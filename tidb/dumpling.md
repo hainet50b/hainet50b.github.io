@@ -6,7 +6,7 @@
 scoop install dumpling
 
 # Windows
-TODO
+tiup install dumpling
 ```
 
 ## データベースのエクスポート
