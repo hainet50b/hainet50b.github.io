@@ -32,8 +32,8 @@ SELECT
 FROM
   information_schema.partitions
 WHERE
-  table_name = 'pmacho_table'
-  AND table_schema = 'pmacho_db';
+  table_schema = 'pmacho_db'
+  AND table_name = 'pmacho_table';
 ```
 
 ## パーティション追加
