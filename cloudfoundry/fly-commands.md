@@ -2,15 +2,15 @@
 
 ## ログイン
 ```shell
-fly -t pmacho-dev login -c https://concourse.programacho.com -n pmacho
+fly -t pmacho-dev login -c https://concourse.dev.programacho.com -n pmacho
 
 # 2回目以降はエンドポイントとチームの指定は不要
 fly -t pmacho-dev
 
 # ターゲット一覧の確認
 fly targets
-name        url                                team    expiry
-pmacho-dev  https://concourse.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20 UTC
+name        url                                    team    expiry
+pmacho-dev  https://concourse.dev.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20 UTC
 
 # ターゲット一覧の編集
 # ターゲットの情報は.flyrcファイルに記録される
@@ -18,7 +18,7 @@ pmacho-dev  https://concourse.programacho.com  pmacho  Sat, 29 Jul 2023 13:48:20
 cat ~/.flyrc
 targets:
   pmacho-dev:
-    api: https://concourse.programacho.com
+    api: https://concourse.dev.programacho.com
     team: pmacho
     token:
       type: bearer
