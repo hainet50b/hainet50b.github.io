@@ -24,7 +24,7 @@ $env:PROGRAMDATA¥MySQL¥MySQL Server 8.0
 ```
 
 ## JDBCでMySQLにエラー「No appropriate protocol」で接続できない
-JavaのTLSバージョンとMySQL Connector / MySQLのTLSバージョンのデフォルトが異なる場合に発生する。
+JavaのTLSバージョンとMySQL Connector / MySQLのTLSバージョンのデフォルトが異なる場合に発生する。  
 例えばJava 17とMySQL Connector 8.0.18 / MySQL 5.7の組み合わせではTLSv1.2を指定すると解決する。
 
 ```
