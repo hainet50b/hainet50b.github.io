@@ -2,7 +2,7 @@
 
 ![java-keytool-9b5915d8fc17.png](https://programacho.blob.core.windows.net/images/java-keytool-9b5915d8fc17.png)
 
-### ①CA証明書を作成する
+### ①CAの鍵ペアとキーストアを作成する
 ```shell
 keytool -genkeypair \
   -alias ca \
@@ -41,7 +41,7 @@ openssl pkcs12 \
   -passin pass:password
 ```
 
-### ④サーバー証明書を作成する
+### ④サーバーの鍵ペアとキーストアを作成する
 ```shell
 keytool -genkeypair \
   -alias server \
