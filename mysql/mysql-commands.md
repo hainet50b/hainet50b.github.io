@@ -103,6 +103,9 @@ CREATE TABLE emp (
     name VARCHAR(255) NOT NULL
 );
 
+-- カラムを変更する
+ALTER TABLE emp MODIFY name VARCHAR(1024);
+
 -- テーブル定義を確認する
 -- カラム一覧を確認する
 SHOW FULL COLUMNS FROM emp;
