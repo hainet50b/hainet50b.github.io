@@ -76,6 +76,7 @@
 
 ## MySQL
 - [よく使うMySQLコマンド](https://hainet50b.github.io/mysql/mysql-commands)
+- [MySQL インデックス管理](https://hainet50b.github.io/mysql/mysql-indexes)
 - [MySQL パーティション管理](https://hainet50b.github.io/mysql/mysql-partitioning)
 - [MySQL セッション管理](https://hainet50b.github.io/mysql/mysql-sessions)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
