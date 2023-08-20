@@ -79,6 +79,7 @@
 - [MySQL インデックス管理](https://hainet50b.github.io/mysql/mysql-indexes)
 - [MySQL パーティション管理](https://hainet50b.github.io/mysql/mysql-partitioning)
 - [MySQL セッション管理](https://hainet50b.github.io/mysql/mysql-sessions)
+- [MySQL 大量ダミーデータ作成](https://hainet50b.github.io/mysql/mysql-generate-dummy-data)
 - [MySQL Bits and Pieces](https://hainet50b.github.io/mysql/mysql-bits-and-pieces)
 
 ## Oracle
