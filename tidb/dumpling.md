@@ -3,10 +3,7 @@
 ## Dumplingのインストール
 ```shell
 # Mac
-scoop install dumpling
-
-# Windows
-tiup install dumpling
+brew install dumpling
 ```
 
 ## データベースのエクスポート
