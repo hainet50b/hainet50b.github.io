@@ -15,7 +15,7 @@ CREATE PROCEDURE InsertDummyUsers(num INT, blockSize INT)
 BEGIN
   DECLARE i INT DEFAULT 0;
   DECLARE name VARCHAR(255);
-  DECLARE users TEXT DEFAULT '';
+  DECLARE records TEXT DEFAULT '';
 
   -- コミットのオーバーヘッドを最小限にする。
   START TRANSACTION;
@@ -24,30 +24,30 @@ BEGIN
     SET name = CONCAT('user-', LPAD(FLOOR(RAND() * 999999), 6, '0'));
 
     -- バルクインサートを前提にする。
-    SET users = CONCAT(
-      users, 
+    SET records = CONCAT(
+      records, 
       '(', QUOTE(name), '),'
     );
 
     IF i % blockSize = 0 THEN
       -- 末尾のカンマを削除する。
-      SET users = LEFT(users, CHAR_LENGTH(users) - 1);
+      SET records = LEFT(records, CHAR_LENGTH(records) - 1);
 
-      SET @sql = CONCAT ('INSERT INTO emp (name) VALUES ', users);
+      SET @sql = CONCAT ('INSERT INTO emp (name) VALUES ', records);
       PREPARE stmt FROM @sql;
       EXECUTE stmt;
       DEALLOCATE PREPARE stmt;
 
-      SET users = '';
+      SET records = '';
     END IF;
 
     SET i = i + 1;
   END WHILE;
 
-  IF LENGTH(users) > 0 THEN
-    SET users = LEFT(users, CHAR_LENGTH(users) - 1);
+  IF LENGTH(records) > 0 THEN
+    SET records = LEFT(records, CHAR_LENGTH(records) - 1);
 
-    SET @sql = CONCAT ('INSERT INTO emp (name) VALUES ', users);
+    SET @sql = CONCAT ('INSERT INTO emp (name) VALUES ', records);
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
