@@ -142,6 +142,9 @@ ROLLBACK;
 # データベースのダンプを取得
 mysqldump -h localhost -u root -p --databases pmacho_db > pmacho_db.sql
 
+# テーブルを指定してダンプを取得
+mysqldump -h localhost -u root -p pmacho_db emp emp2 > pmacho_db.sql
+
 # データベースのダンプをインポート
 mysql -h localhost -u root -p < pmacho_db.sql
 
