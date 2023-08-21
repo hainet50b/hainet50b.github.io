@@ -67,3 +67,23 @@ WHERE
 
 CALL InsertDummyUsers(1000, 100);
 ```
+
+データ容量はinformation_schema.tablesで確認できる。
+
+```sql
+-- 統計情報を取得してからデータ容量を確認すること。
+ANALYZE TABLE emp;
+
+SELECT
+  table_schema AS 'Database',
+  table_name AS 'Table',
+  table_rows AS 'Rows',
+  ROUND(data_length / POW(1024, 3), 3) AS 'Data(GB)',
+  ROUND(index_length / POW(1024, 3), 3) AS 'Index(GB)',
+  ROUND((data_length + index_length) / POW(1024, 3), 3) AS 'Sum(GB)'
+FROM
+  information_schema.tables
+WHERE
+  table_schema = 'pmacho_db'
+  AND table_name = 'emp';
+```
