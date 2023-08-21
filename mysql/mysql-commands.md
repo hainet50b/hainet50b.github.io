@@ -152,6 +152,52 @@ mysql -h localhost -u root -p < pmacho_db.sql
 cat pmacho_db.sql | mysql -h localhost -u root -p
 ```
 
+大量のデータをエクスポートして他のデータベースにインポートする場合はCSV形式が使いやすい。
+```shell
+# ダンプファイルを出力可能なディレクトリ一覧を確認する。
+mysql> SHOW VARIABLES LIKE 'secure_file_priv';
++------------------+-----------------------+
+| Variable_name    | Value                 |
++------------------+-----------------------+
+| secure_file_priv | /var/lib/mysql-files/ |
++------------------+-----------------------+
+1 row in set (0.00 sec)
+
+# --tabオプションはMySQLサーバーのディレクトリを指定する必要がある。
+mysqldump -h localhost -P 3306 -u root -p \
+  pmacho_db pmacho_table \
+  --tab=/var/lib/mysql-files \
+  --fields-enclosed-by='"' \
+  --fields-terminated-by=',' \
+  --lines-terminated-by='\n' \
+  --no-create-info
+
+wc -l ./pmacho_table.txt
+15000000 ./pmacho_table.txt
+
+split -l 1000000 ./pmacho_table.txt pmacho_table_
+
+ll
+-rwxrwxrwx 1 hainet50b staff 196888896 Aug 21 22:32 pmacho_table_aa
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ab
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ac
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ad
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ae
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_af
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ag
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ah
+-rwxrwxrwx 1 hainet50b staff 198000000 Aug 21 22:33 pmacho_table_ai
+-rwxrwxrwx 1 hainet50b staff 198000001 Aug 21 22:33 pmacho_table_aj
+-rwxrwxrwx 1 hainet50b staff 199000000 Aug 21 22:33 pmacho_table_ak
+-rwxrwxrwx 1 hainet50b staff 199000000 Aug 21 22:33 pmacho_table_al
+-rwxrwxrwx 1 hainet50b staff 199000000 Aug 21 22:33 pmacho_table_am
+-rwxrwxrwx 1 hainet50b staff 199000000 Aug 21 22:34 pmacho_table_an
+-rwxrwxrwx 1 hainet50b staff 199000000 Aug 21 22:34 pmacho_table_ao
+
+wc -l ./pmacho_table_ao
+1000000 ./pmacho_table_ao
+```
+
 ## Bits and Pieces
 ```sql
 -- 一定時間スリープする。
