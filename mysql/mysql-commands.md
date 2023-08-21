@@ -151,6 +151,12 @@ cat pmacho_db.sql | mysql -h localhost -u root -p
 
 ## Bits and Pieces
 ```sql
--- 一定時間スリープする
+-- 一定時間スリープする。
 SELECT SLEEP(5);
+
+-- ランダムな数値を生成する。
+SELECT FLOOR(RAND() * 999999);
+
+-- ランダムな文字列を生成する。
+SELECT SUBSTRING(MD5(RAND()), 1, 32);
 ```
