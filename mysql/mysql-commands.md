@@ -200,6 +200,15 @@ wc -l ./pmacho_table_ao
 
 ## Bits and Pieces
 ```sql
+-- CSVデータをインポートする。
+LOAD DATA
+  LOCAL INFILE '/path/to/data.csv'
+  INTO TABLE pmacho_table
+  FIELDS
+    ENCLOSED BY '\"'
+    TERMINATED BY ','
+  LINES TERMINATED BY '\n';
+
 -- 一定時間スリープする。
 SELECT SLEEP(5);
 
