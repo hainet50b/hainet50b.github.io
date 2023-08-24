@@ -65,11 +65,26 @@ date -r 1689410115
 
 ## Base64エンコード／デコード
 ```shell
--- エンコード
+# エンコード
 echo programacho | base64
 cHJvZ3JhbWFjaG8K
 
--- デコード
+# デコード
 echo cHJvZ3JhbWFjaG8K | base64 -d
 programacho
+```
+
+## ハッシュ
+```shell
+# Linux
+## MD5
+echo hainet50b | md5sum
+## SHA256
+echo hainet50b | sha256sum
+
+# Mac
+## MD5
+echo hainet50b | md5
+## SHAR256
+echo hainet50b | shasum
 ```
