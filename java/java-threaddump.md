@@ -31,8 +31,17 @@ Spring Boot 2.2からAcceptヘッダを付与することでテキスト形式�
 - [Retrieving the Thread Dump as Text](https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/#threaddump.retrieving-text){:target="_blank"}
 
 ```shell
-curl -H "Accept: text/plain" localhost:8080/actuator/threaddump
+curl -H "Accept: text/plain" localhost:8080/actuator/threaddump > threaddump-$(date +%s)
+
+ls -la
+-rw-r--r--@  1 hainet50b  staff  31500 Aug 28 10:33 threaddump-1693186412
 ```
 
 ## スレッドダンプの解析
-TODO
+グローバルスタンダードではないものの、Samuraiが使いやすい。
+
+[samurai \| GitHub](https://github.com/yusuke/samurai){:target="_blank"}
+
+```shell
+java -jar samurai-swing-2021.9.jar 
+```
