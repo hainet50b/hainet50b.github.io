@@ -48,11 +48,11 @@ OpenJDK 64-Bit Server VM 18.9 (build 11.0.2+9, mixed mode)
 
 # JAVA_HOMEはセッションを再読み込みしないと更新されない。
 echo $env:JAVA_HOME
-C:\Users\htakano\scoop\apps\openjdk17\current
+C:\Users\hainet50b\scoop\apps\openjdk17\current
 
 # ...再読み込み
 echo $env:JAVA_HOME
-C:\Users\htakano\scoop\apps\openjdk11\current
+C:\Users\hainet50b\scoop\apps\openjdk11\current
 
 # （オプション）JDKの切り替え（セッションスコープ）
 jenv use openjdk11
