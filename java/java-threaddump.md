@@ -7,7 +7,22 @@
 jps
 54138 PmachoApplication
 
-jstack 54138
+jstack 54138 > threaddump-$(date +%s)
+```
+
+スレッドダンプの解析には複数のダンプが必要となるため、以下のようにして一定間隔で複数取得する。
+```shell
+# Shell
+while true; do
+    jstack 54138 > threaddump-$(date +%s)
+    sleep 3
+done
+
+# PowerShell
+while ($true) {
+    jstack 54138 > threaddump-$(date +%s)
+    Start-Sleep -Seconds 3
+}
 ```
 
 ### Spring Boot Actuator
@@ -32,9 +47,6 @@ Spring Boot 2.2からAcceptヘッダを付与することでテキスト形式�
 
 ```shell
 curl -H "Accept: text/plain" localhost:8080/actuator/threaddump > threaddump-$(date +%s)
-
-ls -la
--rw-r--r--@  1 hainet50b  staff  31500 Aug 28 10:33 threaddump-1693186412
 ```
 
 ## スレッドダンプの解析
