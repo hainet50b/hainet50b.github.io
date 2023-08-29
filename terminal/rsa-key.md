@@ -1,7 +1,7 @@
-# RSA秘密/公開鍵の作成方法
+# RSA秘密鍵/公開鍵の作成
 
 ## RSA秘密鍵の作成
-```
+```shell
 openssl genpkey -algorithm RSA -out pmacho.pem -pkeyopt rsa_keygen_bits:2048
 
 ls -la
@@ -9,7 +9,7 @@ ls -la
 ```
 
 ## 対応するRSA公開鍵の作成
-```
+```shell
 openssl rsa -pubout -in pmacho.pem -out pmacho-pub.pem
 
 ls -la
@@ -17,8 +17,8 @@ ls -la
 -rw-r--r--@ 1 hainet50b  staff  1704 Jul 24 18:57 pmacho.pem
 ```
 
-RSA公開鍵は以下のようなフォーマットとなる。
-```
+RSA公開鍵は以下のような形式となる。
+```shell
 cat pmacho-pub.pem
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6YoU9NjsF4q1Sl1fn5qX
