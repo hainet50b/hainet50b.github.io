@@ -57,6 +57,7 @@
 - [文字コードの確認・変更（nkf）](https://hainet50b.github.io/terminal/nkf)
 - [文字コードの確認・変更（file / iconv）](https://hainet50b.github.io/terminal/charset)
 - [改行コードの確認・変更（dos2unix）](https://hainet50b.github.io/terminal/dos2unix)
+- [URLエンコード・デコード（nkf）](https://hainet50b.github.io/terminal/url-encode)
 - [RSA秘密鍵/公開鍵の作成](https://hainet50b.github.io/terminal/rsa-key)
 - [SSH鍵の作成](https://hainet50b.github.io/terminal/ssh-key)
 - [Starship](https://hainet50b.github.io/terminal/starship)
