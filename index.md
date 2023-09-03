@@ -30,11 +30,11 @@
 - [Caffeine（キャッシュライブラリ）](https://hainet50b.github.io/java/java-caffeine)
 - [juniversalchardet（文字コード判定ライブラリ）](https://hainet50b.github.io/java/java-juniversalchardet)
 - [Keytoolによる擬似CA証明書とサーバー署名書の作成](https://hainet50b.github.io/java/java-keytool)
+- [JMeter（コマンドライン）](https://hainet50b.github.io/java/java-jmeter-cli)
 - [TLSバージョンの確認](https://hainet50b.github.io/java/java-tls-version)
 - [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)
 - [JDKをコマンドラインから切り替える（JEnv for Windows）](https://hainet50b.github.io/java/java-jenv-for-windows)
 - [jarコマンドでJarの中身を差し替える](https://hainet50b.github.io/java/java-jar-command)
-- [JMeter Bits and Pieces](https://hainet50b.github.io/java/jmeter-bits-and-pieces)
 
 ## Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
