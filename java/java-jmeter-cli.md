@@ -13,7 +13,7 @@
 brew install jmeter
 
 # Windows
-TODO
+scoop install jmeter
 ```
 
 ## JMeterレポートの出力
