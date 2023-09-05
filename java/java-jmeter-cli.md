@@ -73,5 +73,5 @@ JM_LAUNCH=/Users/hainet50b/.jenv/versions/17.0.7/bin/java
 JM_LAUNCH=$(jenv which java)
 
 # Windows
-$env:JM_LAUNCH="C:\Users\htakano\scoop\apps\openjdk17\current\bin\java.exe"
+$env:JM_LAUNCH="C:\Users\hainet50b\scoop\apps\openjdk17\current\bin\java.exe"
 ```
