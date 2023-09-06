@@ -85,6 +85,18 @@ echo hainet50b | sha256sum
 # Mac
 ## MD5
 echo hainet50b | md5
-## SHAR256
+## SHA256
 echo hainet50b | shasum
+
+# Windows PowerShell (TODO: ハッシュ関連事項のページ分離)
+## MD5
+Get-FileHash -Algorithm MD5 .\pmacho.txt
+## SHA256
+Get-FileHash -Algorithm SHA256 .\pmacho.txt
+
+# Windows コマンドプロンプト
+## MD5
+certutil -hashfile pmacho.txt MD5
+## SHA256
+certutil -hashfile pmacho.txt SHA256
 ```
