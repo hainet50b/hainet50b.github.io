@@ -3,14 +3,32 @@
 ## インデックス追加
 ```sql
 -- 単一カラムインデックス
-ALTER TABLE pmacho_table ADD INDEX pmacho_table_created_at_index (created_at);
+-- CREATE INDEXは単にインデックスを追加する場合に使用する。
+CREATE INDEX pmacho_table_created_at_index ON pmacho_table (created_at);
+-- ALTER TABLE ADD INDEXは他のテーブルの変更とともにインデックスを追加する場合に使用する。
+ALTER TABLE pmacho_table
+ADD COLUMN created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+ADD INDEX pmacho_table_created_at_index (created_at);
 
 -- 複合カラムインデックス
 -- カラムの順序に注意する。姓名の辞書で苗字で引いてからさらに名前で引くのと同じ仕組み。
-ALTER TABLE pmacho_table ADD INDEX pmacho_table_last_name_first_name_index (last_name, first_name);
+CREATE INDEX pmacho_table_last_name_first_name_index ON pmacho_table (last_name, first_name);
 
 -- ユニークインデックス
-ALTER TABLE pmacho_table ADD UNIQUE pmacho_table_name_unique_index (name);
+CREATE UNIQUE INDEX pmacho_table_name_unique_index ON pmacho_table (name);
+
+-- テーブル作成時にインデックスを追加できる。
+CREATE TABLE pmacho_table (
+  id INT AUTO_INCREMENT,
+  name VARCHAR(32),
+  PRIMARY KEY (id),
+  INDEX pmacho_table_name_index (name)
+);
+
+-- カラム追加時にもインデックスを追加できる。
+ALTER TABLE pmacho_table
+ADD COLUMN created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+ADD INDEX pmacho_table_created_at_index (created_at);
 ```
 
 ## インデックス確認
