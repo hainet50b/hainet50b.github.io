@@ -20,7 +20,7 @@ scoop install jmeter
 ```shell
 # -n --nongui CLIモードで起動 -t --testfile JMeterプロファイルを指定
 # -l --logfile jtlファイルを出力 -e HTMLレポートを作成 -o HTMLレポートの出力先を指定
-jmeter -n -t pmacho.jmx -l pmacho.jtl -e -o ./report
+jmeter -n -t pmacho.jmx -l ./result/pmacho.jtl -e -o ./result/report
 ```
 
 複数回起動できるようにjtlファイルとHTMLレポートの出力先を起動ごとに作成すると良い。
