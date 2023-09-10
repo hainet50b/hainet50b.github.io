@@ -19,5 +19,5 @@ java -Xlog:gc*=info::uptime,time,level,tags -jar pmacho.jar
 brew install gcviewer
 
 # Windows
-TODO
+Scoopにgcviewerのパッケージがないため公式ページよりダウンロードして使用する。
 ```
