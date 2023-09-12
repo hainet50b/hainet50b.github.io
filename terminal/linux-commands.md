@@ -100,3 +100,30 @@ certutil -hashfile pmacho.txt MD5
 ## SHA256
 certutil -hashfile pmacho.txt SHA256
 ```
+
+## ファイルを行数を指定して分割
+```shell
+# 50行のファイルを用意する
+wc -l pmacho.txt
+50 pmacho.txt
+
+# 10行ずつに分割する
+split -l 10 pmacho.txt pmacho-
+
+ls -la
+total 48
+-rw-r--r--@  1 hainet50b  staff   21 Sep 12 19:47 pmacho-aa
+-rw-r--r--@  1 hainet50b  staff   30 Sep 12 19:47 pmacho-ab
+-rw-r--r--@  1 hainet50b  staff   30 Sep 12 19:47 pmacho-ac
+-rw-r--r--@  1 hainet50b  staff   30 Sep 12 19:47 pmacho-ad
+-rw-r--r--@  1 hainet50b  staff   30 Sep 12 19:47 pmacho-ae
+-rw-r--r--@  1 hainet50b  staff  141 Sep 12 19:43 pmacho.txt
+
+tail -n 2 pmacho-aa
+9
+10
+
+tail -n 2 pmacho-ae
+49
+50
+```
