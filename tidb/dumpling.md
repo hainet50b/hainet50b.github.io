@@ -9,30 +9,28 @@ brew install dumpling
 ## データベースのエクスポート
 ```shell
 # データベース全体のエクスポート
+# -B データベースを指定 --no-schemas テーブルのスキーマをダンプしない
 dumpling -h localhost -P 3306 -u root -p changeme \
   -B pmacho_db \
+  --no-schemas \
   --filetype sql \
-  --threads 2 \
-  -o ./dumpling \
-  -F 256MiB
+  -o ./dumpling
 
 # テーブルのエクスポート
-# -Tオプションはテーブルをカンマ区切りで複数指定できる。
+# -T テーブルを指定。カンマ区切りで複数指定できる。
 dumpling -h localhost -P 3306 -u root -p changeme \
   -T pmacho_db.emp \
+  --no-schemas \
   --filetype sql \
-  --threads 2 \
-  -o ./dumpling \
-  -F 256MiB
+  -o ./dumpling
 
 # 論理的にデータを指定してエクスポート
 dumpling -h localhost -P 3306 -u root -p changeme \
   -T pmacho_db.emp \
+  --no-schemas \
   --where 'monthly_partition = '202308'' \
   --filetype sql \
-  --threads 2 \
-  -o ./dumpling \
-  -F 256MiB
+  -o ./dumpling
 
 # WHERE句でフィルタされたファイルが出力される。
 cat dumpling/pmacho_db.emp.000000000.sql
@@ -50,4 +48,19 @@ mysql> SELECT * FROM emp;
 | 11 | 202309            | hainet50b | 2023-08-13 13:09:40 |
 | 12 | 202310            | hainet50b | 2023-08-13 13:09:45 |
 +----+-------------------+-----------+---------------------+
+```
+
+## AWS S3にエクスポート
+データベースをダンプしてAWS S3にエクスポートすることができる。
+
+```shell
+export AWS_ACCESS_KEY_ID=${AccessKey}
+export AWS_SECRET_ACCESS_KEY=${SecretKey}
+
+dumpling -h localhost -P 3306 -u root -p changeme \
+  -T pmacho_db.emp \
+  --no-schemas \
+  -o s3://pmacho-bucket/pmacho-app/emp \
+  --filetype csv \
+  --no-header
 ```
