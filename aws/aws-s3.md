@@ -18,6 +18,7 @@ make_bucket: pmacho-bucket
 aws s3 rb s3://pmacho-bucket
 remove_bucket failed: s3://pmacho-bucket An error occurred (BucketNotEmpty) when calling the DeleteBucket operation: The bucket you tried to delete is not empty
 
+# --recursive 配下のディレクトリとファイルを全て削除する。
 aws s3 rm --recursive s3://pmacho-bucket
 delete: s3://pmacho-bucket/pmacho.json
 ...
