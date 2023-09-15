@@ -55,6 +55,7 @@
 ## Terminal
 - [よく使うCLIクライアントのセットアップ](https://hainet50b.github.io/terminal/cli-clients)
 - [よく使うLinuxコマンド](https://hainet50b.github.io/terminal/linux-commands)
+- [正規表現メモ](https://hainet50b.github.io/terminal/regular-expressions)
 - [文字コードの確認・変更（nkf）](https://hainet50b.github.io/terminal/nkf)
 - [文字コードの確認・変更（file / iconv）](https://hainet50b.github.io/terminal/charset)
 - [改行コードの確認・変更（dos2unix）](https://hainet50b.github.io/terminal/dos2unix)
