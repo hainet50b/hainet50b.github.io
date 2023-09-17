@@ -68,6 +68,7 @@ SELECT * FROM transaction_logs WHERE foo = 'value';
 
 CREATE INDEX transaction_logs_foo_index ON transaction_logs (foo);
 
+-- 実行計画はtransaction_logs_foo_indexを使用するものとなった。
 EXPLAIN SELECT * FROM transaction_logs WHERE foo = 'value';
 +----+-------------+------------------+------------+------+----------------------------+----------------------------+---------+-------+------+----------+-------+
 | id | select_type | table            | partitions | type | possible_keys              | key                        | key_len | ref   | rows | filtered | Extra |
