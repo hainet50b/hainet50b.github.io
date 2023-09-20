@@ -17,9 +17,6 @@ BEGIN
   DECLARE name VARCHAR(255);
   DECLARE records TEXT DEFAULT '';
 
-  -- コミットのオーバーヘッドを最小限にする。
-  START TRANSACTION;
-
   WHILE i < num DO
     SET name = CONCAT('user-', LPAD(FLOOR(RAND() * 999999), 6, '0'));
 
@@ -30,6 +27,9 @@ BEGIN
     );
 
     IF i % blockSize = 0 THEN
+      -- コミットのオーバーヘッドを最小限にする。
+      START TRANSACTION;
+
       -- 末尾のカンマを削除する。
       SET records = LEFT(records, CHAR_LENGTH(records) - 1);
 
@@ -39,21 +39,26 @@ BEGIN
       DEALLOCATE PREPARE stmt;
 
       SET records = '';
+
+      COMMIT;
     END IF;
 
     SET i = i + 1;
   END WHILE;
 
   IF LENGTH(records) > 0 THEN
+    START TRANSACTION;
+
     SET records = LEFT(records, CHAR_LENGTH(records) - 1);
 
     SET @sql = CONCAT ('INSERT INTO emp (name) VALUES ', records);
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
+
+    COMMIT;
   END IF;
 
-  COMMIT;
 END //
 
 DELIMITER ;
