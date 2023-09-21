@@ -2,7 +2,9 @@
 
 [Partitioning \| MySQL 8.0 Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/partitioning.html){:target="_blank"} ([日本語版](https://dev.mysql.com/doc/refman/8.0/ja/partitioning.html){:target="_blank"})
 
-## 月単位のパーティションを作成する
+## パーティション作成
+以下の例では月次パーティションを作成している。
+
 ```sql
 CREATE TABLE emp (
   id BIGINT AUTO_INCREMENT,
@@ -18,22 +20,6 @@ PARTITION BY RANGE COLUMNS(monthly_partition) (
   -- キャッチオールパーティションを採用する場合は最大値を指定する。
   PARTITION p999999 VALUES LESS THAN ('999999')
 );
-```
-
-## パーティション確認
-```sql
-SELECT
-  table_name,
-  partition_name,
-  partition_ordinal_position,
-  partition_method,
-  partition_expression,
-  partition_description
-FROM
-  information_schema.partitions
-WHERE
-  table_schema = 'pmacho_db'
-  AND table_name = 'pmacho_table';
 ```
 
 ## パーティション追加
@@ -64,6 +50,22 @@ REORGANIZE PARTITION p999999 INTO (
   PARTITION p202309 VALUES LESS THAN ('202309'),
   PARTITION p999999 VALUES LESS THAN ('999999')
 );
+```
+
+## パーティション確認
+```sql
+SELECT
+  table_name,
+  partition_name,
+  partition_ordinal_position,
+  partition_method,
+  partition_expression,
+  partition_description
+FROM
+  information_schema.partitions
+WHERE
+  table_schema = 'pmacho_db'
+  AND table_name = 'pmacho_table';
 ```
 
 ## レコードの追加
