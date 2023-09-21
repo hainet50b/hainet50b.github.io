@@ -97,6 +97,7 @@
 - [TiDB Playground](https://hainet50b.github.io/tidb/tidb-playground)
 - [Dumpling（MySQL/TiDBエクスポートツール）](https://hainet50b.github.io/tidb/dumpling)
 - [DumplingでダンプをS3にエクスポートしてAthenaで閲覧する](https://hainet50b.github.io/tidb/dumpling-s3)
+- [Dumplingで最小限の負荷で大量データをダンプする](https://hainet50b.github.io/tidb/dumpling-low-impact-export)
 - [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
 ## AWS
