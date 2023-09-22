@@ -36,7 +36,7 @@
 - [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)
 - [JDKをコマンドラインから切り替える（JEnv for Windows）](https://hainet50b.github.io/java/java-jenv-for-windows)
 - [jarコマンドでJarの中身を差し替える](https://hainet50b.github.io/java/java-jar-command)
-- [Java 公式ドキュメント集](https://hainet50b.github.io/spring/java-references)
+- [Java 公式ドキュメント集](https://hainet50b.github.io/java/java-references)
 
 ## Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
