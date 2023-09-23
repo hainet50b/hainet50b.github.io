@@ -6,6 +6,30 @@
 MySQLのTIMESTAMP型は`1970-01-01 00:00:01`から`2038-01-19 03:14:07`までをサポートする。  
 エポック秒の0秒がサポートされていないためデフォルト値に気を付けること。
 
+## 1時間前や1日前を指定
+```sql
+SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2023-09-23 12:02:52 |
++---------------------+
+
+SELECT NOW() - INTERVAL 1 HOUR;
++-------------------------+
+| NOW() - INTERVAL 1 HOUR |
++-------------------------+
+| 2023-09-23 11:02:58     |
++-------------------------+
+
+SELECT NOW() - INTERVAL 1 DAY;
++------------------------+
+| NOW() - INTERVAL 1 DAY |
++------------------------+
+| 2023-09-22 12:03:01    |
++------------------------+
+```
+
 ## デフォルトのディレクトリ構成
 Linux: [LinuxへのMySQLのインストール(RPM)](https://dev.mysql.com/doc/refman/8.0/ja/linux-installation-rpm.html){:target="_blank"}  
 Mac: [macOSへのMySQLのインストール](https://dev.mysql.com/doc/refman/8.0/ja/macos-installation-pkg.html){:target="_blank"}  
