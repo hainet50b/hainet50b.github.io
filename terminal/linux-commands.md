@@ -50,6 +50,9 @@ ln -s /path/to/target /path/to/link
 
 ls -la /path/to/link
 lrwxr-xr-x@ 1 hainet50b staff 5 Jun 21 23:16 /path/to/link -> /path/to/target
+
+readlink /path/to/link
+/path/to/target
 ```
 
 ## エポック秒を取得する
