@@ -8,6 +8,8 @@ MySQLのmysql.user, mysql.dbテーブルはINSERT文による挿入を受け付�
 そのためユーザーと権限を復元する際にはCREATE TABLE/GRANT文を発行しなければならない。
 
 ## ユーザーのエクスポート
+パスワードを確認できないため、別途差し替える必要がある。
+
 ```sql
 SELECT
   User, Host,
