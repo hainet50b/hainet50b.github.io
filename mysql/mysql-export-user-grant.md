@@ -5,7 +5,7 @@
 {:toc}
 
 MySQLのmysql.user, mysql.dbテーブルはINSERT文による挿入を受け付けない。  
-そのためデータベースの移行やリストアに際してはCREATE TABLE/GRANT文を発行しなければならない。
+そのためユーザーと権限を復元する際にはCREATE TABLE/GRANT文を発行しなければならない。
 
 ## ユーザーのエクスポート
 ```sql
