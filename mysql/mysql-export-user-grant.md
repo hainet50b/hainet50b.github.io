@@ -1,4 +1,4 @@
-# MySQL ユーザーと権限をCREATE TABLE/GRANT形式でエクスポート
+# MySQL ユーザーと権限をSQL形式でエクスポート
 {:.no_toc}
 
 * toc
