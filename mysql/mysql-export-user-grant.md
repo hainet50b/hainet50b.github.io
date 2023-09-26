@@ -11,7 +11,7 @@ MySQLのmysql.user, mysql.dbテーブルはINSERT文による挿入を受け付�
 ```sql
 SELECT
   User, Host,
-  CONCAT('CREATE USER \'', User, '\'@\'', Host, '\';')
+  CONCAT('CREATE USER \'', User, '\'@\'', Host, '\' ', 'IDENTIFIED BY <password>;')
 FROM
   mysql.user
 WHERE
