@@ -94,7 +94,7 @@
 ## Oracle
 - [よく使うOracleコマンド](https://hainet50b.github.io/oracle/oracle-commands)
 - [Oracle セッション管理](https://hainet50b.github.io/oracle/oracle-manage-sessions)
-- [Oracle JSON型](https://hainet50b.github.io/mysql/oracle-json)
+- [Oracle JSON型](https://hainet50b.github.io/oracle/oracle-json)
 - [UCP](https://hainet50b.github.io/oracle/ucp)
 
 ## TiDB
