@@ -36,37 +36,37 @@ ls -la /Users/hainet50b/.jenv/shims/
 total 264
 drwxr-xr-x@ 35 hainet50b  staff  1120 Sep 26 12:53 .
 drwxr-xr-x@ 13 hainet50b  staff   416 May  1 17:06 ..
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jar
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jarsigner
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 java
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javac
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javadoc
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javap
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jcmd
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jconsole
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdb
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdeprscan
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdeps
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jfr
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jhsdb
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jimage
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jinfo
--rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 jjs
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jlink
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jmap
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jmod
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jpackage
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jps
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jrunscript
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jshell
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstack
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstat
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstatd
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 keytool
--rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 pack200
--rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 rmic
--rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 rmid
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 rmiregistry
--rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 serialver
--rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 unpack200
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jar # Jarの解凍・圧縮
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jarsigner # Jarにデジタル署名を付与
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 java # Javaを起動
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javac # Javaコンパイラ
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javadoc # Javadocを作成
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 javap # Javaディスアセンブラ
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jcmd # Javaプロセスの診断情報を収集
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jconsole # JVMのモニタリングツール
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdb # Javaデバッガ
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdeprscan # JavaクラスやJarファイルから非推奨APIの使用を検索
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jdeps # Javaの依存関係を調査
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jfr # Java Flight Recorder
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jhsdb # Javaデバッガ
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jimage # Javaモジュールのイメージファイルを検査・操作
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jinfo # Javaプロセスのオプションを調査
+-rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 jjs # JVM上でJavaScriptのコードを実行
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jlink # Javaのランタイムイメージを作成
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jmap # Javaのヒープダンプを出力
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jmod # Javaモジュールのパッケージング・解凍
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jpackage # Javaアプリケーションをネイティブにパッケージング
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jps # Javaプロセスの一覧を表示
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jrunscript # コマンドラインからJVM上でJavaScriptを実行
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jshell # JavaのREPLを提供
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstack # Javaのスレッドダンプを出力
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstat # JVMのGCやヒープの統計情報を取得
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 jstatd # JVMの監視をするRMIサーバを提供
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 keytool # キーストアを操作
+-rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 pack200 # Jarを圧縮
+-rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 rmic # RMIのスタブを生成
+-rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 rmid # RMIのアクティベーションシステムのデーモン
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 rmiregistry # RMIのリモードオブジェクトを登録
+-rwxr-xr-x@ 28 hainet50b  staff   418 May  1 16:57 serialver # serialVersionUIDの取得・生成
+-rwxr-xr-x@  5 hainet50b  staff   418 May  1 16:57 unpack200 # pack200で圧縮されたファイルを解凍
 ```
