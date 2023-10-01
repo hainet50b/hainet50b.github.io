@@ -75,15 +75,15 @@ drwxr-xr-x@ 13 hainet50b  staff   416 May  1 17:06 ..
 
 標準出力
 ```java
-# System.outはPrintStreamインスタンス
-# lnはline（改行）を示す。
+// System.outはPrintStreamインスタンス
+// lnはline（改行）を示す。
 System.out.println("Java Beginner!");
 ```
 
 標準入力
 ```java
-# System.inはInputStreamインスタンス
-# EOFはCtrl-D（Windowの場合はCtrl-Z）で入力する。
+// System.inはInputStreamインスタンス
+// EOFはCtrl-D（Windowの場合はCtrl-Z）で入力する。
 System.in.readAllBytes();
 ```
 
@@ -110,6 +110,10 @@ Hello World!
 
 ## 他のクラスの利用（同一パッケージ）
 ```shell
+tree
+├── Hello.java
+└── PmachoUtil.java
+
 cat PmachoUtil.java
 public class PmachoUtil {
     public static void drink() {
@@ -119,7 +123,7 @@ public class PmachoUtil {
 
 javac PmachoUtil.java
 
-# メインクラスが無いためこれ単体では実行できない。
+# メインメソッドを実装していないためこれ単体では実行できない。
 java PmachoUtil.class
 エラー: メイン・クラスPmachoUtil.classを検出およびロードできませんでした
 原因: java.lang.ClassNotFoundException: PmachoUtil.class
@@ -184,7 +188,6 @@ Drink a protein!
 ## 他のクラスの利用（外部Jarライブラリ）
 ```shell
 tree
-.
 ├── Hello.java
 └── jackson
     ├── jackson-annotations-2.15.2.jar
@@ -200,6 +203,7 @@ public class Hello {
     }
 }
 
+# クラスパスを指定しないと適切に利用できない。
 javac Hello.java
 Hello.java:1: エラー: パッケージcom.fasterxml.jackson.databindは存在しません
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -212,6 +216,12 @@ Hello.java:5: エラー: シンボルを見つけられません
 エラー2個
 
 # クラスパスを指定することで適切に利用できる。
+# *でディレクトリ配下のすべてのJarを指定できる。
+# :（Windowsでは;）で複数のクラスパスを列挙して指定できる。
 javac -cp "jackson/*" Hello.java
 java -cp "./:jackson/*" Hello
+
+# 厳密にJarを指定することもできる。
+javac -cp jackson/jackson-core-2.15.2.jar:jackson/jackson-databind-2.15.2.jar:jackson/jackson-annotations-2.15.2.jar Hello.java
+java -cp ./:jackson/jackson-core-2.15.2.jar:jackson/jackson-databind-2.15.2.jar:jackson/jackson-annotations-2.15.2.jar Hello
 ```
