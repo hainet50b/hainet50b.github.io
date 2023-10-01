@@ -1,4 +1,4 @@
-# Java Beginner \#1
+# Java Beginner #1
 
 ## JDKのインストール
 ダウンロード・インストール & パスの指定
