@@ -14,7 +14,7 @@ git fetch upstream
 git log master Casks/parallels.rb
 ```
 
-## コミットハッシュから任意のバージョンを復元
+## コミットハッシュから任意のバージョンのパッケージを復元
 ```shell
 git checkout f2e4f58 Casks/parallels.rb
 ```

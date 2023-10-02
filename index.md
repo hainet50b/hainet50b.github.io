@@ -121,6 +121,7 @@
 - [Azure Application Insights](https://hainet50b.github.io/azure/azure-application-insights)
 
 ## Mac
+- [Homebrewで過去のパッケージをインストール](https://hainet50b.github.io/mac/homebrew-install-old-package)
 - [Apple Notes](https://hainet50b.github.io/mac/apple-notes)
 - [SVGファイルをPNG形式に変換（qlmanage）](https://hainet50b.github.io/mac/mac-qlmanage)
 - [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
