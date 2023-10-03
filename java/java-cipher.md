@@ -4,7 +4,45 @@
 * toc
 {:toc}
 
-## AES256
+## AES256（GCM/NoPadding）
+```java
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.GeneralSecurityException;
+import java.util.Base64;
+
+public class AESUtil {
+
+    private static final String ALGORITHM = "AES";
+    private static final String TRANSFORMATION = "AES/GCM/NoPadding";
+    private static final int TAG_LENGTH = 128;
+
+    public String encryptGcm(String value, String key, String iv) throws GeneralSecurityException {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), ALGORITHM);
+        GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_LENGTH, iv.getBytes());
+
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, gcmParameterSpec);
+        byte[] encryptedValue = cipher.doFinal(value.getBytes());
+
+        return Base64.getEncoder().encodeToString(encryptedValue);
+    }
+
+    public String decryptGcm(String value, String key, String iv) throws GeneralSecurityException {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), ALGORITHM);
+        GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(TAG_LENGTH, iv.getBytes());
+
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, gcmParameterSpec);
+        byte[] decryptedValue = cipher.doFinal(Base64.getDecoder().decode(value));
+
+        return new String(decryptedValue);
+    }
+}
+```
+
+## AES256（CBC/PKCS5Padding）
 ```java
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -19,9 +57,10 @@ public class AES256Util {
 
     public String encrypt(String value, String key, String iv) throws GeneralSecurityException {
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), ALGORITHM);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
 
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(iv.getBytes()));
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] encryptedValue = cipher.doFinal(value.getBytes());
 
         return Base64.getEncoder().encodeToString(encryptedValue);
@@ -29,9 +68,10 @@ public class AES256Util {
 
     public String decrypt(String value, String key, String iv) throws GeneralSecurityException {
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), ALGORITHM);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
 
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(iv.getBytes()));
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] decryptedValue = cipher.doFinal(Base64.getDecoder().decode(value));
 
         return new String(decryptedValue);
