@@ -1,10 +1,10 @@
-# Java 暗号化・復号（AES256, RSA）
+# Java 暗号化・復号（AES, RSA）
 {:.no_toc}
 
 * toc
 {:toc}
 
-## AES256（GCM/NoPadding）
+## AES/GCM/NoPadding
 ```java
 import javax.crypto.Cipher;
 import javax.crypto.spec.GCMParameterSpec;
@@ -42,7 +42,7 @@ public class AESUtil {
 }
 ```
 
-## AES256（CBC/PKCS5Padding）
+## AES/CBC/PKCS5Padding
 ```java
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
