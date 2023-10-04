@@ -9,7 +9,7 @@
 
 ## Spring
 - [Spring Resource Interface](https://hainet50b.github.io/spring/spring-resource-interface)
-- [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
+- [Spring Web HTTP Interface (WebClient)](https://hainet50b.github.io/spring/spring-web-http-interface)
 - [Spring Scheduling Tasks](https://hainet50b.github.io/spring/spring-scheduling-tasks)
 - [Lobback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
 - [Log4j2 with Spring Boot](https://hainet50b.github.io/spring/log4j2-spring-boot)

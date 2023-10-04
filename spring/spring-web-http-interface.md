@@ -1,10 +1,10 @@
-# Spring Web HTTP Interface
+# Spring Web HTTP Interface (WebClient)
 {:.no_toc}
 
 * toc
 {:toc}
 
-サンプルリポジトリ：[spring-web-http-interface | GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-web-gym/spring-web-http-interface){:target="_blank"}
+サンプルリポジトリ：[spring-web-http-interface \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-web-gym/spring-web-http-interface){:target="_blank"}
 
 ## 依存関係
 ```xml
