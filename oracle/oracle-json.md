@@ -22,13 +22,13 @@ ID PAYLOAD
 1  {"foo":"value"}
 
 -- JSON型の展開
-SELECT id, paylaod, JSON_VALUE(payload, '$.foo') FROM transaction_logs;
+SELECT id, payload, JSON_VALUE(payload, '$.foo') FROM transaction_logs;
 ID PAYLOAD         JSON_VALUE(PAYLOAD,'$.FOO')
 ----------------------------------------------
 1  {"foo":"value"} value                      
 ```
 
-## JSON型と仮装列を組み合わせたインデックスの活用
+## JSON型と仮想列を組み合わせたインデックスの活用
 JSON型を展開して検索することもできるがインデックスが使用されない。
 
 ```sql
