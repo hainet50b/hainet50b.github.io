@@ -17,11 +17,15 @@ CREATE TABLE transaction_logs (
 INSERT INTO transaction_logs (id, payload) VALUES (1, '{"foo":"value"}');
 
 SELECT * FROM transaction_logs;
-TODO
+ID PAYLOAD        
+------------------
+1  {"foo":"value"}
 
 -- JSON型の展開
-SELECT * FROM transaction_logs WHERE JSON_VALUE(payload, '$.foo') = 'value';
-TODO
+SELECT id, paylaod, JSON_VALUE(payload, '$.foo') FROM transaction_logs;
+ID PAYLOAD         JSON_VALUE(PAYLOAD,'$.FOO')
+----------------------------------------------
+1  {"foo":"value"} value                      
 ```
 
 ## JSON型と仮装列を組み合わせたインデックスの活用
@@ -29,12 +33,17 @@ JSON型を展開して検索することもできるがインデックスが使�
 
 ```sql
 SELECT * FROM transaction_logs WHERE JSON_VALUE(payload, '$.foo') = 'value';
-TODO
+ID PAYLOAD        
+------------------
+1  {"foo":"value"}
 
 -- 実行計画はTABLE ACCESS FULL（フルスキャン）となる。
 EXPLAIN PLAN FOR SELECT * FROM transaction_logs WHERE JSON_VALUE(payload, '$.foo') = 'value';
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
-TODO
+--------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |                  |     1 |  4115 |     2   (0)| 00:00:01 |
+|*  1 |  TABLE ACCESS FULL| TRANSACTION_LOGS |     1 |  4115 |     2   (0)| 00:00:01 |
+--------------------------------------------------------------------------------------
 ```
 
 JSON型を展開した列を仮想生成列と定義してインデックスを作成することで解決できる。  
@@ -45,12 +54,18 @@ ALTER TABLE transaction_logs
 ADD (foo AS (JSON_VALUE(payload, '$.foo')));
 
 SELECT * FROM transaction_logs WHERE foo = 'value';
-TODO
+ID PAYLOAD         FOO  
+------------------------
+1  {"foo":"value"} value
 
 CREATE INDEX transaction_logs_foo_index ON transaction_logs(foo);
 
 -- 実行計画はTRANSACTION_LOGS_FOO_INDEXを使用するものとなった。
 EXPLAIN PLAN FOR SELECT * FROM transaction_logs WHERE foo = 'value';
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
-TODO
+-----------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                    |                            |     1|  6117 |     2   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS BY INDEX ROWID BATCHED| TRANSACTION_LOGS           |     1|  6117 |     2   (0)| 00:00:01 |
+|*  2 |   INDEX RANGE SCAN                  | TRANSACTION_LOGS_FOO_INDEX |     1|       |     1   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------------------------------
 ```
