@@ -1,4 +1,9 @@
 # Spring AutoConfigurationによるトレースヘッダーの付与
+{:.no_toc}
+
+* toc
+{:toc}
+
 サンプルリポジトリ：[spring-tracing-header-auto-configuration \| GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-web-gym/spring-tracing-header-auto-configuration){:target="_blank"}
 
 ## 依存関係
@@ -35,7 +40,7 @@ management:
       type: w3c
 ```
 
-## Bean定義
+## HTTPクライアントのBean定義
 AutoConfigurationで生成されたBuilderを使用しないとトレースヘッダーが付与されない。
 
 ```java
