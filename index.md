@@ -107,6 +107,9 @@
 - [Dumplingで最小限の負荷で大量データをダンプする](https://hainet50b.github.io/tidb/dumpling-low-impact-export)
 - [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
+## RabbitMQ
+- [RabbitMQ Dockerコンテナ](https://hainet50b.github.io/rabbitmq/rabbitmq-docker-container)
+
 ## AWS
 - [AWS CLIクライアント](https://hainet50b.github.io/aws/aws-cli-client)
 - [AWS S3](https://hainet50b.github.io/aws/aws-s3)
