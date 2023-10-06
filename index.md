@@ -119,6 +119,7 @@
 
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
+- [Azure 仮想マシン](https://hainet50b.github.io/azure/azure-virtual-machine)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
 - [Azure Spring Apps](https://hainet50b.github.io/azure/azure-spring-apps)
 - [Azure Log Analytics](https://hainet50b.github.io/azure/azure-log-analytics)
