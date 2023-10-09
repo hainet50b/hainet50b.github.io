@@ -1,4 +1,8 @@
 # Azure 仮想マシン
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## 仮想マシンの作成
 ```shell
