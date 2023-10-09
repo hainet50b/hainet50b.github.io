@@ -119,11 +119,11 @@
 
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
+- [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
 - [Azure 仮想マシン](https://hainet50b.github.io/azure/azure-virtual-machine)
 - [Azure 仮想ネットワーク](https://hainet50b.github.io/azure/azure-virtual-network)
 - [Azure ネットワークセキュリティグループ](https://hainet50b.github.io/azure/azure-network-security-group)
 - [Azure グローバルIPアドレス](https://hainet50b.github.io/azure/azure-global-ip-address)
-- [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
 - [Azure Spring Apps](https://hainet50b.github.io/azure/azure-spring-apps)
 - [Azure Log Analytics](https://hainet50b.github.io/azure/azure-log-analytics)
 - [Azure Application Insights](https://hainet50b.github.io/azure/azure-application-insights)
