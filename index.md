@@ -120,6 +120,7 @@
 ## Azure
 - [Azure](https://hainet50b.github.io/azure/azure)
 - [Azure 仮想マシン](https://hainet50b.github.io/azure/azure-virtual-machine)
+- [Azure 仮想ネットワーク](https://hainet50b.github.io/azure/azure-virtual-network)
 - [Azure ネットワークセキュリティグループ](https://hainet50b.github.io/azure/azure-network-security-group)
 - [Azure グローバルIPアドレス](https://hainet50b.github.io/azure/azure-global-ip-address)
 - [Azure Storage Account](https://hainet50b.github.io/azure/azure-storage-account)
