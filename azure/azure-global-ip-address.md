@@ -6,7 +6,13 @@
 
 ## グローバルIPアドレスの発行
 ```shell
-az network public-ip create -n pmacho-global-ip -g pmacho-rg -l eastus --allocation-method Static
+az network public-ip create \
+  -n pmacho-global-ip \
+  -g pmacho-rg \
+  -l eastus \
+  # SKUをStandardにすると可用性ゾーンやロードバランサーに対応できる。
+  --sku Basic \
+  --allocation-method Static
 ```
 
 ## グローバルIPアドレスの確認
