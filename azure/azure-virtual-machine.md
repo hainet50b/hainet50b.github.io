@@ -35,14 +35,12 @@ ssh 192.0.2.1 -l hainet50b -i ~/.ssh/pmacho-vm
 ### イメージ一覧の確認
 参考：[Azure CLI を使用して Azure Marketplace イメージ情報を検索する - Azure Virtual Machines \| Microsoft Learn](https://docs.microsoft.com/azure/virtual-machines/linux/cli-ps-findimage){:target="_blank"}
 
-
 ```shell
 az vm image list --output table
 ```
 
 ### サイズ一覧の確認
 参考：[Linux Virtual Machines の料金 \| Microsoft Azure](https://azure.microsoft.com/pricing/details/virtual-machines){:target="_blank"}
-
 
 ```shell
 az vm list-sizes -l eastus -o table

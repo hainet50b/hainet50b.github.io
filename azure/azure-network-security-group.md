@@ -15,7 +15,7 @@ az network nsg list -o table
 
 Location    Name        ProvisioningState    ResourceGroup    ResourceGuid
 ----------  ----------  -------------------  ---------------  ------------------------------------
-eastus      pmacho-nsg  Succeeded            pmacho-rg        113bddb8-3feb-4dd5-a5f1-4748af136e691
+eastus      pmacho-nsg  Succeeded            pmacho-rg        *******-****-****-****-*************
 ```
 
 ## セキュリティルールの追加
