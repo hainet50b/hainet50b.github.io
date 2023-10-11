@@ -4,7 +4,9 @@
 * toc
 {:toc}
 
-## ロードバランサーの作成
+## ロードバランサー
+
+### ロードバランサーの作成
 ```shell
 az network lb create \
   -n pmacho-lb \
@@ -15,7 +17,7 @@ az network lb create \
   --public-ip-address pmacho-lb-global-ip
 ```
 
-## ロードバランサーの確認
+### ロードバランサーの確認
 ```shell
 az network lb list -o table
 
@@ -24,7 +26,14 @@ Location    Name       ProvisioningState    ResourceGroup    ResourceGuid
 eastus      pmacho-lb  Succeeded            pmacho-rg        ********-****-****-****-************
 ```
 
-## バックエンドプールの作成
+### ロードバランサーの削除
+```shell
+az network lb delete -n pmacho-lb -g pmacho-rg
+```
+
+## バックエンドプール
+
+### バックエンドプールの作成
 ```shell
 az network lb address-pool create \
   -n pmacho-lb-backend-pool \
@@ -32,7 +41,7 @@ az network lb address-pool create \
   --lb-name pmacho-lb
 ```
 
-## バックエンドプールの確認
+### バックエンドプールの確認
 ```shell
 az network lb address-pool list -g pmacho-rg --lb-name pmacho-lb -o table
 
@@ -41,7 +50,12 @@ Name                    ProvisioningState    ResourceGroup
 pmacho-lb-backend-pool  Succeeded            pmacho-rg
 ```
 
-## 仮想マシンをバックエンドプールに関連付ける
+### バックエンドプールの削除
+```shell
+az network lb address-pool delete -n pmacho-lb-backend-pool -g pmacho-rg --lb-name pmacho-lb
+```
+
+### 仮想マシンをバックエンドプールに関連付ける
 ```shell
 # 仮想マシンのNIC名を取得する。
 NIC_NAME=$(basename $(az vm show \
@@ -69,7 +83,7 @@ az network nic ip-config address-pool add \
   --ip-config-name $IP_CONFIG_NAME
 ```
 
-## バックエンドプールに関連付けられたNICの確認
+### バックエンドプールに関連付けられたNICの確認
 ```shell
 az network lb address-pool show \
   --name pmacho-lb-backend-pool \
@@ -79,62 +93,7 @@ az network lb address-pool show \
   -o table
 ```
 
-## ヘルスチェック設定の作成
-以下の設定はTCPでヘルスチェックを実施する。
-
-```shell
-az network lb probe create \
-  -n pmacho-lb-health-check \
-  -g pmacho-rg \
-  --lb-name pmacho-lb \
-  --protocol tcp \
-  --port 80 \
-  --interval 5
-```
-
-## ヘルスチェック設定の確認
-```shell
-az network lb probe list -g pmacho-rg --lb-name pmacho-lb -o table
-
-IntervalInSeconds    Name                    NumberOfProbes    Port    ProbeThreshold    Protocol    ProvisioningState    ResourceGroup
--------------------  ----------------------  ----------------  ------  ----------------  ----------  -------------------  ---------------
-5                    pmacho-lb-health-check  2                 80      1                 Tcp         Succeeded            pmacho-rg
-```
-
-## 負荷分散設定の作成
-```shell
-az network lb rule create \
-  -n pmacho-lb-rule \
-  -g pmacho-rg \
-  --lb-name pmacho-lb \
-  --frontend-ip-name pmacho-lb-frontend-ip \
-  --backend-pool-name pmacho-lb-backend-pool \
-  --protocol tcp \
-  --frontend-port 80 \
-  --backend-port 80 \
-  --probe-name pmacho-lb-health-check
-```
-
-## 負荷分散設定の確認
-```shell
-az network lb rule list -g pmacho-rg --lb-name pmacho-lb -o table
-
-BackendPort    DisableOutboundSnat    EnableFloatingIP    EnableTcpReset    FrontendPort    IdleTimeoutInMinutes    LoadDistribution    Name            Protocol    ProvisioningState    ResourceGroup
--------------  ---------------------  ------------------  ----------------  --------------  ----------------------  ------------------  --------------  ----------  -------------------  ---------------
-80             False                  False               False             80              4                       Default             pmacho-lb-rule  Tcp         Succeeded            pmacho-rg
-```
-
-## 負荷分散設定の削除
-```shell
-az network lb rule delete -n pmacho-lb-rule -g pmacho-rg --lb-name pmacho-lb
-```
-
-## ヘルスチェック設定の削除
-```shell
-az network lb probe delete -n pmacho-lb-health-check -g pmacho-rg --lb-name pmacho-lb
-```
-
-## 仮想マシンをバックエンドプールの関連付けから解除する
+### 仮想マシンをバックエンドプールの関連付けから解除する
 ```shell
 # 仮想マシンのNIC名を取得する。
 NIC_NAME=$(basename $(az vm show \
@@ -160,12 +119,61 @@ az network nic ip-config address-pool remove \
   --address-pool pmacho-lb-backend-pool
 ```
 
-## バックエンドプールの削除
+## ヘルスチェック設定
+
+### ヘルスチェック設定の作成
+以下の設定はTCPでヘルスチェックを実施する。
+
 ```shell
-az network lb address-pool delete -n pmacho-lb-backend-pool -g pmacho-rg --lb-name pmacho-lb
+az network lb probe create \
+  -n pmacho-lb-health-check \
+  -g pmacho-rg \
+  --lb-name pmacho-lb \
+  --protocol tcp \
+  --port 80 \
+  --interval 5
 ```
 
-## ロードバランサーの削除
+### ヘルスチェック設定の確認
 ```shell
-az network lb delete -n pmacho-lb -g pmacho-rg
+az network lb probe list -g pmacho-rg --lb-name pmacho-lb -o table
+
+IntervalInSeconds    Name                    NumberOfProbes    Port    ProbeThreshold    Protocol    ProvisioningState    ResourceGroup
+-------------------  ----------------------  ----------------  ------  ----------------  ----------  -------------------  ---------------
+5                    pmacho-lb-health-check  2                 80      1                 Tcp         Succeeded            pmacho-rg
+```
+
+### ヘルスチェック設定の削除
+```shell
+az network lb probe delete -n pmacho-lb-health-check -g pmacho-rg --lb-name pmacho-lb
+```
+
+## 負荷分散設定
+
+### 負荷分散設定の作成
+```shell
+az network lb rule create \
+  -n pmacho-lb-rule \
+  -g pmacho-rg \
+  --lb-name pmacho-lb \
+  --frontend-ip-name pmacho-lb-frontend-ip \
+  --backend-pool-name pmacho-lb-backend-pool \
+  --protocol tcp \
+  --frontend-port 80 \
+  --backend-port 80 \
+  --probe-name pmacho-lb-health-check
+```
+
+### 負荷分散設定の確認
+```shell
+az network lb rule list -g pmacho-rg --lb-name pmacho-lb -o table
+
+BackendPort    DisableOutboundSnat    EnableFloatingIP    EnableTcpReset    FrontendPort    IdleTimeoutInMinutes    LoadDistribution    Name            Protocol    ProvisioningState    ResourceGroup
+-------------  ---------------------  ------------------  ----------------  --------------  ----------------------  ------------------  --------------  ----------  -------------------  ---------------
+80             False                  False               False             80              4                       Default             pmacho-lb-rule  Tcp         Succeeded            pmacho-rg
+```
+
+### 負荷分散設定の削除
+```shell
+az network lb rule delete -n pmacho-lb-rule -g pmacho-rg --lb-name pmacho-lb
 ```
