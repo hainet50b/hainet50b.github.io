@@ -1,11 +1,10 @@
 # Java Beginner #1
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## JDKのインストール
-ダウンロード・インストール & パスの指定
-```shell
-TODO
-```
-
 パッケージマネージャー（Windows）
 ```powershell
 TODO
