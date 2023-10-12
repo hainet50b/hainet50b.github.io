@@ -166,7 +166,8 @@
 - [テレビ画像設定（ORION AEUD-50D）](https://hainet50b.github.io/gadget/orion-aeud-50d)
 
 ### 社内勉強会
-- [Java Beginner #1](https://hainet50b.github.io/java/java-beginner-1)
+- [Java Beginner #1](https://hainet50b.github.io/meeting/java-beginner-1)
+- [SQL Beginner #1](https://hainet50b.github.io/meeting/sql-beginner-1)
 
 ### About @hainet50b
 - [GitHub](https://github.com/hainet50b){:target="_blank"}
