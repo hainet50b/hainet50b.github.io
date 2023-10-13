@@ -18,7 +18,7 @@
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
 - [Spring Cloud Stream Binder Rabbit入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-rabbit-intro)
 - [Spring Cloud Stream Binder Kinesis入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-kinesis-intro)
-- [Spring AutoConfiguraationによるトレースヘッダーの付与](https://hainet50b.github.io/spring/spring-tracing-header-auto-configuration)
+- [Spring RestTemplate/WebClientへのトレースヘッダーの付与](https://hainet50b.github.io/spring/spring-tracing-header-auto-configuration)
 - [Spring Cloud Function](https://hainet50b.github.io/spring/spring-cloud-function)
 - [Spring 公式ドキュメント集](https://hainet50b.github.io/spring/spring-references)
 
