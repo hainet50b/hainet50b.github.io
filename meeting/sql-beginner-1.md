@@ -152,6 +152,7 @@ SELECT id, name, kana, genre, price, cost, registered_at FROM items;
 ```
 
 NOT NULL制約のカラムを追加すると既存のレコードの該当カラムには初期値として空文字が設定される。
+
 ```sql
 ALTER TABLE items ADD COLUMN foo VARCHAR(8) NOT NULL;
 
