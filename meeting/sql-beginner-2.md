@@ -1,4 +1,4 @@
-# SQL Beginner #2
+# SQL Beginner #2（選択と射影、演算子）
 {:.no_toc}
 
 * toc
@@ -144,4 +144,212 @@ SELECT
   id, -- 複数行のSQL文の各行にも
   name -- コメントを記述できる。
 FROM items;
+```
+
+## 算術演算子
+```sql
+SELECT id, name, cost / price AS 原価率 FROM items;
++----+-----------------------+-----------+
+| id | name                  | 原価率    |
++----+-----------------------+-----------+
+|  1 | Tシャツ               |    0.5000 |
+|  2 | 穴あけパンチ          |    0.6400 |
+|  3 | カッターシャツ        |    0.7000 |
+|  4 | 包丁                  |    0.9333 |
+|  5 | 圧力鍋                |    0.7353 |
+|  6 | フォーク              |      NULL |
+|  7 | おろしがね            |    0.8977 |
+|  8 | ボールペン            |      NULL |
+|  9 | プロテイン            |    0.5000 |
++----+-----------------------+-----------+
+
+SELECT 1 + 1; -- 2
+SELECT 1 - 1; -- 0
+SELECT 1 * 2; -- 2
+SELECT 2 / 2; -- 1.000
+
+SELECT NULL + 1; -- NULL
+SELECT NULL - 1; -- NULL
+SELECT 1 * NULL; -- NULL
+SELECT 1 / NULL; -- NULL
+
+SELECT 1 / 0; -- NULL（データベースにより挙動が異なる可能性がある）
+```
+
+## 比較演算子
+```sql
+SELECT id, name, price FROM items WHERE price = 500;
++----+--------------------+-------+
+| id | name               | price |
++----+--------------------+-------+
+|  2 | 穴あけパンチ       |   500 |
+|  6 | フォーク           |   500 |
++----+--------------------+-------+
+
+SELECT id, name, price FROM items WHERE price != 500;
++----+-----------------------+-------+
+| id | name                  | price |
++----+-----------------------+-------+
+|  1 | Tシャツ               |  1000 |
+|  3 | カッターシャツ        |  4000 |
+|  4 | 包丁                  |  3000 |
+|  5 | 圧力鍋                |  6800 |
+|  7 | おろしがね            |   880 |
+|  8 | ボールペン            |   100 |
+|  9 | プロテイン            |  7500 |
++----+-----------------------+-------+
+
+SELECT 1 = 1; -- 1
+SELECT 1 != 1; -- 0
+SELECT 1 <> 1; -- 0
+SELECT 1 >= 1; -- 1
+SELECT 1 > 1; -- 0
+SELECT 1 <= 1; -- 1
+SELECT 1 < 1; -- 0
+```
+
+## 文字列と不等号
+```sql
+CREATE TABLE characters (
+  value CHAR(3),
+  PRIMARY KEY (value)
+);
+
+INSERT INTO characters VALUES ('1');
+INSERT INTO characters VALUES ('2');
+INSERT INTO characters VALUES ('3');
+INSERT INTO characters VALUES ('11');
+INSERT INTO characters VALUES ('12');
+INSERT INTO characters VALUES ('21');
+INSERT INTO characters VALUES ('22');
+INSERT INTO characters VALUES ('31');
+INSERT INTO characters VALUES ('32');
+
+-- '11'や'12'は選択されない。
+SELECT * FROM characters WHERE value >= '2';
++-------+
+| value |
++-------+
+| 2     |
+| 21    |
+| 22    |
+| 3     |
+| 31    |
+| 32    |
++-------+
+
+-- ハイフンを添えて本の章立てに見立てると見通しが良くなる。
+DELETE FROM characters;
+
+INSERT INTO characters VALUES ('1');
+INSERT INTO characters VALUES ('1-1');
+INSERT INTO characters VALUES ('1-2');
+INSERT INTO characters VALUES ('2');
+INSERT INTO characters VALUES ('2-1');
+INSERT INTO characters VALUES ('2-2');
+INSERT INTO characters VALUES ('3');
+INSERT INTO characters VALUES ('3-1');
+INSERT INTO characters VALUES ('3-2');
+
+SELECT * FROM characters WHERE value >= '2';
++-------+
+| value |
++-------+
+| 2     |
+| 2-1   |
+| 2-2   |
+| 3     |
+| 3-1   |
+| 3-2   |
++-------+
+```
+
+## NULLと等号
+```sql
+-- 500円の商品とそうでない商品を合わせても7件しか選択されない。
+SELECT COUNT(*) FROM items WHERE cost = 500; -- 1
+SELECT COUNT(*) FROM items WHERE cost != 500; -- 6
+
+SELECT COUNT(*) FROM items WHERE cost = NULL; -- 0
+
+SELECT id, name, cost FROM items WHERE cost IS NULL;
++----+-----------------+------+
+| id | name            | cost |
++----+-----------------+------+
+|  6 | フォーク        | NULL |
+|  8 | ボールペン      | NULL |
++----+-----------------+------+
+
+SELECT id, name, cost FROM items WHERE cost IS NOT NULL;
++----+-----------------------+------+
+| id | name                  | cost |
++----+-----------------------+------+
+|  1 | Tシャツ               |  500 |
+|  2 | 穴あけパンチ          |  320 |
+|  3 | カッターシャツ        | 2800 |
+|  4 | 包丁                  | 2800 |
+|  5 | 圧力鍋                | 5000 |
+|  7 | おろしがね            |  790 |
+|  9 | プロテイン            | 3750 |
++----+-----------------------+------+
+```
+
+## 論理演算子
+```sql
+SELECT NOT 1; -- 0
+
+-- 以下の2つのクエリは同じ結果を返す。
+SELECT COUNT(*) FROM items WHERE price != 500; -- 7
+SELECT COUNT(*) FROM items WHERE NOT price = 500; -- 7
+
+SELECT 1 AND 1; -- 1
+SELECT 1 OR 0; -- 1
+SELECT 1 XOR 1; -- 0
+
+-- NANDは存在していないのでNOTと組み合わせて表現する。
+SELECT NOT (1 AND 1); -- 0
+
+SELECT id, name, genre, price FROM items
+WHERE
+  genre = 'キッチン用品'
+  AND price > 2000;
++----+-----------+--------------------+-------+
+| id | name      | genre              | price |
++----+-----------+--------------------+-------+
+|  4 | 包丁      | キッチン用品       |  3000 |
+|  5 | 圧力鍋    | キッチン用品       |  6800 |
++----+-----------+--------------------+-------+
+
+-- カッコを付与することで論理演算の優先順位を変更できる。
+SELECT id, name, genre, registered_at FROM items
+WHERE
+  genre = '事務用品'
+  AND (
+    registered_at = '2009-09-11'
+    OR registered_at = '2009-09-20'
+  );
++----+--------------------+--------------+---------------+
+| id | name               | genre        | registered_at |
++----+--------------------+--------------+---------------+
+|  2 | 穴あけパンチ       | 事務用品     | 2009-09-11    |
++----+--------------------+--------------+---------------+
+
+-- カッコを付与しないと意図しない対象が選択される。
+SELECT id, name, genre, registered_at FROM items
+WHERE
+  genre = '事務用品'
+  AND registered_at = '2009-09-11'
+  OR registered_at = '2009-09-20'
+;
++----+--------------------+--------------------+---------------+
+| id | name               | genre              | registered_at |
++----+--------------------+--------------------+---------------+
+|  1 | Tシャツ            | 衣服               | 2009-09-20    |
+|  2 | 穴あけパンチ       | 事務用品           | 2009-09-11    |
+|  4 | 包丁               | キッチン用品       | 2009-09-20    |
+|  6 | フォーク           | キッチン用品       | 2009-09-20    |
++----+--------------------+--------------------+---------------+
+
+-- 論理演算にNULLを含めるとNULLとなるためSQLにおいては0,1にNULLを加えた3値論理となる。
+SELECT 1 = NULL; -- NULL
 ```

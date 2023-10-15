@@ -167,7 +167,8 @@
 
 ### 社内勉強会
 - [Java Beginner #1](https://hainet50b.github.io/meeting/java-beginner-1)
-- [SQL Beginner #1](https://hainet50b.github.io/meeting/sql-beginner-1)
+- [SQL Beginner #1（テーブルとカラムの操作）](https://hainet50b.github.io/meeting/sql-beginner-1)
+- [SQL Beginner #2（選択と射影、演算子）](https://hainet50b.github.io/meeting/sql-beginner-2)
 
 ### About @hainet50b
 - [GitHub](https://github.com/hainet50b){:target="_blank"}

@@ -1,4 +1,4 @@
-# SQL Beginner #1
+# SQL Beginner #1（テーブルとカラムの操作）
 {:.no_toc}
 
 * toc
