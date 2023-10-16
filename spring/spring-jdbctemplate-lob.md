@@ -32,7 +32,6 @@ jdbcTemplate.update(
         "clob"
 );
 
-// [{clob_data=clob, blob_data=blob, id=1}]
 jdbcTemplate.query(
         "SELECT * FROM pmacho_lob;",
         new RowMapper<Map<String, Object>>() {
@@ -47,6 +46,7 @@ jdbcTemplate.query(
             }
         }
 );
+// [{clob_data=clob, blob_data=blob, id=1}]
 
 // ラムダ式で表現してもよい。
 jdbcTemplate.query(
