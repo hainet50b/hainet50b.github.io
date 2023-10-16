@@ -13,6 +13,7 @@
 - [Spring Resource Interface](https://hainet50b.github.io/spring/spring-resource-interface)
 - [Spring Web HTTP Interface (WebClient)](https://hainet50b.github.io/spring/spring-web-http-interface)
 - [Spring Scheduling Tasks](https://hainet50b.github.io/spring/spring-scheduling-tasks)
+- [Spring JdbcTemplate BLOB/CLOBの取り扱い（LobHandler / RowMapper）](https://hainet50b.github.io/spring/spring-jdbctemplate-lob)
 - [Lobback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
 - [Log4j2 with Spring Boot](https://hainet50b.github.io/spring/log4j2-spring-boot)
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
