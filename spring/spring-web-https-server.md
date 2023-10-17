@@ -74,4 +74,4 @@ foo
 ```
 
 またブラウザでアクセスすると作成したオレオレ証明書を確認できる。
-![spring-web-https-server-f5a649eacf66.png](https://programacho.blob.core.windows.net/images/spring-web-https-server-f5a649eacf66wi-fi-router-7714d08326d8.png)
+![spring-web-https-server-f5a649eacf66.png](https://programacho.blob.core.windows.net/images/spring-web-https-server-f5a649eacf66.png)
