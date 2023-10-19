@@ -32,7 +32,7 @@
 - [Caffeine（キャッシュライブラリ）](https://hainet50b.github.io/java/java-caffeine)
 - [juniversalchardet（文字コード判定ライブラリ）](https://hainet50b.github.io/java/java-juniversalchardet)
 - [Keytoolによる擬似CA証明書とサーバー署名書の作成](https://hainet50b.github.io/java/java-keytool)
-- [Java HTTPクライアント 証明書検証の無効化](https://hainet50b.github.io/java/java-http-client-skip-cert-validation)
+- [Java HTTPクライアント 証明書検証の無効化](https://hainet50b.github.io/java/java-http-client-skip-cert-verification)
 - [JMeter（コマンドライン）](https://hainet50b.github.io/java/java-jmeter-cli)
 - [TLSバージョンの確認](https://hainet50b.github.io/java/java-tls-version)
 - [JDKをコマンドラインから切り替える（jEnv）](https://hainet50b.github.io/java/java-jenv)

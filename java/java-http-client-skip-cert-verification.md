@@ -72,7 +72,7 @@ Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.s
     at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1665) ~[na:na]
     at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1589) ~[na:na]
     at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:224) ~[na:na]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$1(JavaHttpClientSkipCertValidationApplication.java:61) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$1(JavaHttpClientSkipCertVerificationApplication.java:61) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
@@ -116,7 +116,7 @@ Caused by: javax.net.ssl.SSLHandshakeException: No name matching localhost found
     at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1665) ~[na:na]
     at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1589) ~[na:na]
     at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:224) ~[na:na]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:61) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$0(JavaHttpClientSkipCertVerificationApplication.java:61) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 Caused by: java.security.cert.CertificateException: No name matching localhost found
@@ -208,7 +208,7 @@ Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.s
     at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108) ~[httpclient-4.5.14.jar:4.5.14]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:69) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$0(JavaHttpClientSkipCertVerificationApplication.java:69) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
@@ -244,7 +244,7 @@ Caused by: javax.net.ssl.SSLPeerUnverifiedException: Certificate for <localhost>
     at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108) ~[httpclient-4.5.14.jar:4.5.14]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:70) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$0(JavaHttpClientSkipCertVerificationApplication.java:70) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 ```
@@ -349,7 +349,7 @@ Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.s
     at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
     at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201) ~[okhttp-4.12.0.jar:na]
     at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154) ~[okhttp-4.12.0.jar:na]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$1(JavaHttpClientSkipCertValidationApplication.java:66) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$1(JavaHttpClientSkipCertVerificationApplication.java:66) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
@@ -392,7 +392,7 @@ Caused by: javax.net.ssl.SSLPeerUnverifiedException: Hostname localhost not veri
     at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
     at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201) ~[okhttp-4.12.0.jar:na]
     at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154) ~[okhttp-4.12.0.jar:na]
-    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:66) ~[classes/:na]
+    at com.programacho.javahttpclientskipcertverification.JavaHttpClientSkipCertVerificationApplication.lambda$run$0(JavaHttpClientSkipCertVerificationApplication.java:66) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 ```
