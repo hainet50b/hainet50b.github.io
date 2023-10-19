@@ -91,7 +91,7 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
     ... 28 common frames omitted
 ```
 
-「ホスト名検証無効化」設定をコメントアウトすると以下の例外を発生する。
+「ホスト名検証無効化」設定をコメントアウトすると以下の例外が発生する。
 
 ```
 Caused by: javax.net.ssl.SSLHandshakeException: No name matching localhost found
@@ -128,4 +128,123 @@ Caused by: java.security.cert.CertificateException: No name matching localhost f
     at java.base/sun.security.ssl.AbstractTrustManagerWrapper.checkServerTrusted(SSLContextImpl.java:1442) ~[na:na]
     at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341) ~[na:na]
     ... 23 common frames omitted
+```
+
+## Apache HttpClient
+Apache HttpClientの依存を追加する。
+
+```xml
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.14</version>
+</dependency>
+```
+
+Apache HttpClientで通信する前に以下の設定を実行しておく。
+
+```java
+SSLContext sslContext = SSLContexts.custom()
+        .loadTrustMaterial(new TrustAllStrategy()) // 証明書検証無効化
+        .build();
+
+SSLConnectionSocketFactory connectionSocketFactory = new SSLConnectionSocketFactory(
+        sslContext,
+        NoopHostnameVerifier.INSTANCE // ホスト名検証無効化
+);
+
+Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
+        .register("https", connectionSocketFactory)
+        .build();
+
+PoolingHttpClientConnectionManager httpClientConnectionManager = new PoolingHttpClientConnectionManager(registry);
+// HTTPコネクションプールなどの設定を実施する。
+
+return HttpClients.custom()
+        .setConnectionManager(httpClientConnectionManager)
+        .build();
+```
+
+サーバーがオレオレ証明書を採用していても問題なく通信できる。
+
+```java
+CloseableHttpClient httpClient = HttpClients.custom()
+        .setConnectionManager(httpClientConnectionManager)
+        .build();
+
+CloseableHttpResponse response = httpClient.execute(new HttpGet("https://localhost:8443/"));
+System.out.println(EntityUtils.toString(response.getEntity()));
+```
+
+「証明書検証無効化」設定をコメントアウトすると以下の例外が発生する。
+
+```
+Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:378) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:321) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:316) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1357) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1232) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1175) ~[na:na]
+    at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396) ~[na:na]
+    at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480) ~[na:na]
+    at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:458) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.dispatch(TransportContext.java:201) ~[na:na]
+    at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:172) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1510) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:455) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:426) ~[na:na]
+    at org.apache.http.conn.ssl.SSLConnectionSocketFactory.createLayeredSocket(SSLConnectionSocketFactory.java:436) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:384) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108) ~[httpclient-4.5.14.jar:4.5.14]
+    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:69) ~[classes/:na]
+    at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
+    ... 5 common frames omitted
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439) ~[na:na]
+    at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306) ~[na:na]
+    at java.base/sun.security.validator.Validator.validate(Validator.java:264) ~[na:na]
+    at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231) ~[na:na]
+    at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:132) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341) ~[na:na]
+    ... 30 common frames omitted
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:146) ~[na:na]
+    at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:127) ~[na:na]
+    at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297) ~[na:na]
+    at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434) ~[na:na]
+    ... 35 common frames omitted
+```
+
+「ホスト名検証無効化」の`NoopHostnameVerifier.INSTANCE`を`SSLConnectionSocketFactory.getDefaultHostnameVerifier()`に変更すると以下の例外が発生する。
+
+```
+Caused by: javax.net.ssl.SSLPeerUnverifiedException: Certificate for <localhost> doesn't match any of the subject alternative names: []
+    at org.apache.http.conn.ssl.SSLConnectionSocketFactory.verifyHostname(SSLConnectionSocketFactory.java:507) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.conn.ssl.SSLConnectionSocketFactory.createLayeredSocket(SSLConnectionSocketFactory.java:437) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:384) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
+    at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108) ~[httpclient-4.5.14.jar:4.5.14]
+    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:70) ~[classes/:na]
+    at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
+    ... 5 common frames omitted
 ```
