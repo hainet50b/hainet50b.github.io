@@ -1,4 +1,4 @@
-# Spring JdbcTemplate BLOB/CLOBの取り扱い（LobHandler / RowMapper）
+# Spring JDBC JdbcTemplate BLOB/CLOBの取り扱い（LobHandler / RowMapper）
 {:.no_toc}
 
 * toc
