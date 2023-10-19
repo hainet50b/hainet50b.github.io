@@ -8,25 +8,25 @@
 URLConnectionで通信する前に以下の設定を実行しておく。
 
 ```java
-X509TrustManager[] trustManager = {
-    new X509TrustManager() {
-        @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
+X509TrustManager[] trustManagers = {
+        new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
 
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
 
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
         }
-    }
 };
 
 SSLContext sslContext = SSLContext.getInstance("TLS");
-sslContext.init(null, trustManager, null);
+sslContext.init(null, trustManagers, null);
 
 HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory()); // 証明書検証無効化
 HttpsURLConnection.setDefaultHostnameVerifier((str, sslSession) -> true); // ホスト名検証無効化
@@ -245,6 +245,154 @@ Caused by: javax.net.ssl.SSLPeerUnverifiedException: Certificate for <localhost>
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
     at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:108) ~[httpclient-4.5.14.jar:4.5.14]
     at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:70) ~[classes/:na]
+    at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
+    ... 5 common frames omitted
+```
+
+## OkHttp
+OkHttpの依存を追加する。
+
+```xml
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>4.12.0</version>
+</dependency>
+```
+
+OkHttpで通信する前に以下の設定を実行しておく。
+
+```java
+X509TrustManager[] trustManagers = {
+        new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+        }
+};
+
+SSLContext sslContext = SSLContext.getInstance("TLS");
+sslContext.init(null, trustManagers, null);
+
+return new OkHttpClient.Builder()
+        .sslSocketFactory(
+                sslContext.getSocketFactory(), 
+                trustManagers[0]
+        ) // 証明書検証無効化
+        .hostnameVerifier((str, sslSession) -> true) // ホスト名検証無効化
+        .build();
+```
+
+サーバーが俺俺証明書を採用していなくても問題なく通信できる。
+
+```java
+OkHttpClient httpClient = new OkHttpClient.Builder()
+        .sslSocketFactory(
+                sslContext.getSocketFactory(),
+                trustManagers[0]
+        )
+        .hostnameVerifier((str, sslSession) -> true)
+        .build();
+
+Request request = new Request.Builder()
+        .url("https://localhost:8443/")
+        .build();
+
+try (Response response = httpClient.newCall(request).execute()) {
+    System.out.println(response.body().string());
+}
+```
+
+「証明書検証無効化」設定をコメントアウトすると以下の例外が発生する。
+
+```
+Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:378) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:321) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.fatal(TransportContext.java:316) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1357) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.onConsumeCertificate(CertificateMessage.java:1232) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.consume(CertificateMessage.java:1175) ~[na:na]
+    at java.base/sun.security.ssl.SSLHandshake.consume(SSLHandshake.java:396) ~[na:na]
+    at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:480) ~[na:na]
+    at java.base/sun.security.ssl.HandshakeContext.dispatch(HandshakeContext.java:458) ~[na:na]
+    at java.base/sun.security.ssl.TransportContext.dispatch(TransportContext.java:201) ~[na:na]
+    at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:172) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1510) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1425) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:455) ~[na:na]
+    at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:426) ~[na:na]
+    at okhttp3.internal.connection.RealConnection.connectTls(RealConnection.kt:379) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealConnection.establishProtocol(RealConnection.kt:337) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:209) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154) ~[okhttp-4.12.0.jar:na]
+    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$1(JavaHttpClientSkipCertValidationApplication.java:66) ~[classes/:na]
+    at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
+    ... 5 common frames omitted
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:439) ~[na:na]
+    at java.base/sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:306) ~[na:na]
+    at java.base/sun.security.validator.Validator.validate(Validator.java:264) ~[na:na]
+    at java.base/sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231) ~[na:na]
+    at java.base/sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:132) ~[na:na]
+    at java.base/sun.security.ssl.CertificateMessage$T13CertificateConsumer.checkServerCerts(CertificateMessage.java:1341) ~[na:na]
+    ... 35 common frames omitted
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+    at java.base/sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:146) ~[na:na]
+    at java.base/sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:127) ~[na:na]
+    at java.base/java.security.cert.CertPathBuilder.build(CertPathBuilder.java:297) ~[na:na]
+    at java.base/sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:434) ~[na:na]
+    ... 40 common frames omitted
+```
+
+「ホスト名検証無効化」設定をコメントアウトすると以下の例外が発生する。
+
+```
+Caused by: javax.net.ssl.SSLPeerUnverifiedException: Hostname localhost not verified:
+    certificate: sha256/tLKK3BpFijp8UcM0SS6wYlQazeUh0ipHvSW9Cl6DYH4=
+    DN: CN=programacho.com, OU=Unknown, O=programacho.com, L=Tokyo, ST=Tokyo, C=JP
+    subjectAltNames: []
+    at okhttp3.internal.connection.RealConnection.connectTls(RealConnection.kt:389) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealConnection.establishProtocol(RealConnection.kt:337) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:209) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201) ~[okhttp-4.12.0.jar:na]
+    at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154) ~[okhttp-4.12.0.jar:na]
+    at com.programacho.javahttpclientskipcertvalidation.JavaHttpClientSkipCertValidationApplication.lambda$run$0(JavaHttpClientSkipCertValidationApplication.java:66) ~[classes/:na]
     at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774) ~[spring-boot-3.1.4.jar:3.1.4]
     ... 5 common frames omitted
 ```
