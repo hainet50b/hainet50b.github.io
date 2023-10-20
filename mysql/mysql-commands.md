@@ -210,7 +210,14 @@ LOAD DATA
   FIELDS
     ENCLOSED BY '\"'
     TERMINATED BY ','
-  LINES TERMINATED BY '\n';
+  LINES
+    TERMINATED BY '\n'
+  -- 仮想生成列を使用する場合は物理列を明示的に指定する必要がある。
+  (
+    foo,
+    bar,
+    baz
+  );
 
 -- 一定時間スリープする。
 SELECT SLEEP(5);
