@@ -1,4 +1,4 @@
-# Java Beginner #1
+# Java Beginner #1（コンパイル）
 {:.no_toc}
 
 * toc
