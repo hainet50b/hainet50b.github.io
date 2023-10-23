@@ -226,3 +226,15 @@ java -cp "./:jackson/*" Hello
 javac -cp jackson/jackson-core-2.15.2.jar:jackson/jackson-databind-2.15.2.jar:jackson/jackson-annotations-2.15.2.jar Hello.java
 java -cp ./:jackson/jackson-core-2.15.2.jar:jackson/jackson-databind-2.15.2.jar:jackson/jackson-annotations-2.15.2.jar Hello
 ```
+
+## Java標準ライブラリの場所
+クラスパスでクラスファイルやJarファイルを指定する背後で、暗黙的にJava標準ライブラリのロードが行われている。  
+Java 8まではrt.jarを、Java 9以降はjava.base.jmodをロードする。
+
+```shell
+# rt.jarの場所
+$JAVA_HOME/jre/lib/rt.jar
+
+# java.base.jmodの場所
+$JAVE_HOME/jmods/java.base.jmod
+```
