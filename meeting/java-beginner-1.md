@@ -7,7 +7,7 @@
 ## JDKのインストール
 パッケージマネージャー（Windows）
 ```powershell
-scoop install openjdk21
+scoop install openjdk17
 ```
 
 パッケージマネージャー（Mac）
