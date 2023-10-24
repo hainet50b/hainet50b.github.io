@@ -129,6 +129,31 @@ SELECT COUNT(*) FROM items WHERE true; -- 9
 SELECT COUNT(*) FROM items WHERE false; -- 0
 ```
 
+## MySQLにおける真偽値（TRUE/FALSE）
+MySQLには厳密には真偽値の表現にTINYINT型（2^8までを表す整数値）を使用する。  
+BOOLEANキーワードはTINYINT(1)（1は表示幅）のエイリアスとして定義されている。
+
+```sql
+-- TRUEは1, FALSEは0のエイリアスとして定義されている。
+SELECT TRUE; -- 1
+SELECT FALSE; -- 0
+
+-- 実用ではないが、TRUEは確かに1として機能する。
+SELECT TRUE;
++------+
+| TRUE |
++------+
+|    1 |
++------+
+
+SELECT * FROM items WHERE id = TRUE;
++----+------------+--------+-------+------+---------------+
+| id | name       | genre  | price | cost | registered_at |
++----+------------+--------+-------+------+---------------+
+|  1 | Tシャツ    | 衣服   |  1000 |  500 | 2009-09-20    |
++----+------------+--------+-------+------+---------------+
+```
+
 ## コメントの記述
 ```sql
 -- コメントを記述できる。
