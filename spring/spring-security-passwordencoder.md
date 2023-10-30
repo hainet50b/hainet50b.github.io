@@ -1,4 +1,8 @@
 # Spring Security PasswordEncoder
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## PasswordEncoder実装一覧
 実装一覧：[spring-security \| GitHub](https://github.com/spring-projects/spring-security/tree/main/crypto/src/main/java/org/springframework/security/crypto/password){:target="_blank"}
@@ -7,9 +11,9 @@
 TODO
 
 ## PasswordEncoder適用タイミング
-PasswordEncoderは認証ヘッダーのあるHTTPリクエストを受け取るとエンドポイントに関わらずエンコードを実行する。  
-デフォルトでBCryptPasswordEncoderによって2^10回のハッシュ計算が行われるため脆弱性につながる。  
-インメモリの固定パスワードを使用するなど、要件が許すならば強度を下げることを検討する。
+PasswordEncoderは認証ヘッダーを含むHTTPリクエストを受け取るとエンドポイントに関わらずエンコードを実行する。  
+デフォルトでBCryptPasswordEncoderによって2^10回のハッシュ計算が行われるためDoS脆弱性につながる。  
+インメモリの固定パスワードを使用する場合など、差し支えのない範囲で強度を下げることを検討する。
 
 以下、検証用の設定と検証結果を記述する。
 
