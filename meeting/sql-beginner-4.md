@@ -8,7 +8,7 @@
 MySQLはサポートしていないが、二次元表をVALUES句で表現できることを知っておくと幅が広がる。
 
 ```sql
-SELECT * FROM (VALUES (1, 'foo')) AS T(id, name);
+SELECT * FROM (VALUES (1, 'foo'));
 
 SELECT * FROM (VALUES
   (1, 'foo'),
