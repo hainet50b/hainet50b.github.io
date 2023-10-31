@@ -83,7 +83,6 @@ SELECT GREATEST(
 ); -- 2
 -- 小さい方を選択
 SELECT LEAST(1, 2); -- 1
-TODO
 ```
 
 ## 時間間隔
