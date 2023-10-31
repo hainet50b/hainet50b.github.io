@@ -176,6 +176,7 @@
 - [SQL Beginner #1（テーブルとカラムの操作）](https://hainet50b.github.io/meeting/sql-beginner-1)
 - [SQL Beginner #2（選択と射影、演算子）](https://hainet50b.github.io/meeting/sql-beginner-2)
 - [SQL Beginner #3（集約）](https://hainet50b.github.io/meeting/sql-beginner-3)
+- [SQL Beginner #4（データの挿入・更新・削除）](https://hainet50b.github.io/meeting/sql-beginner-4)
 
 ### About @hainet50b
 - [GitHub](https://github.com/hainet50b){:target="_blank"}
