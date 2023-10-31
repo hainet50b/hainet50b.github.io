@@ -61,6 +61,9 @@ SELECT FLOOR(RAND() * 10); -- 0 ~ 9
 SELECT CEIL(1.1); -- 2
 -- 切り捨て
 SELECT FLOOR(1.9); -- 1
+-- 丸め
+SELECT ROUND(1.4); -- 1
+SELECT ROUND(1.5); -- 2
 
 -- 桁数調整
 SELECT FORMAT(1.12345, 3); -- 1.123
