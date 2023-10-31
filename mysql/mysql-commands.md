@@ -1,8 +1,25 @@
-# よく使うMySQLコマンド
+# MySQL よく使うコマンド
 {:.no_toc}
 
 * toc
 {:toc}
+
+## クライアントインストール
+
+### Mac
+[mysql-client \| Homebrew Formulae](https://formulae.brew.sh/formula/mysql-client){:target="_blank"}
+
+```shell
+brew install mysql-client
+```
+
+### Windows
+[Mysql \| Scoop Apps](https://bjansen.github.io/scoop-apps/main/mysql/){:target="_blank"}
+
+```powershell
+# MySQLサーバーも同時にインストールされてしまう。
+scoop install mysql
+```
 
 ## ログイン
 ```shell

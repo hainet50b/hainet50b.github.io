@@ -4,26 +4,6 @@
 * toc
 {:toc}
 
-## MySQL
-
-### Mac
-[mysql-client — Homebrew Formulae](https://formulae.brew.sh/formula/mysql-client){:target="_blank"}
-```shell
-brew install mysql-client
-```
-
-### Windows
-Scoopでインストールする場合は同時にサーバーもインストールされてしまう。  
-[Mysql](https://bjansen.github.io/scoop-apps/main/mysql/){:target="_blank"}
-```powershell
-scoop install mysql
-```
-
-### Getting Started
-```shell
-mysql -h localhost -P 3306 -u root -p
-```
-
 ## SQL*Plus
 
 ### Mac
