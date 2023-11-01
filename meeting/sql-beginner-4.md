@@ -16,8 +16,11 @@ SELECT * FROM (VALUES
   (3, 'baz'),
 );
 
--- MySQLで二次元表を表現するにはUNIONを使用する。
-SELECT 1 AS id, 'foo' AS name
+-- MySQLではVALUES句をサポートしていない。
+SELECT 1, 'foo';
+
+-- MySQLで複数行の二次元表を表現するにはUNIONを使用する。
+SELECT 1, 'foo'
 UNION SELECT 2, 'bar'
 UNION SELECT 3, 'baz';
 ```
@@ -91,13 +94,13 @@ SELECT * FROM emp;
 SELECT COUNT(*) FROM emp; -- 8
 SELECT COUNT(*) FROM emp2; -- 8
 
--- 複製先の射影や複製元の選択・射影が可能
+-- 二次元表の選択・射影が可能
 INSERT INTO emp2 (id, name)
 SELECT id, name FROM emp WHERE id < 20;
 
 -- MySQLの二次元表表現を使って以下のようにVALUES句を差し替えられる。
 INSERT INTO emp (id, name)
-SELECT 1 AS id, 'foo' AS name
+SELECT 1, 'foo'
 UNION SELECT 2, 'bar'
 UNION SELECT 3, 'baz';
 ```
@@ -105,6 +108,7 @@ UNION SELECT 3, 'baz';
 ## データの更新（UPDATE）
 ```sql
 -- 単一の列を更新
+-- すべての行が更新される。暗黙のWHERE 1が付与されていると解釈すると見通しが良い。
 UPDATE emp SET age = 20;
 
 -- 複数の列を更新
@@ -127,7 +131,7 @@ UPDATE emp SET age = age + 1;
 
 ## データの削除（DELETE）
 ```sql
--- すべてのデータの削除
+-- すべての行が削除される。暗黙のWHERE 1が付与されていると解釈すると見通しが良い。
 DELETE FROM emp;
 
 -- 特定のデータの削除
