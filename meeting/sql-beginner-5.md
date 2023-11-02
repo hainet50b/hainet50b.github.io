@@ -63,6 +63,13 @@ SELECT id, name, genre FROM items
 UNION ALL SELECT id, name, genre FROM items2;
 
 INSERT INTO items_view_union VALUES (10, '商品名', '分類'); -- ?
+
+-- テーブルの制約に抵触する挿入・更新は実施できない。
+CREATE VIEW v (id, name)
+AS
+SELECT id, name FROM items;
+
+INSERT INTO v VALUES (10, '商品名'); -- genreカラムのNOT NULL制約に抵触する
 ```
 
 ## 副問い合わせ
