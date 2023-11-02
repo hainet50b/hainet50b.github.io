@@ -61,3 +61,21 @@ UNION ALL SELECT id, name, genre FROM items2;
 
 INSERT INTO items_view_union VALUES (10, '商品名', '分類'); -- ?
 ```
+
+## 副問い合わせ
+SQLは二次元表から二次元表への関数であるため入れ子にすることができる。  
+また一行一列の二次元表は値として取り扱われる。
+
+```sql
+-- 副問い合わせをする二次元表には別名を付ける必要がある。
+SELECT * FROM (SELECT 1, 'foo') AS T;
+
+-- 副問い合わせで値を問い合わせて使用しても良い。この場合は別名は必要ない。
+SELECT * FROM items WHERE id = (SELECT 1);
+
+-- 集約結果で行を選択することができる。
+SELECT * FROM items WHERE price > (SELECT AVG(price) FROM items);
+```
+
+## 相関副問い合わせ
+TODO
