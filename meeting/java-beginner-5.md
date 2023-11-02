@@ -45,7 +45,7 @@ public class Cat implements Animal {
 public interface Animal {
 
     // 食べることは分かるが、何を食べるか、
-    void eat(Food food);
+    void eat(String food);
 
     // 鳴くことは分かるが、どう鳴くか、
     void say();
@@ -184,7 +184,7 @@ public class Crow extends Bird {
 ```
 
 さらにすずめは肉を食べて、チュンチュン鳴いて、短時間寝て、パタパタと飛ぶと分かる。  
-これをJavaではクラスで定義し、鳴くことだけは鳥に準拠する。
+これをJavaではクラスで定義し、肉を食べることと、鳴くことは鳥に準拠する。
 
 ```java
 // すずめは鳥として食べて、鳴いて、寝て、飛ぶもので、
