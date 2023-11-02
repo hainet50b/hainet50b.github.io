@@ -44,13 +44,13 @@ public class Cat implements Animal {
 ```java
 public interface Animal {
 
-    // 何を食べて、
+    // 食べることは分かるが、何を食べるか、
     void eat(Food food);
 
-    // どう鳴いて、
+    // 鳴くことは分かるが、どう鳴くか、
     void say();
 
-    // どれくらい寝るかは分からない。
+    // 寝ることは分かるが、どれくらい寝るかは分からない。
     void sleep();
 }
 ```
@@ -58,6 +58,7 @@ public interface Animal {
 犬は肉を食べて、ワンワン鳴いて、8時間寝る（とする）。
 
 ```java
+// 犬は動物として食べて、鳴いて、寝るもので、
 public class Dog implements Animal {
 
     // 肉を食べて、
@@ -87,6 +88,7 @@ public class Dog implements Animal {
 猫は魚を食べて、ニャーニャー鳴いて、16時間寝る（とする）。
 
 ```java
+// 猫は動物として食べて、鳴いて、寝るもので、
 public class Cat implements Animal {
 
     // 魚を食べて、
@@ -118,6 +120,7 @@ public class Cat implements Animal {
 これをJavaでは抽象クラスと抽象メソッドで定義する。
 
 ```java
+// 鳥は動物として食べて、鳴いて、寝て、さらに飛ぶもので、
 public abstract class Bird implements Animal {
 
     // 肉を食べて
@@ -147,6 +150,7 @@ public abstract class Bird implements Animal {
 これをJavaではクラスで定義する。
 
 ```java
+// カラスは鳥として食べて、鳴いて、寝て、飛ぶもので、
 public class Crow extends Bird {
 
     // 肉を食べて、
@@ -183,6 +187,7 @@ public class Crow extends Bird {
 これをJavaではクラスで定義し、鳴くことだけは鳥に準拠する。
 
 ```java
+// すずめは鳥として食べて、鳴いて、寝て、飛ぶもので、
 public class Sparrow extends Bird {
 
     // 肉を食べて、
