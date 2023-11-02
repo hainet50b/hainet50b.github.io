@@ -1,156 +1,12 @@
 # Java Beginner #5
 
 ## オブジェクト指向
-例えばエアコンは電源・温度・運転から成り立つとする。  
-これらの状態や操作をオブジェクトにまとめて互いに独立して定義することで取り扱いやすくする。
-
-```java
-// 電源
-public class Power {
-
-    private boolean on = false;
-
-    public boolean isOn() {
-        return this.on;
-    }
-
-    public void turnOn() {
-        this.on = true;
-    }
-
-    public void turnOff() {
-        this.on = false;
-    }
-}
-
-// 温度
-public class Temperature {
-
-    private int target;
-
-    public void setTarget(int target) {
-        this.target = target;
-    }
-
-    public int getTarget() {
-        return this.target;
-    }
-
-    public int getTemperature() {
-        // 仮の温度を返却している。
-        return 25;
-    }
-}
-
-// 運転
-public class Control {
-
-    private Mode mode = Mode.COOL;
-
-    public void setCoolMode() {
-        System.out.println("COOLモードに設定します。");
-        this.mode = Mode.COOL;
-    }
-
-    public void setKeepMode() {
-        System.out.println("KEEPモードに設定します。");
-        this.mode = Mode.KEEP;
-    }
-
-    public void setHeatMode() {
-        System.out.println("HEATモードに設定します。");
-        this.mode = Mode.HEAT;
-    }
-
-    public void adjust(int temperature, int target) {
-        if (temperature == target) {
-            setKeepMode();
-        } else if (temperature > target) {
-            setCoolMode();
-        } else {
-            setHeatMode();
-        }
-    }
-
-    public enum Mode {
-        COOL,
-        KEEP,
-        HEAT
-    }
-}
-
-// エアコン
-public class AirConditioner {
-
-    public static void main(String[] args) throws InterruptedException {
-        Power power = new Power();
-        Temperature temperature = new Temperature();
-        Control control = new Control();
-
-        // リモコンから電源ONのイベントを受け付けて、目標温度を設定する。
-        power.turnOn();
-        temperature.setTarget(24);
-
-        // リモコンの割り込みで電源がOFFになるまで動作し続ける。
-        while (power.isOn()) {
-            control.adjust(
-            temperature.getTemperature(),
-            temperature.getTarget()
-            );
-
-            TimeUnit.SECONDS.sleep(1);
-        }
-    }
-}
-```
-
-電源ユニットに電気代測定機能を付与したモデルを開発する場合にはPowerを継承する。
-
-```java
-// 電気代測定機能を付与したモデル
-public class FG204AC extends Power {
-
-    private int cost;
-
-    public void calculateCost() {
-        this.cost = 5000;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-}
-
-// Powerを差し替えて利用する。
-public class AirConditioner {
-
-    public static void main(String[] args) throws InterruptedException {
-        // Powerの代わりにFG204ACを利用する。
-        FG204AC power = new FG204AC();
-        Temperature temperature = new Temperature();
-        Control control = new Control();
-
-        power.turnOn();
-        temperature.setTarget(24);
-
-        while (power.isOn()) {
-            control.adjust(
-            temperature.getTemperature(),
-            temperature.getTarget()
-            );
-
-            // FG204AC固有の操作にアクセスする。
-            power.calculateCost();
-            System.out.printf("現在の電気代：%s\n", power.getCost());
-
-            TimeUnit.SECONDS.sleep(1);
-        }
-    }
-}
-```
+ある概念を状態と操作を持つオブジェクトとして整理して取り扱うこと。  
+対象をオブジェクトとして取り扱うことと、それを実現する手段は切り分けて理解する。  
+一方で概念と実装、設計とコーディングは不可分でもある。
 
 ## ポリモーフィズム
-インターフェースは同一であってもオブジェクトごとに動作が異なること。
+インターフェースは同一であってもオブジェクトごとに動作が異なるという性質のこと。
 
 ```java
 // Animalはsayメソッドで声を出すものであると定義する。
@@ -171,6 +27,178 @@ public class Cat implements Animal {
     @Override
     public void say() {
         System.out.println("にゃー");
+    }
+}
+```
+
+## 実装と継承
+動物は食べて、鳴いて、寝るものであると定義する。  
+すると猫も犬も鳥も食べて、鳴いて、寝るものであると言える。  
+更にカラスもすずめも食べて、鳴いて、寝るものであると言える。
+
+この概念（＝制約）をプログラミングで表現する手段が実装と継承である。
+
+動物が一般的に何を食べるか、どう鳴くか、どれくらい寝るかは分からない。  
+これをJavaではインターフェースで定義する。
+
+```java
+public interface Animal {
+
+    // 何を食べて、
+    void eat(Food food);
+
+    // どう鳴いて、
+    void say();
+
+    // どれくらい寝るかは分からない。
+    void sleep();
+}
+```
+
+犬は肉を食べて、ワンワン鳴いて、8時間寝る（とする）。
+
+```java
+public class Dog implements Animal {
+
+    // 肉を食べて、
+    @Override
+    public void eat(String food) {
+        if (food.equals("meat")) {
+            System.out.println("食べるワン！");
+        } else {
+            System.out.println("いらないワン...");
+        }
+    }
+
+    // ワンワン鳴いて、
+    @Override
+    public void say() {
+        System.out.println("ワンワン");
+    }
+
+    // 8時間寝る。
+    @Override
+    public void sleep() {
+        System.out.println("8時間寝るワン");
+    }
+}
+```
+
+猫は魚を食べて、ニャーニャー鳴いて、16時間寝る（とする）。
+
+```java
+public class Cat implements Animal {
+
+    // 魚を食べて、
+    @Override
+    public void eat(String food) {
+        if (food.equals("fish")) {
+            System.out.println("食べるニャ！");
+        } else {
+            System.out.println("いらないニャ...");
+        }
+    }
+
+    // ニャーニャー鳴いて、
+    @Override
+    public void say() {
+        System.out.println("ニャーニャー");
+    }
+
+    // 16時間寝る。
+    @Override
+    public void sleep() {
+        System.out.println("16時間寝るニャ");
+    }
+}
+```
+
+鳥は肉を食べて、チュンチュンと鳴くことは分かるが、どれくらい寝るかは分からない（とする）。  
+また犬や猫とは違って飛ぶことができるが、どう飛ぶかは分からない。  
+これをJavaでは抽象クラスと抽象メソッドで定義する。
+
+```java
+public abstract class Bird implements Animal {
+
+    // 肉を食べて
+    @Override
+    public void eat(String food) {
+        if (food.equals("meat")) {
+            System.out.println("食べるチュン！");
+        } else {
+            System.out.println("いらないチュン...");
+        }
+    }
+
+    // チュンチュン鳴いて、
+    @Override
+    public void say() {
+        System.out.println("チュンチュン");
+    }
+
+    // どれくらい寝るかは分からず、
+
+    // 飛ぶことができるが、どう飛ぶかは分からない。
+    abstract void fly();
+}
+```
+
+カラスは肉を食べて、カーカー鳴いて、短時間寝て、ビューンと飛ぶと分かる。  
+これをJavaではクラスで定義する。
+
+```java
+public class Crow extends Bird {
+
+    // 肉を食べて、
+    @Override
+    public void eat(String food) {
+        if (food.equals("meat")) {
+            System.out.println("食べるカー！");
+        } else {
+            System.out.println("いらないカー...");
+        }
+    }
+
+    // カーカー鳴いて、
+    @Override
+    public void say() {
+        System.out.println("カーカー");
+    }
+
+    // 1時間寝て、
+    @Override
+    public void sleep() {
+        System.out.println("1時間寝るカー");
+    }
+
+    // ビューンと飛ぶ。
+    @Override
+    void fly() {
+        System.out.println("ビューン！");
+    }
+}
+```
+
+さらにすずめは肉を食べて、チュンチュン鳴いて、短時間寝て、パタパタと飛ぶと分かる。
+これをJavaではクラスで定義し、鳴くことだけは鳥に準拠する。
+
+```java
+public class Sparrow extends Bird {
+
+    // 肉を食べて、
+
+    // チュンチュン鳴いて、
+
+    // 4時間寝て、
+    @Override
+    public void sleep() {
+        System.out.println("4時間寝るチュン");
+    }
+
+    // パタパタと飛ぶ
+    @Override
+    void fly() {
+        System.out.println("パタパタ！");
     }
 }
 ```
