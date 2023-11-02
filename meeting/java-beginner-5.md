@@ -3,30 +3,30 @@
 ## オブジェクト指向
 ある概念を状態と操作を持つオブジェクトとして整理して取り扱うこと。  
 対象をオブジェクトとして取り扱うことと、それを実現する手段は切り分けて理解する。  
-同時に複雑な現実に立ち向かうに当たっては概念と実装、設計とコーディングは不可分でもある。
+しかし同時に複雑な現実に立ち向かうに当たっては概念と実装、設計とコーディングは不可分でもある。
 
 ## ポリモーフィズム
 インターフェースは同一であってもオブジェクトごとに動作が異なるという性質のこと。
 
 ```java
-// Animalはsayメソッドで声を出すものであると定義する。
+// 動物は鳴くものであると定義する。
 public interface Animal {
     void say();
 }
 
-// Dogはsayメソッドで「わんわん」と鳴く。
+// 犬はワンワンと鳴く。
 public class Dog implements Animal {
     @Override
     public void say() {
-        System.out.println("わんわん");
+        System.out.println("ワンワン");
     }
 }
 
-// Catはsayメソッドで「にゃー」と鳴く。
+// 猫はニャーニャーと鳴く。
 public class Cat implements Animal {
     @Override
     public void say() {
-        System.out.println("にゃー");
+        System.out.println("ニャーニャー");
     }
 }
 ```
@@ -183,7 +183,7 @@ public class Crow extends Bird {
 }
 ```
 
-さらにすずめは肉を食べて、チュンチュン鳴いて、短時間寝て、パタパタと飛ぶと分かる。
+さらにすずめは肉を食べて、チュンチュン鳴いて、短時間寝て、パタパタと飛ぶと分かる。  
 これをJavaではクラスで定義し、鳴くことだけは鳥に準拠する。
 
 ```java
