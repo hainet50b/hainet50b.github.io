@@ -28,6 +28,9 @@ SELECT * FROM items_cost_details;
 DROP VIEW items_cost_details;
 
 -- ビューによるビューの参照もできるが推奨されない。
+CREATE VIEW v2 AS SELECT * FROM v1;
+
+-- 集約関数を使用して二次元表を出力するSELECT文にも適用できる。
 CREATE VIEW items_cost_details_high_rate (id, name, price, cost, reate)
 AS
 SELECT * FROM items_cost_details WHERE rate >= 70;
