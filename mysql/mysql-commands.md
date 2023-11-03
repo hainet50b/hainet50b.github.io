@@ -123,10 +123,29 @@ CREATE TABLE emp (
 -- カラムを変更する
 ALTER TABLE emp MODIFY name VARCHAR(1024);
 
--- テーブル定義を確認する
--- カラム一覧を確認する
+-- テーブルを削除する
+DROP TABLE emp;
+```
+
+## テーブル一覧・定義の確認
+```sql
+-- テーブル一覧の確認
+SHOW TABLES;
+-- データベースを指定できる。
+SHOW TABLES FROM pmacho_db;
+-- テーブル名を選択できる。
+SHOW TABLES WHERE Tables_in_pmacho_db = 'emp';
+
+-- テーブルとビューの区分を確認
+SHOW FULL TABLES;
+-- テーブルまたはビューに絞り込める。
+SHOW FULL TABLES WHERE Table_type = 'VIEW';
+
+-- テーブル定義の確認
+DESCRIBE emp;
+-- テーブル定義の詳細を確認
 SHOW FULL COLUMNS FROM emp;
--- DDL形式で確認する
+-- テーブル定義をDDL形式で出力
 SHOW CREATE TABLE emp;
 ```
 
