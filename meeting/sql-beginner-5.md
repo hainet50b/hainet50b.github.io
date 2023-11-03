@@ -87,5 +87,50 @@ SELECT * FROM items WHERE id = (SELECT 1);
 SELECT * FROM items WHERE price > (SELECT AVG(price) FROM items);
 ```
 
+## 集約関数とWHERE句/HAVING句
+以下の二つのSQLは同じ結果を出力する。  
+しかしWHERE句によりインデックスを使用できるため前者の方が望ましい。  
+SELECT句に集約キーを含みたい場合に限りGROUP BY句を使用する。  
+（＝集約関数とGROUP BY句は必ずしもセットではない。）
+
+```sql
+SELECT AVG(price) FROM items WHERE genre = '衣服';
+SELECT AVG(price) FROM items GROUP BY genre HAVING genre = '衣服';
+```
+
 ## 相関副問い合わせ
-TODO
+サブクエリで外部クエリの各行との比較を実施できる。  
+itemsテーブルに9行存在する場合はサブクエリが9回実行される。
+
+```sql
+-- 分類ごとの平均価格以上の商品を取得する。
+SELECT * FROM items AS ex
+WHERE price >= (
+  SELECT AVG(price)
+  FROM items
+  WHERE genre = ex.genre
+);
+```
+
+分類ごとの平均単価を事前に計算して結合することも検討できる。
+
+```sql
+SELECT T1.id, T1.name, T1.genre, T1.price, T1.cost FROM items AS T1
+JOIN (
+  SELECT genre, AVG(price) AS avg_price
+  FROM items
+  GROUP BY genre
+) AS T2 ON T1.genre = T2.genre
+WHERE T1.price >= avg_price;
+```
+
+現実の開発では事前に平均価格一覧を取得して、複数回のクエリを発行する方が見通しが良くなるかもしれない。
+
+```sql
+SELECT genre, AVG(price) FROM items GROUP BY genre;
+
+-- 以上の結果をforeachでループさせて、以下のSQLを複数回発行する。
+SELECT * FROM items
+  WHERE genre = ${genre}
+  AND price >= ${avg_price}
+```
