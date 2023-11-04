@@ -4,6 +4,7 @@
 * toc
 {:toc}
 
+## 参考書籍
 [SQL 第2版 ゼロからはじめるデータベース操作 \| 翔泳社の本](https://www.shoeisha.co.jp/book/detail/9784798144450){:target="_blank"}
 
 ## SQLの3つの原則
