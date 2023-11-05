@@ -11,8 +11,12 @@ MySQL SQL関数一覧：[SQL関数および演算子リファレンス \| MySQL 
 -- UUID
 SELECT UUID(); -- 32a50e2c-7797-11ee-a2dc-0242ac110002
 
--- 文字列の長さ
+-- 文字列の長さ（バイト数計算）
 SELECT LENGTH('value'); -- 5
+SELECT LENGTH('あいうえお'); -- 15
+-- 文字列の長さ（桁数計算）
+SELECT CHAR_LENGTH('value'); -- 5
+SELECT CHAR_LENGTH('あいうえお'); -- 5
 -- 文字列連結
 SELECT CONCAT('foo', 'bar'); -- foobar
 SELECT CONCAT('foo', 'bar', 'baz'); -- foobarbaz
