@@ -21,7 +21,7 @@ SELECT 1, 'foo'
 UNION SELECT 2, 'bar'
 UNION SELECT 3, 'baz';
 
--- n行1列の表現はリストとして扱われる。IN句などで使用できる。
+-- n行1列の表現は値のリストとして扱われる。IN句などで使用できる。
 SELECT 1
 UNION SELECT 2
 UNION SELECT 3;
