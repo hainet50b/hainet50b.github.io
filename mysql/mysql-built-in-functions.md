@@ -114,6 +114,22 @@ SELECT TIMESTAMPDIFF(MINUTE, NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY)); -- 1440
 SELECT DATE_FORMAT('2000-01-01 00:00:00', '%Y-%m-%dT%H%i%s.%f'); -- 2000-01-01T00:00:00.000000
 ```
 
+## 型変換／NULL変換
+```sql
+-- 任意の型に変換
+-- 文字列 -> 数値（SIGNEDは整数を表す表現。リテラルとしての数値には型は問題ではない）
+SELECT CAST('123' AS SIGNED); -- 123
+-- 数値 -> 文字列
+SELECT CAST(123 AS CHAR); -- '123'
+-- 文字列 -> 日時
+SELECT CAST('2023-11-05 20:35:00' AS DATETIME);
+
+-- NULLでない初めの値を返却
+SELECT COALESCE(1, NULL); -- 1
+SELECT COALESCE(NULL, 2); -- 2
+SELECT COALESCE(NULL, 3, 4); -- 3
+```
+
 ## ユーザー・データベース
 ```sql
 -- 現在のユーザー
