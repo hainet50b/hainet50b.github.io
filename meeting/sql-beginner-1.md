@@ -27,6 +27,10 @@ UNION SELECT 2
 UNION SELECT 3;
 
 -- 1行1列の表現は値として扱われる。あらゆるリテラルに適用できる。
+SELECT 1;
+
+-- 0行0列の表現はWHERE句に偽を取ることで表現できる。
+SELECT 1 WHERE 0;
 ```
 
 ## MySQLクライアントのインストール
