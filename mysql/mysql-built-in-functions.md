@@ -112,6 +112,8 @@ SELECT TIMESTAMPDIFF(MINUTE, NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY)); -- 1440
 
 -- 日付フォーマット
 SELECT DATE_FORMAT('2000-01-01 00:00:00', '%Y-%m-%dT%H%i%s.%f'); -- 2000-01-01T00:00:00.000000
+-- 文字列を日付に変換
+SELECT STR_TO_DATE('2023/11/06', '%Y/%m/%d');
 ```
 
 ## 型変換／NULL変換
