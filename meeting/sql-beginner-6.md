@@ -1,4 +1,4 @@
-# SQL Beginner #6（述語）
+# SQL Beginner #6（述語・CASE式）
 
 ## 述語
 SQLにおける述語とは真偽値を返却する関数をいう。
@@ -86,3 +86,79 @@ SELECT EXISTS (
   SELECT 1 WHERE 0
 ); -- 0
 ```
+
+## 検索CASE式
+最近のプログラミング言語によくある「値を返却するif文」とよく似ている。
+
+```sql
+SELECT
+  CASE
+    WHEN 1 THEN 'WHEN'
+    ELSE 'ELSE'
+  END; -- ELSE
+
+-- 複数の条件に合致する場合は上から順に評価される。
+SELECT
+  CASE
+    WHEN 0 THEN '1行目'
+    WHEN 1 THEN '2行目'
+    ELSE '3行目'
+  END; -- 2行目
+
+-- 複数の型を取り得るので注意して使用する。
+SELECT
+  CASE
+    WHEN 1 THEN 1
+    WHEN 1 THEN 123
+    ELSE 'foo'
+  END
+
+-- 行列を転置をして集約を表現できるものの、実用的ではない。
+-- 集約関数を使用する前にどのような二次元表が出力されるかを確認する。
+SELECT id, name, price,
+  CASE WHEN price BETWEEN 0 AND 1000 THEN '低額' ELSE NULL END AS "低額",
+  CASE WHEN price BETWEEN 1001 AND 3000 THEN '中額' ELSE NULL END AS "中額",
+  CASE WHEN price > 3000 THEN '高額' ELSE NULL END AS "高額"
+FROM items;
+
+SELECT 
+  COUNT(CASE WHEN price BETWEEN 0 AND 1000 THEN '低額' ELSE NULL END) AS "低額",
+  COUNT(CASE WHEN price BETWEEN 1001 AND 3000 THEN '中額' ELSE NULL END) AS "中額",
+  COUNT(CASE WHEN price > 3000 THEN '高額' ELSE NULL END) AS "高額"
+FROM items;
+
+-- 単に価格帯ごとの合計金額を出力するのであれば以下が良い。
+SELECT COUNT(*), CASE
+  WHEN price BETWEEN 0 AND 1000 THEN '低額'
+  WHEN price BETWEEN 1001 AND 3000 THEN '中額'
+  ELSE '高額'
+END AS price_rank
+FROM items GROUP BY price_rank;
+```
+
+## 単純CASE式
+プログラミング言語におけるswitch文とよく似ている。
+
+```sql
+SELECT
+  CASE 'foo'
+    WHEN 'foo' THEN 'foo'
+    WHEN 'bar' THEN 'bar'
+    WHEN 'baz' THEN 'baz'
+    ELSE NULL
+  END; -- foo
+
+-- 比較対象が同一カラムの場合に、検索CASE式は冗長な記述となる。
+SELECT
+  CASE genre
+    WHEN genre = '衣服' THEN 'A'
+    WHEN genre = '事務用品' THEN 'B'
+    WHEN genre = ''
+```
+
+SELECT COUNT(*), CASE
+  WHEN price BETWEEN 0 AND 1000 THEN '低額'
+  WHEN price BETWEEN 1001 AND 3000 THEN '中額'
+  ELSE '高額'
+END AS price_rank
+FROM items GROUP BY price_rank;
