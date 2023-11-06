@@ -39,6 +39,8 @@ SELECT RPAD('123', 5, '0'); -- 12300
 -- 空白文字の削除
 SELECT LTRIM('   foo   '); -- 'foo   '
 SELECT RTRIM('   foo   '); -- '   foo'
+-- 文字列の置き換え
+SELECT REPLACE('foobar', 'foo', 'bar'); -- barbar
 
 -- 16進数表現
 SELECT HEX('foo'); -- 666F6F
