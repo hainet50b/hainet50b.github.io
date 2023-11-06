@@ -181,7 +181,8 @@
 - [SQL Beginner #2（選択と射影、演算子）](https://hainet50b.github.io/meeting/sql-beginner-2)
 - [SQL Beginner #3（集約）](https://hainet50b.github.io/meeting/sql-beginner-3)
 - [SQL Beginner #4（データの挿入・更新・削除）](https://hainet50b.github.io/meeting/sql-beginner-4)
-- [SQL Beginner #5（ビュー・サブクエリ）](https://hainet50b.github.io/meeting/sql-beginner-5)
+- [SQL Beginner #5（ビュー・副問い合わせ）](https://hainet50b.github.io/meeting/sql-beginner-5)
+- [SQL Beginner #6（述語・CASE式）](https://hainet50b.github.io/meeting/sql-beginner-6)
 
 ### About @hainet50b
 - [GitHub](https://github.com/hainet50b){:target="_blank"}

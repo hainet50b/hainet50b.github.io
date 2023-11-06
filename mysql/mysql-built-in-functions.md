@@ -11,8 +11,12 @@ MySQL SQL関数一覧：[SQL関数および演算子リファレンス \| MySQL 
 -- UUID
 SELECT UUID(); -- 32a50e2c-7797-11ee-a2dc-0242ac110002
 
--- 文字列の長さ
+-- 文字列の長さ（バイト数計算）
 SELECT LENGTH('value'); -- 5
+SELECT LENGTH('あいうえお'); -- 15
+-- 文字列の長さ（桁数計算）
+SELECT CHAR_LENGTH('value'); -- 5
+SELECT CHAR_LENGTH('あいうえお'); -- 5
 -- 文字列連結
 SELECT CONCAT('foo', 'bar'); -- foobar
 SELECT CONCAT('foo', 'bar', 'baz'); -- foobarbaz
@@ -108,6 +112,23 @@ SELECT TIMESTAMPDIFF(MINUTE, NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY)); -- 1440
 
 -- 日付フォーマット
 SELECT DATE_FORMAT('2000-01-01 00:00:00', '%Y-%m-%dT%H%i%s.%f'); -- 2000-01-01T00:00:00.000000
+```
+
+## 型変換／NULL変換
+```sql
+-- 任意の型に変換
+-- 文字列 -> 数値（SIGNEDは整数を表す表現。リテラルとしての数値には型は問題ではない）
+SELECT CAST('123' AS SIGNED); -- 123
+-- 数値 -> 文字列
+SELECT CAST(123 AS CHAR); -- '123'
+-- 文字列 -> 日時
+SELECT CAST('2023-11-05 20:35:00' AS DATETIME);
+
+-- NULLでない初めの値を返却
+-- 「コアレス」と発音する。
+SELECT COALESCE(1, NULL); -- 1
+SELECT COALESCE(NULL, 2); -- 2
+SELECT COALESCE(NULL, 3, 4); -- 3
 ```
 
 ## ユーザー・データベース
