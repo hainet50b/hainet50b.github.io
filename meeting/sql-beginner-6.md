@@ -155,10 +155,3 @@ SELECT
     WHEN genre = '事務用品' THEN 'B'
     WHEN genre = ''
 ```
-
-SELECT COUNT(*), CASE
-  WHEN price BETWEEN 0 AND 1000 THEN '低額'
-  WHEN price BETWEEN 1001 AND 3000 THEN '中額'
-  ELSE '高額'
-END AS price_rank
-FROM items GROUP BY price_rank;
