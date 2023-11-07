@@ -97,6 +97,7 @@
     <tab title="Oracle" group-key="Oracle">
         <code-block lang="sql">
         SELECT SYS_GUID() FROM DUAL; -- 098D9FFAD8B40128E063020011AC143A
+        SELECT LOWER(REGEXP_REPLACE(SYS_GUID(), '([A-F0-9]{8})([A-F0-9]{4})([A-F0-9]{4})([A-F0-9]{4})([A-F0-9]{12})', '\1-\2-\3-\4-\5')) FROM DUAL; -- 098d9ffa-d8b7-0128-e063-020011ac143a
         </code-block>
     </tab>
 </tabs>
