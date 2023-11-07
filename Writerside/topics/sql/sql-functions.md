@@ -45,6 +45,40 @@
     </tab>
 </tabs>
 
+### 文字列の切り出し（LEFT / RIGHT）
+
+<tabs group="rdbms">
+    <tab title="MySQL" group-key="MySQL">
+        <code-block lang="sql">
+        SELECT LEFT('abcde', 3); -- abc
+        SELECT RIGHT('abcde', 3); -- cde
+        </code-block>
+    </tab>
+    <tab title="Oracle" group-key="Oracle">
+        <code-block lang="sql">
+        TODO
+        </code-block>
+    </tab>
+</tabs>
+
+### 文字列のパディング（LPAD / RPAD）
+
+<tabs group="rdbms">
+    <tab title="MySQL" group-key="MySQL">
+        <code-block lang="sql">
+        SELECT LPAD('123', 5, '0'); -- 00123
+        SELECT RPAD('123', 5, '0'); -- 12300
+        SELECT LPAD('123', 0, '0'); -- ''（空白文字）
+        SELECT LPAD('123', 1, '0'); -- 1
+        </code-block>
+    </tab>
+    <tab title="Oracle" group-key="Oracle">
+        <code-block lang="sql">
+        TODO
+        </code-block>
+    </tab>
+</tabs>
+
 ### 文字列の繰り返し（REPEAT）
 
 <tabs group="rdbms">
