@@ -49,6 +49,38 @@ Binary data as:		Hexadecimal
 Uptime:			35 days 11 hours 3 min 58 sec
 ```
 
+## SQLの発行
+```sql
+mysql -h localhost -P 3306 -u root -pchangeme -e 'SELECT 1;'
++---+
+| 1 |
++---+
+| 1 |
++---+
+
+-- sオプションを付与するとカラムや枠線を取り除くことができる。
+mysql -h localhost -P 3306 -u root -pchangeme -se 'SELECT 1;'
+1
+1
+
+-- 変数に格納すると行データのみ格納される。
+RESULT=$(mysql -h localhost -P 3306 -u root -pchangeme -se 'SELECT 1;')
+echo $RESULT
+1
+
+-- SQLはファイルリダイレクトやヒアドキュメント、パイプで指定することもできる。
+-- ファイルリダイレクト
+cat foo.sql
+SELECT 1;
+mysql -h localhost -P 3306 -u root -pchangeme < foo.sql
+-- ヒアドキュメント
+mysql -h localhost -P 3306 -u root -pchangeme << EOF
+  SELECT 1;
+EOF
+-- パイプ
+echo 'SELECT 1;' | mysql -h localhost -P 3306 -u root -pchangeme
+```
+
 ## データベース
 ```sql
 --　データベース一覧を確認する
