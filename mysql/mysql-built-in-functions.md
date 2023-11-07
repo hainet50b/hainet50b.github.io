@@ -39,6 +39,8 @@ SELECT RPAD('123', 5, '0'); -- 12300
 -- 空白文字の削除
 SELECT LTRIM('   foo   '); -- 'foo   '
 SELECT RTRIM('   foo   '); -- '   foo'
+-- 文字列の置き換え
+SELECT REPLACE('foobar', 'foo', 'bar'); -- barbar
 
 -- 16進数表現
 SELECT HEX('foo'); -- 666F6F
@@ -109,9 +111,13 @@ SELECT DATE_ADD('2000-01-01 00:00:00', INTERVAL 1 SECOND); -- 0時0分1秒
 SELECT DATE_SUB('2000-01-01 00:00:00', INTERVAL 1 YEAR); -- 1999年
 -- 日時同士の加減算
 SELECT TIMESTAMPDIFF(MINUTE, NOW(), DATE_ADD(NOW(), INTERVAL 1 DAY)); -- 1440
+-- 文字列同士でもある程度比較することができる。
+SELECT TIMESTAMPDIFF(MONTH, '20240101', '20250101'); -- 12
 
 -- 日付フォーマット
 SELECT DATE_FORMAT('2000-01-01 00:00:00', '%Y-%m-%dT%H%i%s.%f'); -- 2000-01-01T00:00:00.000000
+-- 文字列を日付に変換
+SELECT STR_TO_DATE('2023/11/06', '%Y/%m/%d');
 ```
 
 ## 型変換／NULL変換
