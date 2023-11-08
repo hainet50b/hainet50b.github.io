@@ -67,6 +67,43 @@ SELECT 1 IN (
 );
 ```
 
+### 複数の値との論理比較（ANY / ALL）
+```sql
+-- いずれかに該当する。
+SELECT 100 > ANY (
+  SELECT 30
+  UNION SELECT 80
+  UNION SELECT 130
+); -- 1
+SELECT 0 > ANY (
+  SELECT 30
+  UNION SELECT 80
+  UNION SELECT 130
+); -- 0
+-- ORを使って書き下すことができる。
+SELECT
+  100 > 30
+  OR 100 > 80
+  OR 100 > 130; -- 1
+
+-- すべてに該当する。
+SELECT 100 > ALL (
+  SELECT 30
+  UNION SELECT 80
+  UNION SELECT 130
+); -- 0
+SELECT 150 > ALL (
+  SELECT 30
+  UNION SELECT 80
+  UNION SELECT 130
+); -- 1
+-- ANDを使って書き下すことができる。
+SELECT
+  100 > 30
+  AND 100 > 80
+  AND 100 > 130; -- 0
+```
+
 ### レコードの存在判定（EXISTS）
 ```sql
 -- 1行のレコードが存在するので真
