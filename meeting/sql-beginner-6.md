@@ -150,8 +150,11 @@ SELECT
 
 -- 比較対象が同一カラムの場合に、検索CASE式は冗長な記述となる。
 SELECT
-  CASE genre
+  CASE
     WHEN genre = '衣服' THEN 'A'
     WHEN genre = '事務用品' THEN 'B'
-    WHEN genre = ''
+    ELSE 'C'
+  END
+FROM
+  items;
 ```
