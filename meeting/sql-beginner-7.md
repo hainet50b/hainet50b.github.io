@@ -409,8 +409,14 @@ SELECT * FROM stock INNER JOIN items ON 1 ORDER BY stock.shop_id, stock.item_id,
 
 ### 外部結合（OUTER JOIN）
 ```sql
+-- INNER JOINではON句の条件で選択されたものだけが出力される。
+-- OUTER JOINではRIGHT / LEFTで基準となるテーブルを選択して、そのテーブルのすべての行を結果に含める。
+-- 多くの場合にマスタテーブルを基準となるテーブルとして選択する。
 SELECT
-  *
+  stock.shop_id,
+  stock.item_id,
+  items.name,
+  stock.amount
 FROM
   stock
   RIGHT OUTER JOIN items
@@ -418,4 +424,97 @@ FROM
 ORDER BY
   stock.shop_id,
   stock.item_id;
+
+-- 圧力鍋、ボールペン、プロテインはどの店舗でも取り扱っていない。
++---------+---------+-----------------------+--------+
+| shop_id | item_id | name                  | amount |
++---------+---------+-----------------------+--------+
+|    NULL |    NULL | 圧力鍋                |   NULL |
+|    NULL |    NULL | ボールペン            |   NULL |
+|    NULL |    NULL | プロテイン            |   NULL |
+|       1 |       1 | Tシャツ               |     30 |
+|       1 |       2 | 穴あけパンチ          |     50 |
+|       1 |       3 | カッターシャツ        |     15 |
+|       2 |       2 | 穴あけパンチ          |     30 |
+|       2 |       3 | カッターシャツ        |    120 |
+|       2 |       4 | 包丁                  |     20 |
+|       2 |       6 | フォーク              |     10 |
+|       2 |       7 | おろしがね            |     40 |
+|       3 |       3 | カッターシャツ        |     20 |
+|       3 |       4 | 包丁                  |     50 |
+|       3 |       6 | フォーク              |     90 |
+|       3 |       7 | おろしがね            |     70 |
+|       4 |       1 | Tシャツ               |    110 |
++---------+---------+-----------------------+--------+
+
+-- 3つ以上のテーブルを外部結合するときはいずれかのテーブルの文脈が消えてしまう。
+-- 以下の在庫に含まれている商品があるが在庫に含まれていない店舗がない場合、内部結合と同じ結果になってしまう。
+SELECT
+  stock.shop_id,
+  shops.name,
+  stock.item_id,
+  items.name,
+  stock.amount
+FROM
+  stock
+  RIGHT OUTER JOIN items
+  ON stock.item_id = items.id
+  RIGHT OUTER JOIN shops
+  ON stock.shop_id = shops.id
+ORDER BY
+  stock.shop_id,
+  stock.item_id;
++---------+-----------+---------+-----------------------+--------+
+| shop_id | name      | item_id | name                  | amount |
++---------+-----------+---------+-----------------------+--------+
+|       1 | 東京      |       1 | Tシャツ               |     30 |
+|       1 | 東京      |       2 | 穴あけパンチ          |     50 |
+|       1 | 東京      |       3 | カッターシャツ        |     15 |
+|       2 | 名古屋    |       2 | 穴あけパンチ          |     30 |
+|       2 | 名古屋    |       3 | カッターシャツ        |    120 |
+|       2 | 名古屋    |       4 | 包丁                  |     20 |
+|       2 | 名古屋    |       6 | フォーク              |     10 |
+|       2 | 名古屋    |       7 | おろしがね            |     40 |
+|       3 | 大阪      |       3 | カッターシャツ        |     20 |
+|       3 | 大阪      |       4 | 包丁                  |     50 |
+|       3 | 大阪      |       6 | フォーク              |     90 |
+|       3 | 大阪      |       7 | おろしがね            |     70 |
+|       4 | 福岡      |       1 | Tシャツ               |    110 |
++---------+-----------+---------+-----------------------+--------+
+```
+
+### 二次元表の直積（CROSS JOIN）
+二次元表の直積を取り扱うことができる。  
+内部結合のON句を1にするのと同じ動作で、内部結合は直積から選択を行なっているとみなすことができる。
+
+```sql
+SELECT
+  *
+FROM
+  (
+    SELECT 1 AS num
+    UNION SELECT 2
+    UNION SELECT 3
+  ) AS numbers
+  CROSS JOIN
+  (
+    SELECT 'foo' AS str
+    UNION SELECT 'bar'
+    UNION SELECT 'baz'
+  ) AS strings
+ORDER BY
+  num, str;
++-----+-----+
+| num | str |
++-----+-----+
+|   1 | bar |
+|   1 | baz |
+|   1 | foo |
+|   2 | bar |
+|   2 | baz |
+|   2 | foo |
+|   3 | bar |
+|   3 | baz |
+|   3 | foo |
++-----+-----+
 ```
