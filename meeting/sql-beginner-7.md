@@ -517,4 +517,34 @@ ORDER BY
 |   3 | baz |
 |   3 | foo |
 +-----+-----+
+
+-- 九九を出力してみると挙動を理解できる。
+SELECT
+  l, r, l * r AS p
+FROM
+  (
+    SELECT 1 AS l
+    UNION SELECT 2
+    UNION SELECT 3
+    UNION SELECT 4
+    UNION SELECT 5
+    UNION SELECT 6
+    UNION SELECT 7
+    UNION SELECT 8
+    UNION SELECT 9
+  ) AS lt
+  CROSS JOIN
+  (
+    SELECT 1 AS r
+    UNION SELECT 2
+    UNION SELECT 3
+    UNION SELECT 4
+    UNION SELECT 5
+    UNION SELECT 6
+    UNION SELECT 7
+    UNION SELECT 8
+    UNION SELECT 9
+  ) AS rt
+ORDER BY
+  l, r, p;
 ```
