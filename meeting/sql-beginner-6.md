@@ -1,4 +1,8 @@
 # SQL Beginner #6（述語・CASE式）
+{:.no_toc}
+
+* toc
+{:toc}
 
 ## 述語
 SQLにおける述語とは真偽値を返却する関数をいう。
