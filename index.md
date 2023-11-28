@@ -24,6 +24,7 @@
 - [Spring RestTemplate/WebClientへのトレースヘッダーの付与](https://hainet50b.github.io/spring/spring-tracing-header-auto-configuration)
 - [Spring Cloud Function](https://hainet50b.github.io/spring/spring-cloud-function)
 - [Spring 公式ドキュメント集](https://hainet50b.github.io/spring/spring-references)
+- [Spring Boot 3.2メモ](https://hainet50b.github.io/spring/spring-boot-3.2)
 
 ### Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
