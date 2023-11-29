@@ -93,6 +93,27 @@ public RestClient restClient(RestClient.Builder builder) {
 }
 ```
 
+## JdbcClientインターフェース
+ドキュメント  
+[Using JdbcClient](https://docs.spring.io/spring-boot/docs/3.2.0/reference/html//data.html#data.sql.jdbc-client){:target="_blank"}
+
+`JdbcTemplate`がBean定義されていることを条件に`JdbcClient`もBean定義される。
+
+```java
+// 特にBean定義を行うことなく注入できる。
+  public SpringBoot32Application(JdbcClient jdbcClient) {
+      this.jdbcClient = jdbcClient;
+  }
+
+// NamedParameterJdbcTemplateと同様の記述を行える。
+JdbcClient.ResultQuerySpec spec = jdbcClient
+        .sql("SELECT * FROM items WHERE id = :id")
+        .param("id", 1)
+        .query();
+
+spec.singleRow(); // Map<String, Object>
+```
+
 ## Virtual Threadsのサポート
 Java 21環境で`spring.threads.virtual.enabled`を`true`に設定するだけで有効にできる。  
 Webスレッド数を絞った状態で、スリープ処理を実施するサンプルエンドポイントに対して並列リクエストを送信すると効果を実感しやすい。
