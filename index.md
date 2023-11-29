@@ -186,7 +186,7 @@
 - [SQL Beginner #5（ビュー・副問い合わせ）](https://hainet50b.github.io/meeting/sql-beginner-5)
 - [SQL Beginner #6（述語・CASE式）](https://hainet50b.github.io/meeting/sql-beginner-6)
 - [SQL Beginner #7（集合演算・結合）](https://hainet50b.github.io/meeting/sql-beginner-7)
-- [SQL Beginner #8（ウィンドウ関数）](https://hainet50b.github.io/meeting/sql-beginner-8)
+- [SQL Beginner #8（ウィンドウ関数・GROUPING演算子）](https://hainet50b.github.io/meeting/sql-beginner-8)
 - [SQL Index Beginner #1（インデックスの内部構造）](https://hainet50b.github.io/meeting/sql-index-beginner-8)
 
 ### About @hainet50b
