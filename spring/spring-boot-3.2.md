@@ -124,3 +124,9 @@ spring:
     virtual:
       enabled: true
 ```
+
+## JVMのチェックポイント & リストア対応
+ドキュメント  
+[Checkpoint and Restore With the JVM](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#deployment.efficient.checkpoint-restore){:target="_blank"}
+
+TODO
