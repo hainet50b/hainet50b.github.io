@@ -78,6 +78,25 @@ public class AppConfig {
         return factory.createClient(UserClient.class);
     }
 }
+
+// RestTemplateベース
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public HttpServiceProxyFactory httpServiceProxyFactory(RestTemplateBuilder builder) {
+        RestTemplate restTemplate = builder
+                .rootUri("http://localhost:8080")
+                .build();
+
+        return HttpServiceProxyFactory.builderFor(RestTemplateAdapter.create(restTemplate)).build();
+    }
+
+    @Bean
+    public UserClient userClient(HttpServiceProxyFactory factory) {
+        return factory.createClient(UserClient.class);
+    }
+}
 ```
 
 ## タイムアウト設定
