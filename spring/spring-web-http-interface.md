@@ -39,8 +39,9 @@ public interface UserClient {
 
 ## DIコンテナへの登録
 ```java
+// WebClientベース
 @Configuration
-public class WebClientConfig {
+public class AppConfig {
 
     @Bean
     public HttpServiceProxyFactory httpServiceProxyFactory(WebClient.Builder builder) {
@@ -49,6 +50,26 @@ public class WebClientConfig {
                 .build();
 
         return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient)).build();
+    }
+
+    // WebClientとHTTP Interfaceは1対nの関係性になるためBean定義を分ける
+    @Bean
+    public UserClient userClient(HttpServiceProxyFactory factory) {
+        return factory.createClient(UserClient.class);
+    }
+}
+
+// RestClientベース
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public HttpServiceProxyFactory httpServiceProxyFactory(RestClient.Builder builder) {
+        RestClient restClient = builder
+                .baseUrl("http://localhost:8080")
+                .build();
+
+        return HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient)).build();
     }
 
     // WebClientとHTTP Interfaceは1対nの関係性になるためBean定義を分ける
