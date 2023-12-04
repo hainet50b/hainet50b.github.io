@@ -78,6 +78,7 @@
 - [URLエンコード・デコード（nkf）](https://hainet50b.github.io/terminal/url-encode)
 - [RSA秘密鍵/公開鍵の作成](https://hainet50b.github.io/terminal/rsa-key)
 - [SSH鍵の作成](https://hainet50b.github.io/terminal/ssh-key)
+- [opensslコマンドによるサーバー証明書確認](https://hainet50b.github.io/terminal/check-certificate)
 - [Starship](https://hainet50b.github.io/terminal/starship)
 - [Dotfiles \| GitHub](https://github.com/hainet50b/Dotfiles){:target="_blank"}
 
