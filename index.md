@@ -180,6 +180,7 @@
 - [Java Beginner #1（コンパイル）](https://hainet50b.github.io/meeting/java-beginner-1)
 - [Java Beginner #5（オブジェクト指向）](https://hainet50b.github.io/meeting/java-beginner-5)
 - [Java Beginner #6（クラス定義・オブジェクト生成）](https://hainet50b.github.io/meeting/java-beginner-6)
+- [Java Beginner #7（継承）](https://hainet50b.github.io/meeting/java-beginner-7)
 - [SQL Beginner #1（テーブルとカラムの操作）](https://hainet50b.github.io/meeting/sql-beginner-1)
 - [SQL Beginner #2（選択と射影、演算子）](https://hainet50b.github.io/meeting/sql-beginner-2)
 - [SQL Beginner #3（集約）](https://hainet50b.github.io/meeting/sql-beginner-3)
