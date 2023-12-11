@@ -28,6 +28,13 @@ scp pmacho_user@pmacho_host:/path/to/remote_directory /path/to/local_file
 | -i | 秘密鍵を指定して転送 | scp -i ~/.ssh/id_ed25519 ... |
 | -p | ディレクトリを再起的に転送 | scp -p ... |
 
+## telnetでTCPコネクションの確立を確認する
+```shell
+telnet pages.programacho.com 443
+Trying 185.199.110.153...
+Connected to hainet50b.github.io.
+```
+
 ## tar.gzファイルを展開／作成する
 ```shell
 # アーカイブを展開
