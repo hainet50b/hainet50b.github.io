@@ -112,6 +112,8 @@ logging:
 ```
 
 ## Springプロパティを取得する
+参考：[Environment Properties](https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/boot-features-logging.html#_environment_properties){:target="_blank"}
+
 ```xml
 <springProperty
         name="appName"
