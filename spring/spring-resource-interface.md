@@ -1,4 +1,4 @@
-# Spring Resource Interface
+# Spring Resourceインターフェース
 サンプルリポジトリ：[spring-resource-interface | GitHub](https://github.com/hainet50b/spring-gym/tree/main/spring-core-gym/spring-resource-interface){:target="_blank"}
 
 ## ClassPathResource

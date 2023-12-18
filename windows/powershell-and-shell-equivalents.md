@@ -34,6 +34,15 @@ ls | Out-String -Stream
 function ll { ls | Out-String -Stream }
 ```
 
+## nslookup / Resolve-DnsName - 名前解決を行う
+```
+# Shell
+nslookup pages.programacho.com
+
+# PowerShell
+Resolve-DnsName pages.programacho.com
+```
+
 ## lsof / netstat - ポートの使用状況を確認
 
 参考：[netstat \| Microsoft Learn](https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/netstat){:target="_blank"}

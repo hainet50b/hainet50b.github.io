@@ -1,4 +1,4 @@
-# Spring Web HTTP Interface (WebClient)
+# Spring Web HTTP Interface
 {:.no_toc}
 
 * toc
