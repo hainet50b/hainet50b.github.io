@@ -30,6 +30,18 @@ git reset --hard HEAD~1
 git revert f252042
 ```
 
+## 特定のコミットハッシュ同士を比較する
+単純に `git diff` コマンドで達成できる。
+
+```shell
+git log --oneline
+aaaaaaa (HEAD -> main) foo
+bbbbbbb bar
+...
+
+git diff aaaaaaa bbbbbbb
+```
+
 ## 複数のコミットを一つにまとめる
 サンプルとして以下の4つのコミットを作成する。
 
