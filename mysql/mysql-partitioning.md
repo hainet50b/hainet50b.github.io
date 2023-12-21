@@ -22,6 +22,21 @@ PARTITION BY RANGE COLUMNS(monthly_partition) (
 );
 ```
 
+動的なパーティション振り分けも可能であるが、運用上使用しない。
+```sql
+CREATE TABLE emp (
+  id BIGINT AUTO_INCREMENT,
+  name VARCHAR(64) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY(id, created_at)
+)
+PARTITION BY RANGE (YEAR(created_at) * 100 + MONTH(created_at)) (
+  PARTITION p202401 VALUES LESS THAN (202401),
+  PARTITION p202402 VALUES LESS THAN (202402),
+  PARTITION p202403 VALUES LESS THAN (202403)
+);
+```
+
 ## パーティション追加
 ```sql
 ALTER TABLE pmacho_table
