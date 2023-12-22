@@ -178,3 +178,10 @@ netstat -ano | grep 3306
   TCP         127.0.0.1:61685        127.0.0.1:3306         ESTABLISHED     21180
   TCP         127.0.0.1:61686        127.0.0.1:3306         ESTABLISHED     21180
 ```
+
+## コマンドをバックグランドで実行（nohup + &）
+```shell
+# nohup ターミナルを閉じてもプロセスを終了しない
+# & コマンドをバックグラウンドで実行する
+nohup java -jar pmacho.jar &
+```
