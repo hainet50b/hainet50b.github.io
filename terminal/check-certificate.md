@@ -14,4 +14,8 @@ openssl s_client -connect pages.programacho.com:443 -showcerts \
 -- サーバー証明書の有効期限のみ出力
 openssl s_client -connect pages.programacho.com:443 -showcerts \
 | openssl x509 -dates -noout
+
+# notBefore / notAfterに注目する
+notBefore=Dec  5 01:33:12 2023 GMT
+notAfter=Mar  4 01:33:11 2024 GMT
 ```
