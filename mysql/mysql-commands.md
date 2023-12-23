@@ -152,6 +152,9 @@ CREATE TABLE emp (
     name VARCHAR(255) NOT NULL
 );
 
+-- テーブル名を変更する
+ALTER TABLE foo RENAME TO bar;
+
 -- カラムを変更する
 ALTER TABLE emp MODIFY name VARCHAR(1024);
 
