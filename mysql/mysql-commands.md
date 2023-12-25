@@ -194,6 +194,9 @@ UPDATE emp SET name = 'programacho' WHERE name = 'hainet50b';
 
 -- レコードを削除する（DELETE）
 DELETE FROM emp WHERE name = 'programacho';
+
+-- すべてのレコードを削除する（TRUNCATE）
+TRUNCATE TABLE emp;
 ```
 
 ## トランザクション
