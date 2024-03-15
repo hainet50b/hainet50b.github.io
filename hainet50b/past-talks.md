@@ -42,12 +42,12 @@
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/188228614ba443b1af87e9cdd25c3755" title="2018.4.18 - GraphQLが格好良さそうだったので、Springで入門したら躓いた話" allowfullscreen="true" style="border: 0px; background: padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 ## JSUG（日本Springユーザ会）運営
-- （司会）2024年2月2日 JSUG勉強会 2024年 その1 ¥| [イベントページ](https://jsug.doorkeeper.jp/events/168753){:target="_blank"} [動画](https://www.youtube.com/live/opxXtDzdjMc?si=6xFCR5cHzj2f8cU8){:target="_blank"}
-- （司会）2023年12年11日 JSUG勉強会 2023年 その3 ¥| [イベントページ](https://jsug.doorkeeper.jp/events/166518){:target="_blank"} [動画](https://www.youtube.com/live/8YvUx_FMu54?si=g1pN-aNt_OI8CUEs){:target="_blank"}
-- （運営）2023年3月17日 Spring Fest 2023 ¥| [公式ページ](https://springfest2023.springframework.jp){:target="_blank"} [イベントページ](https://jsug.doorkeeper.jp/events/151363){:target="_blank"} [動画1](https://www.youtube.com/live/wLgEG0jzxBA?si=QvplGkYZHsjjlR9v){:target="_blank"} [動画2](https://www.youtube.com/live/lg1ycXsDbEI?si=zUpedlUx5Ve47I7p){:target="_blank"} [動画3](https://www.youtube.com/live/wTqU_H409lc?si=T_jsvjVui8HDO97C){:target="_blank"}
-- （司会）2023年2月17日 JSUG勉強会 2023年 その1 ¥| [イベントページ](https://jsug.doorkeeper.jp/events/151317){:target="_blank"} [動画](https://www.youtube.com/live/yjJ1jyvEaOI?si=0wH_Z1NJIRCqlN7Q){:target="_blank"}
+- （司会）2024年2月2日 JSUG勉強会 2024年 その1 \| [イベントページ](https://jsug.doorkeeper.jp/events/168753){:target="_blank"} [動画](https://www.youtube.com/live/opxXtDzdjMc?si=6xFCR5cHzj2f8cU8){:target="_blank"}
+- （司会）2023年12年11日 JSUG勉強会 2023年 その3 \| [イベントページ](https://jsug.doorkeeper.jp/events/166518){:target="_blank"} [動画](https://www.youtube.com/live/8YvUx_FMu54?si=g1pN-aNt_OI8CUEs){:target="_blank"}
+- （運営）2023年3月17日 Spring Fest 2023 \| [公式ページ](https://springfest2023.springframework.jp){:target="_blank"} [イベントページ](https://jsug.doorkeeper.jp/events/151363){:target="_blank"} [動画1](https://www.youtube.com/live/wLgEG0jzxBA?si=QvplGkYZHsjjlR9v){:target="_blank"} [動画2](https://www.youtube.com/live/lg1ycXsDbEI?si=zUpedlUx5Ve47I7p){:target="_blank"} [動画3](https://www.youtube.com/live/wTqU_H409lc?si=T_jsvjVui8HDO97C){:target="_blank"}
+- （司会）2023年2月17日 JSUG勉強会 2023年 その1 \| [イベントページ](https://jsug.doorkeeper.jp/events/151317){:target="_blank"} [動画](https://www.youtube.com/live/yjJ1jyvEaOI?si=0wH_Z1NJIRCqlN7Q){:target="_blank"}
 
 ## 記事掲載など
-- 2024年2月5日 EnterpriseZine ¥| [決済システムに「TiDB」を採用したSBペイメントサービス　ミッションクリティカル環境で主流になるか](https://enterprisezine.jp/article/detail/18980){:target="_blank"}
+- 2024年2月5日 EnterpriseZine \| [決済システムに「TiDB」を採用したSBペイメントサービス　ミッションクリティカル環境で主流になるか](https://enterprisezine.jp/article/detail/18980){:target="_blank"}
 
 ![18980_1200b.png](https://ez-cdn.shoeisha.jp/static/images/article/18980/18980_1200b.png)
