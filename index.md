@@ -99,6 +99,7 @@
 - [MySQL よく使うコマンド](https://hainet50b.github.io/mysql/mysql-commands)
 - [MySQL Dockerコンテナ](https://hainet50b.github.io/mysql/mysql-docker-container)
 - [MySQL インデックス管理](https://hainet50b.github.io/mysql/mysql-indexes)
+- [MySQL 実行計画](https://hainet50b.github.io/mysql/mysql-plans)
 - [MySQL パーティション管理](https://hainet50b.github.io/mysql/mysql-partitioning)
 - [MySQL セッション管理](https://hainet50b.github.io/mysql/mysql-sessions)
 - [MySQL SQL関数](https://hainet50b.github.io/mysql/mysql-built-in-functions)
