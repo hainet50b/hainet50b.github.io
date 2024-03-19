@@ -9,7 +9,7 @@ EXPLAIN ANALYZE句を使用することでOracleの実行計画のようにア�
 
 ```sql
 -- SELECT
-EXPLAIN ANALYZE SELECT
+SELECT
   ts.id,
   ts.transaction_id,
   ms.merchant_id,
