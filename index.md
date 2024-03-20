@@ -82,6 +82,10 @@
 - [Starship](https://hainet50b.github.io/terminal/starship)
 - [Dotfiles \| GitHub](https://github.com/hainet50b/Dotfiles){:target="_blank"}
 
+### Vim
+- [vi コマンド](https://hainet50b.github.io/vim/vi-commands)
+- [ex コマンド](https://hainet50b.github.io/vim/ex-commands)
+
 ### Docker
 - [Docker環境の構築](https://hainet50b.github.io/docker/setting-up-docker)
 - [よく使うDockerコンテナ](https://hainet50b.github.io/docker/docker-containers)
