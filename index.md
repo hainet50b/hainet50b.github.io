@@ -14,6 +14,7 @@
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
 - [Spring Web HTTPSサーバーの構築](https://hainet50b.github.io/spring/spring-web-https-server)
 - [Spring Scheduling Tasks](https://hainet50b.github.io/spring/spring-scheduling-tasks)
+- [Spring Boot Jolokia](https://hainet50b.github.io/spring/spring-boot-jolokia)
 - [Spring JDBC JdbcTemplate BLOB/CLOBの取り扱い（LobHandler / RowMapper）](https://hainet50b.github.io/spring/spring-jdbc-jdbctemplate-lob)
 - [Spring Security PasswordEncoder](https://hainet50b.github.io/spring/spring-security-passwordencoder)
 - [Lobback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
