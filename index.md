@@ -17,7 +17,7 @@
 - [Spring Boot Jolokia](https://hainet50b.github.io/spring/spring-boot-jolokia)
 - [Spring JDBC JdbcTemplate BLOB/CLOBの取り扱い（LobHandler / RowMapper）](https://hainet50b.github.io/spring/spring-jdbc-jdbctemplate-lob)
 - [Spring Security PasswordEncoder](https://hainet50b.github.io/spring/spring-security-passwordencoder)
-- [Lobback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
+- [Logback with Spring Boot](https://hainet50b.github.io/spring/logback-spring-boot)
 - [Log4j2 with Spring Boot](https://hainet50b.github.io/spring/log4j2-spring-boot)
 - [Spring AMQP入門](https://hainet50b.github.io/spring/spring-amqp-intro)
 - [Spring Cloud Stream Binder Rabbit入門](https://hainet50b.github.io/spring/spring-cloud-stream-binder-rabbit-intro)
