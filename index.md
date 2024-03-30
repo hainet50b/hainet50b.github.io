@@ -64,8 +64,10 @@
 ### Observability
 - [Apache SkyWalkingのセットアップ](https://hainet50b.github.io/observability/apache-skywalking-setup)
 
-### UML
-- [PlantUML](https://hainet50b.github.io/uml/plantuml)
+### モデリング
+- [Mermaid CLI](https://hainet50b.github.io/modeling/mermaid-cli)
+- [Mermaid Gitgraph](https://hainet50b.github.io/modeling/mermaid-gitgraph)
+- [PlantUML](https://hainet50b.github.io/modeling/plantuml)
 
 ## ターミナル
 
