@@ -26,6 +26,8 @@ gitGraph
    commit id: "baz"
 ```
 
+![mermaid-gitgraph-commit.png](https://programacho.blob.core.windows.net/images/mermaid-gitgraph-commit.png)
+
 ### ブランチ
 ```mermaid
 ---
@@ -49,3 +51,5 @@ gitGraph
    commit
    commit
 ```
+
+![mermaid-gitgraph-branch.png](https://programacho.blob.core.windows.net/images/mermaid-gitgraph-branch.png)
