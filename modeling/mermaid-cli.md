@@ -5,7 +5,7 @@
 {:toc}
 
 ## ドキュメント
-- [mermaid-cli \| GitHub](https://github.com/mermaid-js/mermaid-cli){:target="_blank"}
+- [mermaid-js/mermaid-cli \| GitHub](https://github.com/mermaid-js/mermaid-cli){:target="_blank"}
 
 ## セットアップ
 ```shell

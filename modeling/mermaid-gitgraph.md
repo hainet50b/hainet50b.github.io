@@ -5,7 +5,7 @@
 {:toc}
 
 ## ドキュメント
-- [Gitgraph Diagrams](https://mermaid.js.org/syntax/gitgraph.html){:target="_blank"}
+- [Gitgraph Diagrams \| Mermaid](https://mermaid.js.org/syntax/gitgraph.html){:target="_blank"}
 
 ## 使い方
 
