@@ -1,4 +1,4 @@
-# Gitブランチ戦略（GitHub Flow / Git Glow）
+# Gitブランチ戦略（GitHub Flow / Git Flow）
 
 ## GitHub Flow
 参考：[GitHub Flow - Scott Chacon](https://scottchacon.com/2011/08/31/github-flow/){:target="_blank"} ([日本語訳](https://gist.github.com/repeatedly/4554765){:target="_blank"})
