@@ -28,6 +28,7 @@
 - [Spring Boot 3.2メモ](https://hainet50b.github.io/spring/spring-boot-3.2)
 
 ### Java
+- [Javaの動向（サポート・アップデートなど）](https://hainet50b.github.io/java/java-trends)
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
 - [Java 暗号化・復号（AES256, RSA）](https://hainet50b.github.io/java/java-cipher)
 - [Java スレッドダンプ解析](https://hainet50b.github.io/java/java-threaddump)
