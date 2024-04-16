@@ -39,7 +39,7 @@
 | Liberica JDK | BellSoft | [https://bell-sw.com/pages/downloads/](https://bell-sw.com/pages/downloads/){:target="_blank"} |
 
 ## アップデート
-TODO
+- [Java 11までの変更点](https://hainet50b.github.io/java/java-11)
 
 ## コミュニティ
 日本Javaユーザーグループ（JJUG）のセミナーでトレンドを押さえておくこと。
