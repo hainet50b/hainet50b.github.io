@@ -8,7 +8,7 @@
 
 ### varによる型推論の導入
 ローカル変数で型推論ができるようになった。  
-現時点では、明確な意図がない場合は使用しない方が良い見解である。
+現時点では、明確な意図がない場合は使用しない方が良いと考えている。
 
 ```java
 var value = "foo";
@@ -138,6 +138,12 @@ Optional.of("foo").ifPresentOrElse(
             throw new RuntimeException();
         }
 ); // foo
+Optional.empty().ifPresentOrElse(
+        System.out::println,
+        () -> {
+            throw new RuntimeException();
+        }
+); // RuntimeException
 
 // or
 Optional.of("foo").or(() -> Optional.of("bar")); // foo
@@ -162,5 +168,5 @@ users
 // not
 not(b -> (boolean) b).test(true); // false
 // !演算子と異なり、メソッド参照に適用できる。
-Stream.of("", "foo", "bar", "baz").filter(not(String::isEmpty)).collect(Collectors.toList()); // [foo, bar, baz]
+Stream.of("", "foo", "bar").filter(not(String::isEmpty)).collect(Collectors.toList()); // [foo, bar]
 ```
