@@ -26,6 +26,7 @@
 - [Java 21 Overview](https://speakerdeck.com/line_developers/java-21-overview){:target="_blank"}
 
 ## ディストリビューション
+
 | ディストリビューション | 提供元 | 公式ページ |
 | :-- | :-- | :-- |
 | Oracle OpenJDK | Oracle | [https://jdk.java.net/](https://jdk.java.net/){:target="_blank"} |
