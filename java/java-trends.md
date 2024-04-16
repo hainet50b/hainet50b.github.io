@@ -44,4 +44,4 @@ TODO
 ## コミュニティ
 日本Javaユーザーグループ（JJUG）のセミナーでトレンドを押さえておくこと。
 - 公式ページ：[日本Javaユーザーグループ](https://www.java-users.jp/){:target="_blank"}
-- Doorkeeper：[日本Javaユーザーグループ |\ Doorkeeper](https://jjug.doorkeeper.jp/){:target="_blank"}
+- Doorkeeper：[日本Javaユーザーグループ \| Doorkeeper](https://jjug.doorkeeper.jp/){:target="_blank"}
