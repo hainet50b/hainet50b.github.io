@@ -44,6 +44,16 @@ List<String> values = new ArrayList<>() {{
 
 ## API
 
+### HttpClient
+新たにHttpClientインターフェースが追加された。HttpURLConnectionと比較して大幅に読みやすくなっている。
+
+```java
+HttpClient httpClient = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder(URI.create("http://example.com")).build();
+
+HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+```
+
 ### String
 ```java
 // repeat
@@ -169,4 +179,31 @@ users
 not(b -> (boolean) b).test(true); // false
 // !演算子と異なり、メソッド参照に適用できる。
 Stream.of("", "foo", "bar").filter(not(String::isEmpty)).collect(Collectors.toList()); // [foo, bar]
+```
+
+## 機能
+
+### JShell
+JavaにおけるREPLに該当するJShellが追加された。
+
+```jshell
+❯ jshell
+|  JShellへようこそ -- バージョン21.0.1
+|  概要については、次を入力してください: /help intro
+
+jshell> var value = "foo"
+value ==> "foo"
+
+jshell> System.out.println(value)
+foo
+
+jshell> /exit
+|  終了します
+```
+
+### 単一Javaファイルのjavaコマンドによる直接実行
+```shell
+echo 'public class Main { public static void main(String[] args) { System.out.println("foo"); } }' > Main.java
+java ./Main.java
+foo
 ```
