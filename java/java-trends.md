@@ -40,6 +40,7 @@
 
 ## アップデート
 - [Java 11までの変更点](https://hainet50b.github.io/java/java-11){:target="_blank"}
+- [Java 17までの変更点](https://hainet50b.github.io/java/java-17){:target="_blank"}
 
 ## コミュニティ
 日本Javaユーザーグループ（JJUG）のセミナーでトレンドを押さえておくこと。

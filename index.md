@@ -28,8 +28,6 @@
 - [Spring Boot 3.2メモ](https://hainet50b.github.io/spring/spring-boot-3.2)
 
 ### Java
-- [Javaの動向（サポート・アップデートなど）](https://hainet50b.github.io/java/java-trends)
-- [Java 11までの変更点](https://hainet50b.github.io/java/java-11)
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
 - [Java 暗号化・復号（AES256, RSA）](https://hainet50b.github.io/java/java-cipher)
 - [Java スレッドダンプ解析](https://hainet50b.github.io/java/java-threaddump)
@@ -45,6 +43,11 @@
 - [jarコマンドでJarの中身を差し替える](https://hainet50b.github.io/java/java-jar-command)
 - [Java 公式ドキュメント集](https://hainet50b.github.io/java/java-references)
 - [JUnit 5](https://hainet50b.github.io/java/java-junit5)
+
+### Javaアップデート情報
+- [Javaの動向（サポート・アップデートなど）](https://hainet50b.github.io/java/java-trends)
+- [Java 11までの変更点](https://hainet50b.github.io/java/java-11)
+- [Java 17までの変更点](https://hainet50b.github.io/java/java-17)
 
 ### Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
