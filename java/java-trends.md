@@ -7,7 +7,7 @@
 ## サポート
 押さえておくべきことは以下の3点。
 - "Oracle OpenJDK"と"Oracle JDK"は別物である。
-- Oracle OpenJDKはリリースされてから計2回のアップデートリリースが提供される。
+- Oracle OpenJDKは次期バージョンがリリースされるまで計2回のアップデートリリースが提供される。
   - とはいえCritical Patch Updatesは継続して提供されており更新状況は随時確認する必要がある。
   - [Critical Patch Updates, Security Alerts and Bulletins](https://www.oracle.com/in/security-alerts/){:target="_blank"}
   - [Welcome to OpenJDK 11 Updates!](https://wiki.openjdk.org/display/JDKUpdates/JDK11u){:target="_blank"}
