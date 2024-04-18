@@ -25,7 +25,7 @@ public class AkihabaraPedestrianParadiseService {
 class AkihabaraPedestrianParadiseServiceTest {
 
     @ParameterizedTest
-    @MethodSource("validWeeksAndTimes")
+    @MethodSource("validWeeksTimesAndWeather")
     void 秋葉原電気街の歩行者天国が開催中である(DayOfWeek week, LocalTime time, boolean sunny) {
         AkihabaraPedestrianParadiseService sut = new AkihabaraPedestrianParadiseService();
 
@@ -35,7 +35,7 @@ class AkihabaraPedestrianParadiseServiceTest {
     }
 
     @ParameterizedTest
-    @MethodSource("invalidWeeksAndTimes")
+    @MethodSource("invalidWeeksTimesAndWeather")
     void 秋葉原電気街の歩行者天国が開催中でない(DayOfWeek week, LocalTime time, boolean sunny) {
         AkihabaraPedestrianParadiseService sut = new AkihabaraPedestrianParadiseService();
 
@@ -44,18 +44,20 @@ class AkihabaraPedestrianParadiseServiceTest {
         Assertions.assertFalse(actual);
     }
 
-    static Stream<Arguments> validWeeksAndTimes() {
+    static Stream<Arguments> validWeeksTimesAndWeather() {
         return Stream.of(
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(13, 0), true),
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(17, 59), true)
         );
     }
 
-    static Stream<Arguments> invalidWeeksAndTimes() {
+    static Stream<Arguments> invalidWeeksTimesAndWeather() {
         return Stream.of(
+                // 条件を満たさない場合
                 arguments(DayOfWeek.MONDAY, LocalTime.of(13, 0), true),
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(18, 0), true),
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(13, 0), false),
+                // 境界値分析
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(12, 59), true),
                 arguments(DayOfWeek.SUNDAY, LocalTime.of(18, 0), true)
         );
