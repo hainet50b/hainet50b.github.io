@@ -39,6 +39,7 @@
 | Liberica JDK | BellSoft | [https://bell-sw.com/pages/downloads/](https://bell-sw.com/pages/downloads/){:target="_blank"} |
 
 ## アップデート
+- [JEP 0: JEP Index](https://openjdk.org/jeps/0){:target="_blank"}
 - [Java 11までの変更点](https://hainet50b.github.io/java/java-11){:target="_blank"}
 - [Java 17までの変更点](https://hainet50b.github.io/java/java-17){:target="_blank"}
 
