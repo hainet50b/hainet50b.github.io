@@ -38,6 +38,28 @@
 | Azul Zulu OpenJDK | Azul | [https://www.azul.com/downloads/#zulu](https://www.azul.com/downloads/#zulu){:target="_blank"} |
 | Liberica JDK | BellSoft | [https://bell-sw.com/pages/downloads/](https://bell-sw.com/pages/downloads/){:target="_blank"} |
 
+現在使用しているディストリビューションはjavaコマンドで確認できる。
+
+```shell
+# Oracle OpenJDK
+java -version
+openjdk version "21.0.1" 2023-10-17
+OpenJDK Runtime Environment (build 21.0.1+12-29)
+OpenJDK 64-Bit Server VM (build 21.0.1+12-29, mixed mode, sharing)
+
+# Oracle JDK
+java -version
+java version "21.0.3" 2024-04-16 LTS
+Java(TM) SE Runtime Environment (build 21.0.3+7-LTS-152)
+Java HotSpot(TM) 64-Bit Server VM (build 21.0.3+7-LTS-152, mixed mode, sharing
+
+# Temurin
+java -version
+openjdk version "21.0.3" 2024-04-16 LTS
+OpenJDK Runtime Environment Temurin-21.0.3+9 (build 21.0.3+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.3+9 (build 21.0.3+9-LTS, mixed mode, sharing)
+```
+
 ## アップデート
 - [JEP 0: JEP Index](https://openjdk.org/jeps/0){:target="_blank"}
 - [Java 11までの変更点](https://hainet50b.github.io/java/java-11){:target="_blank"}
