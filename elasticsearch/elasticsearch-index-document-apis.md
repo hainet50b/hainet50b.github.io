@@ -4,8 +4,6 @@
 * toc
 {:toc}
 
-公式ドキュメント：
-
 ## インデックスAPI
 公式ドキュメント：[Index APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html){:target="_blank"}
 
