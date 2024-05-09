@@ -141,7 +141,7 @@
 - [Raftアルゴリズム](https://hainet50b.github.io/tidb/raft-algorithm)
 
 ### Elasticsearch
-- [Elasticsearch CRUD](https://hainet50b.github.io/elasticsearch/elasticsearch-crud)
+- [Elasticsearch インデックス／ドキュメントAPI](https://hainet50b.github.io/elasticsearch/elasticsearch-index-document-apis)
 
 ### RabbitMQ
 - [RabbitMQ Dockerコンテナ](https://hainet50b.github.io/rabbitmq/rabbitmq-docker-container)
