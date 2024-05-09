@@ -4,7 +4,7 @@
 * toc
 {:toc}
 
-仕様に従ったHTTPリクエストを送信することでHTTPレスポンスを受信できる。
+telnetでもHTTPの仕様に従ったHTTPリクエストを送信することでHTTPレスポンスを確認できる。
 
 ```
 telnet example.com 80
