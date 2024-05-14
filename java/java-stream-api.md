@@ -4,7 +4,7 @@
 * toc
 {:toc}
 
-## Comapator（sorted / min / max）
+## Comparator（sorted / min / max）
 ```java
 List<String> values = List.of("foo", "bar", "baz");
 
