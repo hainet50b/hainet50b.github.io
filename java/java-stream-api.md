@@ -81,9 +81,9 @@ users.stream()
 ```
 
 ## Collectors
+```java
 List<String> values = List.of("foo", "bar", "baz");
 
-```java
 // Stream#collect
 // <R> R collect(Supplier<R> supplier,
 //         BiConsumer<R, ? super T> accumulator,
