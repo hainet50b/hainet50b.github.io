@@ -29,6 +29,7 @@
 
 ### Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
+- [Java Stream API](https://hainet50b.github.io/java/java-stream-api)
 - [Java 暗号化・復号（AES256, RSA）](https://hainet50b.github.io/java/java-cipher)
 - [Java スレッドダンプ解析](https://hainet50b.github.io/java/java-threaddump)
 - [Java GCログ解析](https://hainet50b.github.io/java/java-gclog)
