@@ -79,3 +79,55 @@ users.stream()
         .sorted(Comparator.comparing(User::age).thenComparing(User::name))
         .toList();
 ```
+
+## Collectors
+List<String> values = List.of("foo", "bar", "baz");
+
+```java
+// Stream#collect
+// <R> R collect(Supplier<R> supplier,
+//         BiConsumer<R, ? super T> accumulator,
+//         BiConsumer<R, R> combiner)
+values.stream()
+        .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+// Collectors#toList
+// return new CollectorImpl<>(ArrayList::new, List::add,
+//         (left, right) -> { left.addAll(right); return left; },
+//         CH_ID);
+values.stream()
+        .collect(Collectors.toList());
+
+// Collectors#toSet
+// return new CollectorImpl<>(HashSet::new, Set::add,
+//         (left, right) -> {
+//             if (left.size() < right.size()) {
+//                 right.addAll(left); return right;
+//             } else {
+//                 left.addAll(right); return left;
+//             }
+//         },
+//         CH_UNORDERED_ID);
+values.stream()
+        .collect(Collectors.toSet());
+
+public record User(String name, Integer age) {
+}
+
+List<User> users = List.of(new User("haient50b", 31));
+
+// グループ化
+// Map<Integer, List<User>>
+users.stream()
+        .collect(Collectors.groupingBy(User::age));
+
+// オブジェクトを展開してグループ化
+// Map<Integer, List<String>>
+users.stream()
+        .collect(Collectors.groupingBy(User::age, Collectors.mapping(User::name, Collectors.toList())));
+
+// 結果を畳み込んでグループ化
+// Map<String, Optional<User>>
+users.stream()
+        .collect(Collectors.groupingBy(User::name, Collectors.reducing(BinaryOperator.maxBy(Comparator.comparing(User::age)))));
+```
