@@ -27,6 +27,9 @@
 - [Spring 公式ドキュメント集](https://hainet50b.github.io/spring/spring-references)
 - [Spring Boot 3.2メモ](https://hainet50b.github.io/spring/spring-boot-3.2)
 
+### Javaの基礎
+- [Java - メソッドパラメータの値渡し](https://hainet50b.github.io/java/java-pass-by-value)
+
 ### Java
 - [Java List Interface](https://hainet50b.github.io/java/java-list-interface)
 - [Java Stream API](https://hainet50b.github.io/java/java-stream-api)
