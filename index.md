@@ -9,6 +9,9 @@
 
 ## プログラミング
 
+### Spring Projects
+- [Spring Data Elasticsearch](https://hainet50b.github.io/spring/spring-data-elasticsearch)
+
 ### Spring
 - [Spring Resourceインターフェース](https://hainet50b.github.io/spring/spring-resource-interface)
 - [Spring Web HTTP Interface](https://hainet50b.github.io/spring/spring-web-http-interface)
