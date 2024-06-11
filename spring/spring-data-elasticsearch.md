@@ -20,6 +20,7 @@
 公式ドキュメント：[Elasticsearch Clients :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/clients.html){:target="_blank"}
 
 `ElasticsearchConfiguration` を拡張したクラスで `clientConfiguration` メソッドをオーバーライドする。
+
 ```java
 @Configuration
 public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
@@ -34,6 +35,7 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 ```
 
 ビルダーはHTTPS通信やBasic認証にも対応している。
+
 ```java
 @Configuration
 public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
@@ -50,6 +52,7 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 ```
 
 開発環境で証明書検証を無効化する場合は `SSLContect` をロードして対応する。
+
 ```java
 @Configuration
 public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
@@ -96,6 +99,7 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 公式ドキュメント：[Elasticsearch Object Mapping :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/object-mapping.html){:target="_blank"}
 
 操作対象インデックスをSpELで動的に指定できる。  
+
 ```java
 @Document(indexName = "users-#{T(java.time.LocalDate).now().format(T(java.time.format.DateTimeFormatter).ofPattern(\"yyyy.MM.dd\"))}")
 public class User {
@@ -129,6 +133,7 @@ public class User {
 公式ドキュメント：[Elasticsearch Operations :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/template.html){:target="_blank"}
 
 `ElasticsearchOperations` を注入して使用する。
+
 ```java
 @Service
 public class UserService {
