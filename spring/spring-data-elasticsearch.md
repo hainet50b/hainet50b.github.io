@@ -6,6 +6,7 @@
 
 ## 課題メモ
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
+- インデックスを横断して検索する方法を探りたい。
 
 ## 依存関係の追加
 ```xml
@@ -95,7 +96,6 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 公式ドキュメント：[Elasticsearch Object Mapping :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/object-mapping.html){:target="_blank"}
 
 操作対象インデックスをSpELで動的に指定できる。  
-TODO: インデックスを横断して検索する方法
 ```java
 @Document(indexName = "users-#{T(java.time.LocalDate).now().format(T(java.time.format.DateTimeFormatter).ofPattern(\"yyyy.MM.dd\"))}")
 public class User {
@@ -148,7 +148,11 @@ public class UserService {
 ### GET /users（全件検索）
 ```java
 SearchHits<User> hits = elasticsearchOperations.search(new CriteriaQuery(new Criteria()), User.class);
-System.out.println(hits.getTotalHits()); // >= 1
+hits.forEach(h -> {
+    System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
+    System.out.println(h.getContent().getId()); // 1, ...
+    System.out.println(h.getContent().getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+});
 ```
 
 ### GET /users/:id（Elasticsearch IDによる単数検索）
@@ -164,9 +168,9 @@ Criteria criteria = new Criteria("id").is(1);
 CriteriaQuery query = new CriteriaQuery(criteria);
 SearchHits<User> hits = elasticsearchOperations.search(query, User.class);
 hits.forEach(h -> {
-    System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC
-    System.out.println(h.getContent().getId()); // 1
-    System.out.println(h.getContent().getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
+    System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
+    System.out.println(h.getContent().getId()); // 1, ...
+    System.out.println(h.getContent().getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
 });
 ```
 
