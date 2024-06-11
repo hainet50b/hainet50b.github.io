@@ -52,6 +52,9 @@
 - [Java 公式ドキュメント集](https://hainet50b.github.io/java/java-references)
 - [JUnit 5](https://hainet50b.github.io/java/java-junit5)
 
+### Pythonの基礎
+- [Python - メソッドパラメータの値渡し](https://hainet50b.github.io/python/python-pass-by-value)
+
 ### Javaアップデート情報
 - [Javaの動向（サポート・アップデートなど）](https://hainet50b.github.io/java/java-trends)
 - [Java 11までの変更点](https://hainet50b.github.io/java/java-11)
