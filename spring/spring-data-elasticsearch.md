@@ -99,6 +99,7 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 公式ドキュメント：[Elasticsearch Object Mapping :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/object-mapping.html){:target="_blank"}
 
 操作対象インデックスをSpELで動的に指定できる。  
+`@PersistenceCreator` が付与されたコンストラクタはオブジェクト生成時に優先的に使用される。
 
 ```java
 @Document(indexName = "users-#{T(java.time.LocalDate).now().format(T(java.time.format.DateTimeFormatter).ofPattern(\"yyyy.MM.dd\"))}")
@@ -113,10 +114,20 @@ public class User {
     @Field(type = FieldType.Keyword)
     private final String name;
 
-    @PersistenceCreator
     public User(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @PersistenceCreator
+    public User(String elasticsearchId, Integer id, String name) {
+        this.elasticsearchId = elasticsearchId;
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getElasticsearchId() {
+        return elasticsearchId;
     }
 
     public Integer getId() {
@@ -150,9 +161,10 @@ public class UserService {
 }
 ```
 
-### GET /users（全件検索）
+### search(query, clazz)（全件検索）
 ```java
 SearchHits<User> hits = elasticsearchOperations.search(new CriteriaQuery(new Criteria()), User.class);
+
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
     System.out.println(h.getContent().getId()); // 1, ...
@@ -160,18 +172,20 @@ hits.forEach(h -> {
 });
 ```
 
-### GET /users/:id（Elasticsearch IDによる単数検索）
+### get(id, clazz)（Elasticsearch IDによる単数検索）
 ```java
 User user = elasticsearchOperations.get("IiROB5ABAHrfptHDxmVC", User.class);
+
 System.out.println(user.getId()); // 1
 System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
 ```
 
-### GET /users?id=:id（任意の項目による複数検索）
+### search(query, clazz)（任意の項目による複数検索）
 ```java
 Criteria criteria = new Criteria("id").is(1);
 CriteriaQuery query = new CriteriaQuery(criteria);
 SearchHits<User> hits = elasticsearchOperations.search(query, User.class);
+
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
     System.out.println(h.getContent().getId()); // 1, ...
@@ -179,19 +193,80 @@ hits.forEach(h -> {
 });
 ```
 
-### POST /users（Elasticsearch IDを指定せず単数挿入）
+### save(entity)（Elasticsearch IDを指定せず単数挿入）
 ```java
-elasticsearchOperations.save(new User(
-        1,
-        UUID.randomUUID().toString() // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
-));
+User user = elasticsearchOperations.save(
+        new User(1, UUID.randomUUID().toString())
+);
+
+System.out.println(user.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC
+System.out.println(user.getId()); // 1
+System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
 ```
 
-### PUT /users/:id（Elasticsearch IDを指定して単数挿入・更新）
+### save(entities...)（Elasticsearch IDを指定せず複数挿入）
+```java
+Iterable<User> users = elasticsearchOperations.save(
+        new User(1, UUID.randomUUID().toString()),
+        new User(2, UUID.randomUUID().toString())
+);
 
-### DELETE /users/:id（Elasticsearch IDを指定して単数削除）
+users.forEach(u -> {
+    System.out.println(u.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC, ...
+    System.out.println(u.getId()); // 1, 2
+    System.out.println(u.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+});
+```
 
-### DELETE /users（Elasticsearch IDを指定せず複数削除）
+### save(entity)（Elasticsearch IDを指定して単数挿入・更新）
+```java
+User user = elasticsearchOperations.save(
+        new User("elasticsearch-id", 1, UUID.randomUUID().toString())
+);
+
+System.out.println(user.getElasticsearchId()); // elasticsearch-id
+System.out.println(user.getId()); // 1
+System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
+```
+
+### save(entities...)（Elasticsearch IDを指定して複数挿入・更新）
+```java
+elasticsearchOperations.save(
+        new User("elasticsearch-id1", 1, UUID.randomUUID().toString()),
+        new User("elasticsearch-id2", 2, UUID.randomUUID().toString())
+);
+
+users.forEach(u -> {
+    System.out.println(u.getElasticsearchId()); // elasticsearch-id1, elasticsearch-id2
+    System.out.println(u.getId()); // 1, 2
+    System.out.println(u.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+});
+```
+
+### update(entity)（Elasticsearch IDを指定して単数更新）
+```java
+UpdateResponse response = elasticsearchOperations.update(
+        new User("elasticsearch-id", 10, "hainet50b")
+);
+
+System.out.println(response.getResult()); // UPDATED or NOOP
+```
+
+### delete(id, clazz)（Elasticsearch IDを指定して単数削除）
+```java
+String elasticsearchId = elasticsearchOperations.delete("elasticsearch-id", User.class);
+
+System.out.println(elasticsearchId); // elasticsearch-id
+```
+
+### delete(query, clazz)（任意の項目による複数削除）
+```java
+Criteria criteria = new Criteria("id").is(4);
+CriteriaQuery query = new CriteriaQuery(criteria);
+ByQueryResponse response = elasticsearchOperations.delete(DeleteQuery.builder(query).build(), User.class);
+
+System.out.println(response.getDeleted()); // => 0
+```
 
 ## Queryの種類
 
