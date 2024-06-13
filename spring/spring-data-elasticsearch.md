@@ -6,7 +6,8 @@
 
 ## 課題メモ
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
-- インデックスを横断して検索する方法を探りたい。
+- ElasticsearchOperationsのAutoConfigurationを探す。
+- 例外ハンドリングの基本的な指針を設計したい。
 
 ## 依存関係の追加
 ```xml
@@ -101,9 +102,15 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 操作対象インデックスをSpELで動的に指定できる。  
 `@PersistenceCreator` が付与されたコンストラクタはオブジェクト生成時に優先的に使用される。
 
+インデックスを横断して検索するために、エンティティでインデックスパターンを定義しておく。
+
 ```java
 @Document(indexName = "users-#{T(java.time.LocalDate).now().format(T(java.time.format.DateTimeFormatter).ofPattern(\"yyyy.MM.dd\"))}")
-public class User {
+public class User implements Queryable {
+
+    public static String getIndexPattern() {
+        return "users-*";
+    }
 
     @Id
     private String elasticsearchId;
@@ -138,6 +145,13 @@ public class User {
         return name;
     }
 }
+
+public interface Queryable {
+
+    static String getIndexPattern() {
+        throw new UnsupportedOperationException("Give an index pattern.");
+    };
+}
 ```
 
 ## ElasticsearchOperationsの使用
@@ -162,8 +176,14 @@ public class UserService {
 ```
 
 ### search(query, clazz)（全件検索）
+`IndexCoordinates` を含むメソッドを使用してインデックスを横断して検索する。
+
 ```java
-SearchHits<User> hits = elasticsearchOperations.search(new CriteriaQuery(new Criteria()), User.class);
+SearchHits<User> hits = elasticsearchOperations.search(
+        new CriteriaQuery(new Criteria()),
+        User.class,
+        IndexCoordinates.of(User.getIndexPattern())
+);
 
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
@@ -184,7 +204,11 @@ System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
 ```java
 Criteria criteria = new Criteria("id").is(1);
 CriteriaQuery query = new CriteriaQuery(criteria);
-SearchHits<User> hits = elasticsearchOperations.search(query, User.class);
+SearchHits<User> hits = elasticsearchOperations.search(
+        query, 
+        User.class,
+        IndexCoordinates.of(User.getIndexPattern())
+);
 
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
@@ -245,9 +269,11 @@ users.forEach(u -> {
 
 ### update(entity)（Elasticsearch IDを指定して単数更新）
 ```java
-UpdateResponse response = elasticsearchOperations.update(
-        new User("elasticsearch-id", 10, "hainet50b")
-);
+User user = elasticsearchOperations.get("elasticsearch-id", User.class);
+user.setId(2);
+user.setName(UUID.randomUUID().toString());
+
+UpdateResponse response = elasticsearchOperations.update(user);
 
 System.out.println(response.getResult()); // UPDATED or NOOP
 ```
@@ -263,7 +289,11 @@ System.out.println(elasticsearchId); // elasticsearch-id
 ```java
 Criteria criteria = new Criteria("id").is(4);
 CriteriaQuery query = new CriteriaQuery(criteria);
-ByQueryResponse response = elasticsearchOperations.delete(DeleteQuery.builder(query).build(), User.class);
+ByQueryResponse response = elasticsearchOperations.delete(
+        DeleteQuery.builder(query).build(),
+        User.class,
+        IndexCoordinates.of(User.getIndexPattern())
+);
 
 System.out.println(response.getDeleted()); // => 0
 ```
