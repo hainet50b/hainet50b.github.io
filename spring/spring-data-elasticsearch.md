@@ -116,10 +116,10 @@ public class User implements Queryable {
     private String elasticsearchId;
 
     @Field(name = "id", type = FieldType.Integer)
-    private final Integer id;
+    private Integer id;
 
     @Field(type = FieldType.Keyword)
-    private final String name;
+    private String name;
 
     public User(Integer id, String name) {
         this.id = id;
@@ -143,6 +143,14 @@ public class User implements Queryable {
 
     public String getName() {
         return name;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 
