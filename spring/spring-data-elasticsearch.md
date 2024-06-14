@@ -175,7 +175,7 @@ logging:
 ```
 
 ```
-2024-06-14T13:30:55.017+09:00 DEBUG 4348 --- [...] [           main] org.elasticsearch.client.RestClient      : request [PUT https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false] returned [HTTP/1.1 201 Created]
+2024-06-14T13:30:55.017+09:00 DEBUG 4348 --- [spring-data-elasticsearch-demo] [           main] org.elasticsearch.client.RestClient      : request [PUT https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false] returned [HTTP/1.1 201 Created]
 ```
 
 リクエストボディとレスポンスボディも可視化する場合
@@ -187,7 +187,7 @@ logging:
 ```
 
 ```
-2024-06-14T13:34:48.908+09:00 TRACE 1888 --- [...] [           main] tracer                                   : curl -iX PUT 'https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false' -d '{"_class":"com.programacho.springdataelasticsearchdemo.User","elasticsearchId":"elasticsearch-id","id":1,"name":"hainet50b"}'
+2024-06-14T13:34:48.908+09:00 TRACE 1888 --- [spring-data-elasticsearch-demo] [           main] tracer                                   : curl -iX PUT 'https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false' -d '{"_class":"com.programacho.springdataelasticsearchdemo.User","elasticsearchId":"elasticsearch-id","id":1,"name":"hainet50b"}'
 # HTTP/1.1 201 Created
 # Location: /users-2024.06.14/_doc/elasticsearch-id
 # X-elastic-product: Elasticsearch
@@ -362,39 +362,110 @@ System.out.println(response.getDeleted()); // => 0
 ```
 
 ## 代表的な例外
+Spring Data例外の階層構造：[DAO Support :: Spring Framework](https://docs.spring.io/spring-framework/reference/data-access/dao.html#dao-exceptions){:target="_blank"}
+
 | 事象 | 例外 |
 | :--- | :--- |
-| 対象のインデックスが存在しない | TODO |
-| 対象のドキュメントが存在しない | TODO |
-| Elasticsearchと通信できない | TODO |
+| 対象のインデックスが存在しない | org.springframework.data.elasticsearch.NoSuchIndexException |
+| Elasticsearchと通信できない | org.springframework.dao.DataAccessResourceFailureException |
 | Elasticsearchとの通信がタイムアウトした | TODO |
 
 ### 対象のインデックスが存在しない
 サンプルコード
 
 ```java
+elasticsearchOperations.get(
+        "elasticsearch-id",
+        User.class,
+        IndexCoordinates.of("users-9999.12.31")
+);
 ```
 
 スタックトレース
 
 ```
-```
-
-### 対象のドキュメントが存在しない
-サンプルコード
-
-```java
-```
-
-スタックトレース
-
-```
+org.springframework.data.elasticsearch.NoSuchIndexException: Index users-9999.12.31 not found.
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchExceptionTranslator.translateExceptionIfPossible(ElasticsearchExceptionTranslator.java:91) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchExceptionTranslator.translateException(ElasticsearchExceptionTranslator.java:65) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.execute(ElasticsearchTemplate.java:685) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.get(ElasticsearchTemplate.java:140) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at com.programacho.springdataelasticsearchdemo.SpringDataElasticsearchDemoApplication.lambda$run$0(SpringDataElasticsearchDemoApplication.java:20) ~[classes/:na]
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774) ~[spring-boot-3.3.0.jar:3.3.0]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.0.jar:3.3.0]
+	at com.programacho.springdataelasticsearchdemo.SpringDataElasticsearchDemoApplication.main(SpringDataElasticsearchDemoApplication.java:14) ~[classes/:na]
 ```
 
 ### Elasticsearchと通信できない
 スタックトレース
 
 ```
+org.springframework.dao.DataAccessResourceFailureException: Connection refused: getsockopt
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchExceptionTranslator.translateExceptionIfPossible(ElasticsearchExceptionTranslator.java:111) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchExceptionTranslator.translateException(ElasticsearchExceptionTranslator.java:65) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.execute(ElasticsearchTemplate.java:685) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.get(ElasticsearchTemplate.java:140) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.core.AbstractElasticsearchTemplate.get(AbstractElasticsearchTemplate.java:272) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at com.programacho.springdataelasticsearchdemo.SpringDataElasticsearchDemoApplication.lambda$run$0(SpringDataElasticsearchDemoApplication.java:20) ~[classes/:na]
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88) ~[spring-core-6.1.8.jar:6.1.8]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774) ~[spring-boot-3.3.0.jar:3.3.0]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.0.jar:3.3.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.0.jar:3.3.0]
+	at com.programacho.springdataelasticsearchdemo.SpringDataElasticsearchDemoApplication.main(SpringDataElasticsearchDemoApplication.java:14) ~[classes/:na]
+Caused by: java.lang.RuntimeException: Connection refused: getsockopt
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchExceptionTranslator.translateException(ElasticsearchExceptionTranslator.java:64) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	... 24 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at org.elasticsearch.client.RestClient.extractAndWrapCause(RestClient.java:934) ~[elasticsearch-rest-client-8.13.4.jar:8.13.4]
+	at org.elasticsearch.client.RestClient.performRequest(RestClient.java:304) ~[elasticsearch-rest-client-8.13.4.jar:8.13.4]
+	at org.elasticsearch.client.RestClient.performRequest(RestClient.java:292) ~[elasticsearch-rest-client-8.13.4.jar:8.13.4]
+	at co.elastic.clients.transport.rest_client.RestClientHttpClient.performRequest(RestClientHttpClient.java:91) ~[elasticsearch-java-8.13.4.jar:na]
+	at co.elastic.clients.transport.ElasticsearchTransportBase.performRequest(ElasticsearchTransportBase.java:144) ~[elasticsearch-java-8.13.4.jar:na]
+	at co.elastic.clients.elasticsearch.ElasticsearchClient.get(ElasticsearchClient.java:910) ~[elasticsearch-java-8.13.4.jar:na]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.lambda$get$0(ElasticsearchTemplate.java:140) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	at org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate.execute(ElasticsearchTemplate.java:683) ~[spring-data-elasticsearch-5.3.0.jar:5.3.0]
+	... 23 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973) ~[na:na]
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvent(DefaultConnectingIOReactor.java:174) ~[httpcore-nio-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.nio.reactor.DefaultConnectingIOReactor.processEvents(DefaultConnectingIOReactor.java:148) ~[httpcore-nio-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351) ~[httpcore-nio-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.nio.conn.PoolingNHttpClientConnectionManager.execute(PoolingNHttpClientConnectionManager.java:221) ~[httpasyncclient-4.1.5.jar:4.1.5]
+	at org.apache.http.impl.nio.client.CloseableHttpAsyncClientBase$1.run(CloseableHttpAsyncClientBase.java:64) ~[httpasyncclient-4.1.5.jar:4.1.5]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 ```
 
 ### Elasticsearchとの通信がタイムアウトした
