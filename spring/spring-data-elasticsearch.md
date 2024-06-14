@@ -162,6 +162,41 @@ public interface Queryable {
 }
 ```
 
+## Elasticsearchクライアントのログ出力
+- Spring Data Elasticsearch公式ドキュメント：[Elasticsearch Clients :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/clients.html#elasticsearch.clients.logging){:target="_blank"}
+- Elasticsearch Java API Client公式ドキュメント：[Logging \|Elasticsearch Java API Client \| Elastic](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-logging.html#_restclient_debug_logs){:target="_blank"}
+
+リクエストラインとステータスラインだけを可視化する場合
+
+```yml
+logging:
+  level:
+    tracer: trace
+```
+
+```
+2024-06-14T13:30:55.017+09:00 DEBUG 4348 --- [...] [           main] org.elasticsearch.client.RestClient      : request [PUT https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false] returned [HTTP/1.1 201 Created]
+```
+
+リクエストボディとレスポンスボディも可視化する場合
+
+```yml
+logging:
+  level:
+    org.elasticsearch.client.RestClient: debug
+```
+
+```
+2024-06-14T13:34:48.908+09:00 TRACE 1888 --- [...] [           main] tracer                                   : curl -iX PUT 'https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false' -d '{"_class":"com.programacho.springdataelasticsearchdemo.User","elasticsearchId":"elasticsearch-id","id":1,"name":"hainet50b"}'
+# HTTP/1.1 201 Created
+# Location: /users-2024.06.14/_doc/elasticsearch-id
+# X-elastic-product: Elasticsearch
+# content-type: application/vnd.elasticsearch+json;compatible-with=8
+# content-length: 164
+#
+# {"_index":"users-2024.06.14","_id":"elasticsearch-id","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1}
+```
+
 ## ElasticsearchOperationsの使用
 公式ドキュメント：[Elasticsearch Operations :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/template.html){:target="_blank"}
 
