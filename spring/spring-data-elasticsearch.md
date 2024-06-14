@@ -7,6 +7,7 @@
 ## 課題メモ
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
 - 例外ハンドリングの基本的な指針を設計したい。
+- タイムアウトの検証をしたい。
 
 ## 依存関係の追加
 ```xml
@@ -358,6 +359,49 @@ ByQueryResponse response = elasticsearchOperations.delete(
 );
 
 System.out.println(response.getDeleted()); // => 0
+```
+
+## 代表的な例外
+| 事象 | 例外 |
+| :--- | :--- |
+| 対象のインデックスが存在しない | TODO |
+| 対象のドキュメントが存在しない | TODO |
+| Elasticsearchと通信できない | TODO |
+| Elasticsearchとの通信がタイムアウトした | TODO |
+
+### 対象のインデックスが存在しない
+サンプルコード
+
+```java
+```
+
+スタックトレース
+
+```
+```
+
+### 対象のドキュメントが存在しない
+サンプルコード
+
+```java
+```
+
+スタックトレース
+
+```
+```
+
+### Elasticsearchと通信できない
+スタックトレース
+
+```
+```
+
+### Elasticsearchとの通信がタイムアウトした
+スタックトレース
+
+```
+TODO
 ```
 
 ## Queryの種類
