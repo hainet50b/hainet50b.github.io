@@ -8,7 +8,6 @@
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
 - ElasticsearchOperationsのAutoConfigurationを探す。
 - 例外ハンドリングの基本的な指針を設計したい。
-- サンプルのUUIDを名前らしい文字列に変更してノイズを減らす。
 
 ## 依存関係の追加
 ```xml
@@ -184,7 +183,7 @@ public class UserService {
 }
 ```
 
-### search(query, clazz)（全件検索）
+### search(query, clazz, index)（全件検索）
 `IndexCoordinates` を含むメソッドを使用してインデックスを横断して検索する。
 
 ```java
@@ -197,19 +196,23 @@ SearchHits<User> hits = elasticsearchOperations.search(
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
     System.out.println(h.getContent().getId()); // 1, ...
-    System.out.println(h.getContent().getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+    System.out.println(h.getContent().getName()); // hainet50b, ...
 });
 ```
 
-### get(id, clazz)（Elasticsearch IDによる単数検索）
+### get(id, clazz, index)（Elasticsearch IDによる単数検索）
 ```java
-User user = elasticsearchOperations.get("IiROB5ABAHrfptHDxmVC", User.class);
+User user = elasticsearchOperations.get(
+        "elasticsearch-id",
+        User.class,
+        IndexCoordinates.of("users-2024.10.24")
+);
 
 System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
+System.out.println(user.getName()); // hainet50b
 ```
 
-### search(query, clazz)（任意の項目による複数検索）
+### search(query, clazz, index)（任意の項目による複数検索）
 ```java
 Criteria criteria = new Criteria("id").is(1);
 CriteriaQuery query = new CriteriaQuery(criteria);
@@ -222,79 +225,95 @@ SearchHits<User> hits = elasticsearchOperations.search(
 hits.forEach(h -> {
     System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
     System.out.println(h.getContent().getId()); // 1, ...
-    System.out.println(h.getContent().getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+    System.out.println(h.getContent().getName()); // hainet50b, ...
 });
 ```
 
 ### save(entity)（Elasticsearch IDを指定せず単数挿入）
 ```java
 User user = elasticsearchOperations.save(
-        new User(1, UUID.randomUUID().toString())
+        new User(1, "hainet50b")
 );
 
 System.out.println(user.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC
 System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
+System.out.println(user.getName()); // hainet50b
 ```
 
 ### save(entities...)（Elasticsearch IDを指定せず複数挿入）
 ```java
 Iterable<User> users = elasticsearchOperations.save(
-        new User(1, UUID.randomUUID().toString()),
-        new User(2, UUID.randomUUID().toString())
+        new User(1, "hainet50b"),
+        new User(2, "programacho.com")
 );
 
 users.forEach(u -> {
     System.out.println(u.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC, ...
     System.out.println(u.getId()); // 1, 2
-    System.out.println(u.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+    System.out.println(u.getName()); // hainet50b, programacho.com
 });
 ```
 
 ### save(entity)（Elasticsearch IDを指定して単数挿入・更新）
 ```java
 User user = elasticsearchOperations.save(
-        new User("elasticsearch-id", 1, UUID.randomUUID().toString())
+        new User("elasticsearch-id", 1, "hainet50b")
 );
 
 System.out.println(user.getElasticsearchId()); // elasticsearch-id
 System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227
+System.out.println(user.getName()); // hainet50b
 ```
 
 ### save(entities...)（Elasticsearch IDを指定して複数挿入・更新）
 ```java
-elasticsearchOperations.save(
-        new User("elasticsearch-id1", 1, UUID.randomUUID().toString()),
-        new User("elasticsearch-id2", 2, UUID.randomUUID().toString())
+Iterable<User> users = elasticsearchOperations.save(
+        new User("elasticsearch-id1", 1, "hainet50b"),
+        new User("elasticsearch-id2", 2, "programacho.com")
 );
 
 users.forEach(u -> {
     System.out.println(u.getElasticsearchId()); // elasticsearch-id1, elasticsearch-id2
     System.out.println(u.getId()); // 1, 2
-    System.out.println(u.getName()); // afc45df7-09cb-4ba2-bc7a-dc7b561ae227, ...
+    System.out.println(u.getName()); // hainet50b, programacho.com
 });
 ```
 
-### update(entity)（Elasticsearch IDを指定して単数更新）
+### update(entity, index)（Elasticsearch IDを指定して単数更新）
 ```java
-User user = elasticsearchOperations.get("elasticsearch-id", User.class);
+User user = elasticsearchOperations.get(
+        "elasticsearch-id",
+        User.class,
+        IndexCoordinates.of("users-2024.10.24")
+);
 user.setId(2);
 user.setName(UUID.randomUUID().toString());
 
-UpdateResponse response = elasticsearchOperations.update(user);
+UpdateResponse response = elasticsearchOperations.update(
+        user,
+        IndexCoordinates.of("users-2024.10.24")
+);
 
 System.out.println(response.getResult()); // UPDATED or NOOP
 ```
 
-### delete(id, clazz)（Elasticsearch IDを指定して単数削除）
+### delete(entity, index)（Elasticsearch IDを指定して単数削除）
 ```java
-String elasticsearchId = elasticsearchOperations.delete("elasticsearch-id", User.class);
+User user = elasticsearchOperations.get(
+        "elasticsearch-id",
+        User.class,
+        IndexCoordinates.of("users-2024.10.24")
+);
+
+String elasticsearchId = elasticsearchOperations.delete(
+        user,
+        IndexCoordinates.of("users-2024.10.24")
+);
 
 System.out.println(elasticsearchId); // elasticsearch-id
 ```
 
-### delete(query, clazz)（任意の項目による複数削除）
+### delete(query, clazz, index)（任意の項目による複数削除）
 ```java
 Criteria criteria = new Criteria("id").is(4);
 CriteriaQuery query = new CriteriaQuery(criteria);
