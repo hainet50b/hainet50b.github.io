@@ -6,7 +6,6 @@
 
 ## 課題メモ
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
-- ElasticsearchOperationsのAutoConfigurationを探す。
 - 例外ハンドリングの基本的な指針を設計したい。
 
 ## 依存関係の追加
