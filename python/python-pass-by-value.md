@@ -12,6 +12,7 @@ value = 1
 
 def doubleIt(value):
     value *= 2
+    print(value) # 2
 
 print(value) # 1
 doubleIt(value)
