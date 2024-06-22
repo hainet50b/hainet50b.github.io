@@ -72,6 +72,6 @@ class AkihabaraPedestrianParadiseServiceTest {
 Settings > Editor > File Encodings > Global Encoding: UTF-8
 ```
 
-問題なく日本語を文字化けすることなく表示できる。
+日本語が文字化けすることなく表示される。
 
 ![java-junit5-display-japanese.png](https://programacho.blob.core.windows.net/images/java-junit5-display-japanese.png)

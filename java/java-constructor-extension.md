@@ -49,7 +49,7 @@ class Parent {
     }
 
     public void action() {
-        System.out.println("Xに固有の動作");
+        System.out.println("スーパークラスに固有の動作");
     }
 }
 
@@ -60,12 +60,12 @@ class Child extends Parent {
 
     @Override
     public void action() {
-        System.out.println("Yに固有の動作");
+        System.out.println("サブクラスに固有の動作");
     }
 }
 ```
 
 ```
-Yに固有の動作 // Xに固有の動作を期待している。
-Yに固有の動作
+サブクラスに固有の動作 // スーパークラスに固有の動作を期待している。
+サブクラスに固有の動作
 ```
