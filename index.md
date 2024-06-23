@@ -60,6 +60,7 @@
 
 ### Pythonの基礎
 - [Python - メソッドパラメータの値渡し](https://hainet50b.github.io/python/python-pass-by-value)
+- [Python - コンストラクタと拡張](https://hainet50b.github.io/python/python-constructor-extension)
 
 ### Rust
 - [Rustのセットアップ](https://hainet50b.github.io/rust/rust-setup)
