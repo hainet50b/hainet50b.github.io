@@ -8,6 +8,7 @@
 - Elasticsearch APIは非同期で動作するため、更新後に検索する上手な方法を探りたい。
 - 例外ハンドリングの基本的な指針を設計したい。
 - タイムアウトの検証をしたい。
+- `@Document` でData Steramのnamespaceを切り替える方法を探りたい。
 
 ## 依存関係の追加
 ```xml
@@ -99,11 +100,63 @@ public class ElasticsearchClientConfig extends ElasticsearchConfiguration {
 ## Elasticsearchオブジェクトマッピングの作成
 公式ドキュメント：[Elasticsearch Object Mapping :: Spring Data Elasticsearch](https://docs.spring.io/spring-data/elasticsearch/reference/elasticsearch/object-mapping.html){:target="_blank"}
 
-操作対象インデックスをSpELで動的に指定できる。  
+`@Document` でData StreamかIndexを指定できる。  
 `@PersistenceCreator` が付与されたコンストラクタはオブジェクト生成時に優先的に使用される。
 
-インデックスを横断して検索するために、エンティティでインデックスパターンを定義しておく。
+Elasticsearchは時刻をUTCで取り扱うため `ZonedDateTime` 型を使用すること。
 
+**[Data Stream]**
+```java
+@Document(indexName = "logs-app.pmacho.app_log-default")
+public class AppLog {
+
+    @Id
+    private String elasticsearchId;
+
+    @Field(name = "@timestamp", type = FieldType.Date)
+    private ZonedDateTime time;
+
+    @Field(name = "message", type = FieldType.Keyword)
+    private String message;
+
+    public User(ZonedDateTime time, String message) {
+        this.time = time;
+        this.message = message;
+    }
+
+    @PersistenceCreator
+    public User(String elasticsearchId, ZonedDateTime time, String message) {
+        this.elasticsearchId = elasticsearchId;
+        this.time = time;
+        this.message = message;
+    }
+
+    public String getElasticsearchId() {
+        return elasticsearchId;
+    }
+
+    public ZonedDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(ZonedDateTime time) {
+        this.time = time;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
+```
+
+`@Document`ではSpELを使ってIndexを動的に指定できる。  
+Indexを横断して検索するために、Index Patternを取得できるようにしておく。
+
+**[Index]**
 ```java
 @Document(indexName = "users-#{T(java.time.LocalDate).now().format(T(java.time.format.DateTimeFormatter).ofPattern(\"yyyy.MM.dd\"))}")
 public class User implements Queryable {
@@ -141,12 +194,12 @@ public class User implements Queryable {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -218,8 +271,15 @@ public class UserService {
 }
 ```
 
-### search(query, clazz, index)（全件検索）
-`IndexCoordinates` を含むメソッドを使用してインデックスを横断して検索する。
+### search(query, clazz)（全件検索）
+```java
+SearchHits<ApiLog> hits = elasticsearchOperations.search(
+        new CriteriaQuery(new Criteria()),
+        ApiLog.class
+);
+```
+
+`IndexCoordinates` でIndexを上書きして検索できる。
 
 ```java
 SearchHits<User> hits = elasticsearchOperations.search(
@@ -227,27 +287,38 @@ SearchHits<User> hits = elasticsearchOperations.search(
         User.class,
         IndexCoordinates.of(User.getIndexPattern())
 );
-
-hits.forEach(h -> {
-    System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
-    System.out.println(h.getContent().getId()); // 1, ...
-    System.out.println(h.getContent().getName()); // hainet50b, ...
-});
 ```
 
-### get(id, clazz, index)（Elasticsearch IDによる単数検索）
+### get(id, clazz)（Elasticsearch IDによる単数検索）
+```java
+ApiLog apiLog = elasticsearchOperations.get(
+        "elasticsearch-id",
+        ApiLog.class
+);
+```
+
+`IndexCoordinates` でIndexを上書きして検索できる。
+
 ```java
 User user = elasticsearchOperations.get(
         "elasticsearch-id",
         User.class,
         IndexCoordinates.of("users-2024.10.24")
 );
-
-System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // hainet50b
 ```
 
-### search(query, clazz, index)（任意の項目による複数検索）
+### search(query, clazz)（任意の項目による複数検索）
+```java
+Criteria criteria = new Criteria("message").is("foo");
+CriteriaQuery query = new CriteriaQuery(criteria);
+SearchHits<ApiLog> hits = elasticsearchOperations.search(
+        query, 
+        ApiLog.class
+);
+```
+
+`IndexCoordinates` でIndexを上書きして検索できる。
+
 ```java
 Criteria criteria = new Criteria("id").is(1);
 CriteriaQuery query = new CriteriaQuery(criteria);
@@ -256,12 +327,6 @@ SearchHits<User> hits = elasticsearchOperations.search(
         User.class,
         IndexCoordinates.of(User.getIndexPattern())
 );
-
-hits.forEach(h -> {
-    System.out.println(h.getId()); // IiROB5ABAHrfptHDxmVC, ...
-    System.out.println(h.getContent().getId()); // 1, ...
-    System.out.println(h.getContent().getName()); // hainet50b, ...
-});
 ```
 
 ### save(entity)（Elasticsearch IDを指定せず単数挿入）
@@ -269,10 +334,6 @@ hits.forEach(h -> {
 User user = elasticsearchOperations.save(
         new User(1, "hainet50b")
 );
-
-System.out.println(user.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC
-System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // hainet50b
 ```
 
 ### save(entities...)（Elasticsearch IDを指定せず複数挿入）
@@ -281,12 +342,6 @@ Iterable<User> users = elasticsearchOperations.save(
         new User(1, "hainet50b"),
         new User(2, "programacho.com")
 );
-
-users.forEach(u -> {
-    System.out.println(u.getElasticsearchId()); // IiROB5ABAHrfptHDxmVC, ...
-    System.out.println(u.getId()); // 1, 2
-    System.out.println(u.getName()); // hainet50b, programacho.com
-});
 ```
 
 ### save(entity)（Elasticsearch IDを指定して単数挿入・更新）
@@ -294,10 +349,6 @@ users.forEach(u -> {
 User user = elasticsearchOperations.save(
         new User("elasticsearch-id", 1, "hainet50b")
 );
-
-System.out.println(user.getElasticsearchId()); // elasticsearch-id
-System.out.println(user.getId()); // 1
-System.out.println(user.getName()); // hainet50b
 ```
 
 ### save(entities...)（Elasticsearch IDを指定して複数挿入・更新）
@@ -306,12 +357,6 @@ Iterable<User> users = elasticsearchOperations.save(
         new User("elasticsearch-id1", 1, "hainet50b"),
         new User("elasticsearch-id2", 2, "programacho.com")
 );
-
-users.forEach(u -> {
-    System.out.println(u.getElasticsearchId()); // elasticsearch-id1, elasticsearch-id2
-    System.out.println(u.getId()); // 1, 2
-    System.out.println(u.getName()); // hainet50b, programacho.com
-});
 ```
 
 ### update(entity, index)（Elasticsearch IDを指定して単数更新）
@@ -328,8 +373,6 @@ UpdateResponse response = elasticsearchOperations.update(
         user,
         IndexCoordinates.of("users-2024.10.24")
 );
-
-System.out.println(response.getResult()); // UPDATED or NOOP
 ```
 
 ### delete(entity, index)（Elasticsearch IDを指定して単数削除）
@@ -344,8 +387,6 @@ String elasticsearchId = elasticsearchOperations.delete(
         user,
         IndexCoordinates.of("users-2024.10.24")
 );
-
-System.out.println(elasticsearchId); // elasticsearch-id
 ```
 
 ### delete(query, clazz, index)（任意の項目による複数削除）
@@ -357,8 +398,6 @@ ByQueryResponse response = elasticsearchOperations.delete(
         User.class,
         IndexCoordinates.of(User.getIndexPattern())
 );
-
-System.out.println(response.getDeleted()); // => 0
 ```
 
 ## 代表的な例外
