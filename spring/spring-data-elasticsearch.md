@@ -223,11 +223,10 @@ public interface Queryable {
 リクエストラインとステータスラインだけを可視化する場合
 
 ```yml
+```
 logging:
   level:
-    tracer: trace
-```
-
+    org.elasticsearch.client.RestClient: debug
 ```
 2024-06-14T13:30:55.017+09:00 DEBUG 4348 --- [spring-data-elasticsearch-demo] [           main] org.elasticsearch.client.RestClient      : request [PUT https://localhost:9200/users-2024.06.14/_doc/elasticsearch-id?refresh=false] returned [HTTP/1.1 201 Created]
 ```
@@ -237,7 +236,7 @@ logging:
 ```yml
 logging:
   level:
-    org.elasticsearch.client.RestClient: debug
+    tracer: trace
 ```
 
 ```
