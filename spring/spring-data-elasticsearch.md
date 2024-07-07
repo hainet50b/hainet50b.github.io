@@ -10,6 +10,7 @@
 - タイムアウトの検証をしたい。
 - `@Document` でData Steramのnamespaceを切り替える方法を探りたい。
 - Elasticsearchでは `_id` フィールドのみがユニークを保証できるため、サロゲートキーの発想は捨てて `User` クラスの `id` フィールドを削除する。
+- Index Aliasに対応して全面的に書き直すこと。
 
 ## 依存関係の追加
 ```xml
