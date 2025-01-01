@@ -38,6 +38,8 @@ openjdk11       C:\Users\hainet50b\scoop\apps\openjdk11\current
 ```
 
 ## JDKの切り替え（例：17 -> 11）
+パスにJavaバイナリが含まれているとそちらが優先されるので必要に応じて削除しておくこと。
+
 ```powershell
 jenv change openjdk11
 
