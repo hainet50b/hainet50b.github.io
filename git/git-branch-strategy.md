@@ -29,7 +29,7 @@ PRを育てるにあたって注意する点は以下の通り。
 数週間や数ヶ月に一度の頻度でデプロイを実施する場合に適している。
 
 ![git-model@2x.png](https://nvie.com/img/git-model@2x.png)
-出典：https://nvie.com/posts/a-successful-git-branching-model/
+出典：(https://nvie.com/posts/a-successful-git-branching-model/){:target="_blank"}
 
 ブランチの役割は以下の通り。
 - master：常に正常に動作するブランチ。デプロイされているとは限らない。
