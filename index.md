@@ -192,6 +192,9 @@
 - [SVGファイルをPNG形式に変換（qlmanage）](https://hainet50b.github.io/mac/mac-qlmanage)
 - [Mac Bits and Pieces](https://hainet50b.github.io/mac/mac-bits-and-pieces)
 
+### Parallels
+- [Windows仮想マシンへのDocker環境の構築](https://hainet50b.github.io/parallels/parallels-windows-docker)
+
 ### Windows
 - [PowerShell and Shell Equivalents](https://hainet50b.github.io/windows/powershell-and-shell-equivalents)
 - [WSLのセットアップ](https://hainet50b.github.io/windows/wsl)
