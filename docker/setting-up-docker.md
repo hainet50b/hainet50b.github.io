@@ -1,9 +1,19 @@
 # Docker環境の構築
 
 ## Mac
-HomebrewでDockerデーモン／Docker CLI／Docker Desktop全てのインストールが完了する。
+
+HomebrewでDockerデーモン／Docker CLI／Docker Desktop全てのインストールが完了する。  
+Caskオプションを付与しないとDocker Desktopがインストールされない。
+
+
 ```shell
-brew install docker
+brew install --cask docker
+```
+
+また、Docker Composeも併せてインストールしておいくと良い。
+
+```shell
+brew install docker-compose
 ```
 
 Apple Silicon搭載のMacでは一部のコンテナが動かないことがある。  
